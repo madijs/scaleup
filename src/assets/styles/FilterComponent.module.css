@@ -1,0 +1,151 @@
+.fake_container {
+    padding: 0 165px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    background-color: #ffffff;
+}
+
+
+
+.opennav {
+    position: sticky;
+    top: 0;
+    font-size: 35px;
+    padding: 0 25px;
+    cursor: pointer;
+    height: 80px;
+    display: none;
+    align-items: center;
+}
+
+.filter_container {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+div#mySidenav {
+    border-left: 1px solid #8F92A1;
+}
+
+.closenav {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    padding: 0 25px;
+    justify-content: space-between;
+    border-bottom: 1px solid #8F92A1;
+}
+
+a.closebtn {
+    font-size: 40px;
+    color: #8F92A1;
+    text-decoration: none;
+}
+
+div#mySidenav {
+    z-index: 1;
+    background: #fff;
+}
+.filter_heading {
+    font-weight: bold;
+    font-size: 22px;
+    /* line-height: 30px; */
+    /* identical to box height, or 125% */
+    letter-spacing: 0.4px;
+
+    /* Primary / Dark Blue */
+    color: #0B132A;
+}
+.filter_content {
+    padding: 25px;
+}
+
+p.option_heading {
+    color: #8F92A1;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.option {
+    color: #171717;
+    background: rgba(143, 146, 161, 0.2);
+    border-radius: 100px;
+    padding: 4px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.filter_split {
+    margin-bottom: 10px;
+}
+.option {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+.option.active {
+    background: #0B132A;
+    color: #fff;
+}
+p.option_heading {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.options .date input,
+.options .location input {
+    width: 100%;
+    border: 1px solid rgba(143, 146, 161, 0.6);
+    border-radius: 16px;
+    padding: 6px 20px;
+}
+
+.options .date,
+.options .location {
+    width: 100%;
+    height: auto;
+}
+.options .date input:focus, .options .location input:focus {
+    outline: none;
+}
+.filter_content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+input.to_apply {
+    margin: 20px 0;
+    background: #FF494D;
+    border-radius: 16px;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+input.reset {
+    /* margin: 20px 0; */
+    background: rgba(143, 146, 161, 0.1);
+    border-radius: 16px;
+    border: none;
+    color: #171717;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+

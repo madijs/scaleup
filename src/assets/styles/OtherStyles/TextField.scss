@@ -1,0 +1,31 @@
+.MuiOutlinedInput-root{
+    border-radius: 16px !important;
+}
+.MuiListItemIcon-root{
+    min-width: 24px !important;
+}
+.MuiInput-underline:before{
+    border-bottom: none !important;
+}
+.on {
+    background-color: #ffffff;
+    .MuiOutlinedInput-notchedOutline {
+        border: 1px solid #000;
+    }
+}
+.off{
+    background-color: #f9fafa;
+    border: none !important;
+    .MuiOutlinedInput-notchedOutline{
+        border: none !important;
+     }
+}
+.warning{
+    background-color: #ffffff;
+    .MuiOutlinedInput-notchedOutline {
+        border: 1px solid #FF991F;
+    }
+}
+.MuiInputLabel-outlined{
+    z-index: 0 !important;
+}

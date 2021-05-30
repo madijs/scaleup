@@ -1,0 +1,98 @@
+.space_background {
+    /*background: linear-gradient(100.78deg, #5243AA -8.28%, #FF494D 136.08%);*/
+    background-image: url("../../assets/img/vectorrocket.svg");
+    border-radius: 24px;
+    color: #fff;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.child_space{
+    padding: 50px 50px;
+
+}
+
+.congrats {
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 0.4px;
+    margin-bottom: 30px;
+}
+
+.wrapper_for_desc {
+    width: 40%;
+    font-weight: 700;
+}
+
+.description {
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+
+input.fly_rocket\! {
+    background: #FF494D;
+}
+
+
+input.fly_rocket {
+    background: #FF494D;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.disabled{
+    background: rgba(222, 53, 11, 0.1) !important;
+    cursor: unset !important;
+}
+.rocket {
+    position: absolute;
+    bottom: -84px;
+    right: 24%;
+}
+.rocket {
+    transition: 3s cubic-bezier(0.47, 0, 0.75, 0.72);
+}
+
+
+input.fly_rocket:focus {
+    outline: none;
+}
+input.fly_rocket {
+    transition: 0.7s ease;
+}
+
+@media screen and (max-width: 480px) {
+    .child_space {
+        padding: 24px 24px 350px;
+    }
+
+    .wrapper_for_desc {
+        width: 100%;
+    }
+
+    .congrats {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    input#fly_rocket {
+        width: 100%;
+    }
+
+    .description {
+        margin-bottom: 22px;
+    }
+
+    div#rocket {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .rocket{
+        right: 35%;
+    }
+}

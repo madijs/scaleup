@@ -1,0 +1,64 @@
+.container{
+  padding-top: 20px;
+  background-color: #f9f9f9;
+  height: 100%;
+  .blocks_container{
+    padding: 0 165px;
+    .blocks_header{
+      display: flex;
+      justify-content: space-between;
+      .info_btn{
+        background: rgba(143, 146, 161, 0.1);
+        padding: 12px 24px;
+        color: #171717;
+        font-weight: bold;
+        align-self: center;
+        border-radius: 16px;
+        cursor: pointer;
+        &:hover{
+          opacity: .6;
+        }
+      }
+    }
+    .status_block{
+      margin-top: 32px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      box-shadow: 0 10px 20px rgba(41, 41, 42, 0.07);
+      border-radius: 24px;
+      .changeStatus_txt{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        color: rgba(23, 23, 23, 0.8);
+      }
+      .changeStatus_btn{
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #FFFFFF;
+        background: #FF494D;
+        border-radius: 16px;
+        padding: 12px 24px;
+        cursor: pointer;
+        &:hover{
+          opacity: .6;
+        }
+      }
+    }
+    .mainPageBlocks{
+      display: grid;
+      grid-template-columns: 540px 540px;
+      grid-template-rows: auto auto;
+      grid-gap: 20px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+  }
+}

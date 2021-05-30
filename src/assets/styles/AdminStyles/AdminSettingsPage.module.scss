@@ -1,0 +1,41 @@
+.container{
+  background-color: #f9f9f9;
+  padding-top: 20px;
+  height: 100vh;
+  .tabs_container{
+    margin-top: 24px;
+    padding: 0 165px;
+    margin-bottom: 24px;
+    .tabs{
+      display: flex;
+      width: 50%;
+      justify-content: space-between;
+      .tab{
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #8F92A1;
+        cursor: pointer;
+        padding-bottom: 16px;
+        border-bottom: 2px solid transparent;
+        .count{
+          font-style: normal;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 20px;
+          color: #FF494D;
+        }
+      }
+      .active{
+        transition: .4s;
+        color: #000000;
+        border-bottom: 2px solid #FF494D;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .text{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #171717;
+    span{
+      color: #DE350B;
+      text-decoration: underline;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}

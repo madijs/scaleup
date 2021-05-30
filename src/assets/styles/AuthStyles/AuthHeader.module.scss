@@ -1,0 +1,15 @@
+.header_container{
+  height: 160px;
+  padding: 0 165px;
+  background: linear-gradient(180deg, rgba(245, 56, 56, 0.05) 0%, rgba(245, 56, 56, 0) 100%);
+}
+.header{
+  display: flex;
+  height: 100px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .header_container{
+    padding: 0 20px;
+  }
+}

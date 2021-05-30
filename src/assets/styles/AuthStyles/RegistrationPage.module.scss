@@ -1,0 +1,74 @@
+.formContainer{
+  display: flex;
+  justify-content: center;
+  .form{
+    width: 500px;
+    .formTitle{
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .formSubtitle{
+      margin-top: 10px;
+      text-align: center;
+      .formSubtitle_question{
+        color: grey;
+      }
+      .formSubtitle_answer{
+        margin-left: 10px;
+        color: #FF494D;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .textField{
+        width: 100%;
+        margin-top: 15px;
+        border-radius: 15px;
+        border: none;
+      }
+      .formFields{
+        margin-top: 20px;
+        width: 100%;
+      }
+      .signInBtn{
+        width:100%;
+        margin-top: 15px;
+        border-radius: 16px;
+        padding:15px 0;
+        background-color:#FF494D;
+        border:none;
+        outline:none;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover{
+          opacity: .8;
+        }
+      }
+      .signInBtnPending{
+        width:100%;
+        margin-top: 15px;
+        border-radius: 16px;
+        padding:15px 0;
+        background-color:#cccccc;
+        border:none;
+        outline:none;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+    }
+  }
+}
+@media (max-width: 760px) {
+  .formFields{
+    width: 90% !important;
+    margin: auto;
+  }
+  .btn{
+    padding: 0 16px;
+  }
+}

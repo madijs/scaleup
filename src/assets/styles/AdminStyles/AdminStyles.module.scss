@@ -1,0 +1,25 @@
+.container{
+  padding: 0 165px;
+  .head{
+    .title{
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 30px;
+      letter-spacing: 0.4px;
+      color: #0B132A;
+    }
+    .description{
+      margin-top: 12px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 20px;
+      color: rgba(23, 23, 23, 0.8);
+      .count{
+        color: #000000;
+        font-weight: bold;
+      }
+    }
+  }
+}

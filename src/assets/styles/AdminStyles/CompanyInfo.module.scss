@@ -1,0 +1,179 @@
+.container{
+  width: 540px;
+  height: 788px;
+  left: 450px;
+  top: 118px;
+  background: #FFFFFF;
+  border-radius: 32px;
+  .modal_header{
+    display: flex;
+    padding: 26px 26px;
+    border-bottom: 1px solid #EEEEEE;
+    .title{
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 30px;
+      letter-spacing: 0.4px;
+      color: #0B132A;
+    }
+    .close {
+      position: absolute;
+      right: 32px;
+      top: 32px;
+      width: 32px;
+      height: 32px;
+      opacity: 0.3;
+      cursor: pointer;
+    }
+    .close:hover {
+      opacity: 1;
+    }
+    .close:before, .close:after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 20px;
+      width: 2px;
+      background-color: #333;
+    }
+    .close:before {
+      transform: rotate(45deg);
+    }
+    .close:after {
+      transform: rotate(-45deg);
+    }
+  }
+  .modal_content{
+    padding: 0 32px;
+    .modal_content_item{
+      display: flex;
+      justify-content: space-between;
+      padding: 26px 0 10px 0;
+      border-bottom: 1px solid #EEEEEE;
+      .key{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        color: #171717;
+      }
+      .value{
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        color: #171717;
+      }
+      .fileName{
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        text-decoration-line: underline;
+        color: #FF494D;
+        cursor: pointer;
+      }
+      .dont_paid{
+        background: rgba(222, 53, 11, 0.1);
+        border-radius: 8px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        color: #DE350B;
+        text-align: center;
+        padding: 8px 12px;
+      }
+      .waiting_paid{
+        background: rgba(255, 153, 31, 0.1);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        color: #FF991F;
+        text-align: center;
+      }
+      .waiting_paid2{
+        background: rgba(255, 153, 31, 0.1);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        color: #FF991F;
+        text-align: center;
+      }
+      .successPaid{
+        background: rgba(0, 135, 90, 0.2);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        color: #00875A;
+        text-align: center;
+      }
+    }
+    .btns{
+      display: flex;
+      align-items: center;
+      margin-top: 23px;
+      .agree_btn{
+        flex: 1;
+        padding: 12px 24px;
+        background: #FF494D;
+        border-radius: 16px;
+        color: #ffffff;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        &:hover{
+          opacity: .6;
+        }
+      }
+      .close_btn{
+        flex: 1;
+        padding: 12px 24px;
+        text-align: center;
+        background: rgba(143, 146, 161, 0.1);
+        border-radius: 16px;
+        color: #000000;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover{
+          opacity: .6;
+        }
+      }
+    }
+    .closeBtn{
+
+      margin-top: 23px;
+      .close_btn{
+        flex: 1;
+        padding: 12px 24px;
+        text-align: center;
+        background: rgba(143, 146, 161, 0.1);
+        border-radius: 16px;
+        color: #000000;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover{
+          opacity: .6;
+        }
+      }
+    }
+  }
+}

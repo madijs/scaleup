@@ -1,0 +1,130 @@
+.modal{
+  text-align: center;
+  width: 540px;
+  height: 465px;
+  position: relative;
+  .title{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0.4px;
+    color: #0B132A;
+    text-align: start;
+    padding: 12px 32px 32px 32px;
+    border-bottom: 1px solid #cccccc;
+  }
+  .close {
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    top: 35px;
+    right: 40px;
+    content: ' ';
+    height: 18px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  .content{
+    padding: 32px;
+    .content_title{
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      color: #171717;
+      text-align: start;
+    }
+    .sections{
+      margin-top: 30px;
+      display: grid;
+      grid-gap: 36px;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto;
+      .section_item{
+        display: flex;
+        align-items: center;
+      }
+    }
+    .link_container{
+      margin-top: 32px;
+      background: rgba(222, 53, 11, 0.05);
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .link{
+        flex: 1;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        color: #0B132A;
+        input{
+          background-color: transparent;
+          border:none;
+          outline: none;
+          width: 100%;
+        }
+      }
+      .link_btn{
+        flex: 1;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #FF494D;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+      .success_link_btn{
+        flex: 1;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: green;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+  .closeBtn{
+    margin-top: 23px;
+    padding: 0 32px 0 32px;
+    .close_btn{
+      flex: 1;
+      padding: 12px 24px;
+      text-align: center;
+      background: rgba(143, 146, 161, 0.1);
+      border-radius: 16px;
+      color: #000000;
+      font-weight: bold;
+      cursor: pointer;
+      &:hover{
+        opacity: .6;
+      }
+    }
+  }
+}
