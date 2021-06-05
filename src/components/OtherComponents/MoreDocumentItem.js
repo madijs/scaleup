@@ -21,6 +21,9 @@ class MoreDocumentItem extends Component{
             console.log('double click');
             if (type === 'folder'){
                 this.props.history.push(this.props.location.pathname+'/more/'+key3);
+                const copy = [...this.props.folderName];
+                copy.push(key3);
+                this.props.setFolderName(copy)
             }
             if (type === 'file'){
                 this.openFile(file,key);
@@ -43,17 +46,27 @@ class MoreDocumentItem extends Component{
         console.log('single click');
     }
 
-    deleteDocument(id,file,key){
-        console.log(id);
-
+    deleteDocument(id,file,key,type,key3){
+        console.log(file);
+        console.log(type);
         if (this.props.location.pathname.includes('/admin/settings')){
-            axios.delete(`/docs/templates/delete-file?link=${key}/${file}`,{
-                params:{
-                    link:key+'/'+file
-                }
-            }).then(res=>{
-                this.props.setDocs(res.data);
-            })
+            if (type !== 'folder'){
+                axios.delete(`/docs/templates/delete-file?link=${key}/${file}`,{
+                    params:{
+                        link:key+'/'+file
+                    }
+                }).then(res=>{
+                    this.props.setDocs(res.data);
+                })
+            }else if (type == 'folder'){
+                axios.delete(`/docs/templates/delete-folder`,{
+                    params:{
+                        link:key+'/'+key3
+                    }
+                }).then(res=>{
+                    this.props.setDocs(res.data);
+                })
+            }
         }else{
             axios.delete(`/docs/delete-file/${id}`, {headers:{},data:{link:key+'/'+file}}).then(res=>{
                 this.props.setDocs(res.data);
@@ -131,6 +144,21 @@ class MoreDocumentItem extends Component{
                                                         {docsData[key].data[key2].data[key3].count} файлов
                                                     </div>
                                                 </div>
+                                                {this.props.userData && this.props.userData.roles[0].name !== 'client' && (
+                                                    <div onClick={()=>{
+                                                        console.log('123')
+                                                        console.log(docsData[key].data[key2].data[key3].type);
+                                                        this.deleteDocument(
+                                                            id,
+                                                            docsData[key].data[key2].data[key3].name,
+                                                            key+'/'+key2,
+                                                            docsData[key].data[key2].data[key3].type,
+                                                            key3
+                                                        )
+                                                    }} className={styles.trash}>
+                                                        <TrashIcon/>
+                                                    </div>
+                                                )}
                                             </div>
                                         )}
                                     </>

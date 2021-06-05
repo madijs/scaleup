@@ -36,6 +36,9 @@ class DocumentItem extends Component {
                         this.props.history.push(this.props.location.pathname+'/detail/'+key+'&'+key2);
                     }
                 }
+                const copy = [...this.props.folderName];
+                copy.push(key2);
+                this.props.setFolderName(copy)
             }
             if (type === 'file'){
                 this.openFile(file,key);
@@ -56,16 +59,28 @@ class DocumentItem extends Component {
         this.props.setOpen(true);
     }
 
-    deleteDocument(id,file,key){
+    deleteDocument(id,file,key,type,key2){
         console.log(id);
         if (this.props.location.pathname.includes('/admin/settings')){
-            axios.delete(`/docs/templates/delete-file?link=${key}/${file}`,{
-                params:{
-                    link:key+'/'+file
-                }
-            }).then(res=>{
-                this.props.setDocs(res.data);
-            })
+            if (type === 'file'){
+                axios.delete(`/docs/templates/delete-file?link=${key}/${file}`,{
+                    params:{
+                        link:key+'/'+file
+                    }
+                }).then(res=>{
+                    this.props.setDocs(res.data);
+                })
+            }else{
+                console.log(key)
+                console.log(key2)
+                axios.delete(`/docs/templates/delete-folder`,{
+                    params:{
+                        link:key+'/'+key2
+                    }
+                }).then(res=>{
+                    this.props.setDocs(res.data);
+                })
+            }
         }else{
             axios.delete(`/docs/delete-file/${id}`, {headers:{},data:{link:key+'/'+file}}).then(res=>{
                 this.props.setDocs(res.data);
@@ -118,8 +133,8 @@ class DocumentItem extends Component {
                                 )}
                             </div>
                         </div>
-                        {this.props.userData && this.props.userData.roles[0].name!=='client' && docsData[key].data[key2].type === 'file' && (
-                            <div onClick={()=>this.deleteDocument(id,docsData[key].data[key2].name,key)} className={styles.trash}>
+                        {this.props.userData && this.props.userData.roles[0].name!=='client' && (
+                            <div onClick={()=>this.deleteDocument(id,docsData[key].data[key2].type==='file' ? docsData[key].data[key2].name : '',key,docsData[key].data[key2].type,key2)} className={styles.trash}>
                                 <TrashIcon/>
                             </div>
                         )}

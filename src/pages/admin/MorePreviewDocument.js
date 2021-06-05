@@ -34,7 +34,7 @@ const customStyles = {
 };
 
 
-const MorePreviewDocument = () => {
+const MorePreviewDocument = ({folderName,setFolderName}) => {
     const [isOpen,setOpen] = useState(false);
     const [document,setDocument] = useState(null);
     const {userData} = useSelector(state => state.AuthPage);
@@ -79,6 +79,12 @@ const MorePreviewDocument = () => {
         })
     };
 
+    const goBack = () => {
+        const copy = [...folderName];
+        copy.pop();
+        setFolderName(copy);
+    };
+
     return(
         <>
             <Modal
@@ -87,7 +93,7 @@ const MorePreviewDocument = () => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <AddModalFile id={id} pathLink={name.split("&")[0]+'/'+name.split("&")[1]+'/'+name2} closeAddFileModal={closeAddFileModal}/>
+                <AddModalFile folder={null} id={id} pathLink={name.split("&")[0]+'/'+name.split("&")[1]+'/'+name2} closeAddFileModal={closeAddFileModal}/>
             </Modal>
             <Modal
                 isOpen={isOpen}
@@ -100,7 +106,8 @@ const MorePreviewDocument = () => {
         <div className={styles.fake_container}>
             <div className={styles.head}>
                 <GoBack
-                    title={"Мои документы"}
+                    action={goBack}
+                    title={folderName.length>0 ? folderName[folderName.length-1] : 'Мои документы'}
                     subtitle={"Предпросмотр"}
                 />
                 {!location.pathname.includes('/shared') && (

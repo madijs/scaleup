@@ -32,7 +32,7 @@ const customStyles = {
     }
 };
 
-const PreviewDocumentDetail = () => {
+const PreviewDocumentDetail = ({folderName,setFolderName}) => {
     const {userData} = useSelector(state => state.AuthPage);
     const search = new URLSearchParams(useLocation().search);
     const token = search.get('token');
@@ -124,6 +124,7 @@ const PreviewDocumentDetail = () => {
             }
         }
     },[]);
+
     return(
         <>
             <Modal
@@ -145,7 +146,8 @@ const PreviewDocumentDetail = () => {
         <div className={styles.fake_container}>
             <div className={styles.head}>
                 <GoBack
-                    title={"Мои документы"}
+
+                    title={folderName.length>0 ? folderName[folderName.length-1] : "Документы"}
                     subtitle={"Предпросмотр"}
                 />
                 {!location.pathname.includes('/shared') && (
@@ -165,6 +167,8 @@ const PreviewDocumentDetail = () => {
                 {docsData && (
                     <div className={styles.inner_dorectory}>
                         <MoreDocumentItem
+                            folderName={folderName}
+                            setFolderName={setFolderName}
                             id={id}
                             userData={userData}
                             setDocs={setDocs}

@@ -75,7 +75,7 @@ const AfterPaymentMainPage = () => {
                 <div className={styles.title}>
                     Главная
                 </div>
-                {userData && userData.docs === "0" ? (
+                {userData && userData.docs == "0" ? (
                     <div className={styles.subtitle}>
                         Вам необходимо заполнить все анкеты
                     </div>

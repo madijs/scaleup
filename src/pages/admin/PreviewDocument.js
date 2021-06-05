@@ -39,7 +39,7 @@ const customStyles = {
     }
 };
 
-const PreviewDocument = () => {
+const PreviewDocument = ({setFolderName,folderName}) => {
     const {id} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
@@ -307,7 +307,7 @@ const PreviewDocument = () => {
                             )}
                         </div>
                         <div className={styles.main_docs}>
-                            <DocumentItem userData={userData ? userData: null} setDocs={setDocs} setOpen={setOpen} setDocument={setDocument} id={id} location={location} history={history} docsData={docsData} keyName={key}/>
+                            <DocumentItem folderName={folderName} setFolderName={setFolderName} userData={userData ? userData: null} setDocs={setDocs} setOpen={setOpen} setDocument={setDocument} id={id} location={location} history={history} docsData={docsData} keyName={key}/>
                         </div>
                     </div>
                 ))}

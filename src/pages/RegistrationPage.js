@@ -395,7 +395,7 @@ const RegistrationPage = () => {
                             />
                         </div>
                         <div className={styles.btn}>
-                            <button onClick={submit} className={isPending ? styles.signInBtnPending :styles.signInBtn} variant="contained" color="secondary">
+                            <button style={{marginTop:30}} onClick={submit} className={isPending ? styles.signInBtnPending :styles.signInBtn} variant="contained" color="secondary">
                                 Зарегистрироваться
                             </button>
                         </div>

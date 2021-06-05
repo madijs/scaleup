@@ -12,7 +12,7 @@ import Warning from "../../assets/icons/warning.svg";
 import TextField from "@material-ui/core/TextField/TextField";
 import SettingsService from "../../services/SettingsService";
 
-const AddModalFile = ({closeAddFileModal,pathLink,id}) => {
+const AddModalFile = ({closeAddFileModal,pathLink,id,folder=true}) => {
 
     const [type,setType] = useState(null);
     const [focus,setFocus] = useState('');
@@ -72,7 +72,7 @@ const AddModalFile = ({closeAddFileModal,pathLink,id}) => {
             </div>
             <div className={styles.title}>Загрузить файл</div>
             <div className={styles.content}>
-                {!type && (
+                {folder && !type && (
                    <>
                        <div className={styles.footer}>
                            <div onClick={()=>setType('folder')} className={styles.add_btn}>Добавить папку</div>
@@ -80,7 +80,7 @@ const AddModalFile = ({closeAddFileModal,pathLink,id}) => {
                        </div>
                    </>
                 )}
-                {type === 'file' && (
+                {(type === 'file' || !folder) && (
                     <>
                         {!file ? (
                             <div className={styles.file_container}>

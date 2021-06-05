@@ -21,9 +21,12 @@ const AdminSettingsPage = () => {
     const dispatch = useDispatch();
     const [active,setActive] = useState(1);
     const {workers,services,users_list, anketa} = useSelector(state => state.SettingsPage);
+    const [folderName,setFolderName] = useState([]);
 
     const location = useLocation();
     const history = useHistory();
+
+    console.log(location);
 
     const [blockData,setBlockData] = useState([
         {
@@ -118,7 +121,7 @@ const AdminSettingsPage = () => {
             )}
             {(active === 4 && location.pathname==='/admin/settings') && (
                 <>
-                    <PreviewDocument/>
+                    <PreviewDocument folderName={folderName} setFolderName={setFolderName}/>
                 </>
             )}
             {(active === 5 && users_list) && (
@@ -128,8 +131,8 @@ const AdminSettingsPage = () => {
                     count={users_list.length}
                 />
             )}
-            <Route exact path={'/admin/settings/detail/:name'} render={()=><PreviewDocumentDetail/>}/>
-            <Route exact path={'/admin/settings/detail/:name/more/:name2'} render={()=><MorePreviewDocument/>}/>
+            <Route exact path={'/admin/settings/detail/:name'} render={()=><PreviewDocumentDetail setFolderName={setFolderName} folderName={folderName}/>}/>
+            <Route exact path={'/admin/settings/detail/:name/more/:name2'} render={()=><MorePreviewDocument setFolderName={setFolderName} folderName={folderName}/>}/>
         </div>
         </>
     )
