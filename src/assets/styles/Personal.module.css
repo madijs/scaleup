@@ -152,6 +152,8 @@
 .main_docs {
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
+  height: 120px;
 }
 
 .document {
