@@ -46,7 +46,7 @@ const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUs
 
     const createUser = () => {
         if (form.fio && form.role && form.email && (form.password && (form.password === form.confirmPassword))){
-            const response = new SettingsService().createSystemUser(form.fio,form.role,form.email,form.password,form.confirmPassword);
+            const response = new SettingsService().createSystemUser(form.fio,form.role,form.email,form.password,form.confirmPassword,phone);
             response.then(res=>{
                 dispatch(getWorkersAction());
                 closeModal();
@@ -204,7 +204,7 @@ const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUs
                     }}
                 />
                 <InputMask
-                    mask="+7(799) 999-99-99"
+                    mask="+79999999999"
                     onChange={(e)=>{
                         setPhone(e.target.value)
                     }}

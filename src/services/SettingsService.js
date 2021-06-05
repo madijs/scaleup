@@ -42,11 +42,12 @@ export default class SettingsService {
         return await this.getResource('/roles')
     }
 
-    async createSystemUser(fio,role_id,email,password,password_confirmation){
+    async createSystemUser(fio,role_id,email,password,password_confirmation,phone){
         const payload = {
             'fio':fio,
             'role_id':role_id,
             'email':email,
+            phone,
             'password':password,
             'password_confirmation':password_confirmation
         };
