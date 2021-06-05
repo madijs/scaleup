@@ -1,0 +1,39 @@
+.goback_container{
+  .goBack_title{
+    display: flex;
+    align-items: center;
+    .goBack_title_icon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #EEA897;
+      border-radius: 8px;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      &:hover{
+        background-color: #EEA897;
+      }
+    }
+    .goBack_title_text{
+      margin-left: 12px;
+        h2{
+          color: #0B132A;
+        }
+    }
+  }
+  .goBack_subtitle{
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    color: rgba(23, 23, 23, 0.8);
+  }
+}
+
+@media (max-width: 760px) {
+  .goback_container{
+    width: 100%;
+  }
+  .goBack_title_text{
+  }
+}

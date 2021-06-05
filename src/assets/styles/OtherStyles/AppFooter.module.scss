@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap');
+.footer_container{
+  height: 182px;
+  padding: 0 165px;
+  background-color: #171717;
+  .footer{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    .logo_container{
+
+    }
+    .footer_items{
+
+      .footer_items_title{
+        font-size: 16px;
+        font-style: normal;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer_items_value{
+        color: #ffffff;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer_container{
+    padding: 0 !important;
+    height: auto !important;
+    padding-bottom: 32px !important;
+  }
+  .footer{
+    flex-direction: column;
+    align-items: flex-start !important;
+    padding: 20px;
+  }
+  .footer_items{
+    margin-top: 32px;
+  }
+}

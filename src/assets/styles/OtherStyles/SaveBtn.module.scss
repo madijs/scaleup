@@ -1,0 +1,17 @@
+.saveBtn{
+  border-radius: 16px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover{
+    opacity: .6;
+  }
+}
+
+@media (max-width: 760px) {
+  .saveBtn{
+    width: 100% !important;
+    text-align: center;
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,14 @@
+.progressContainer{
+  margin-top: 35px;
+  .progressBar{
+    position: relative;
+    height: 12px;
+    background: rgba(143, 146, 161, 0.2);
+    border-radius: 100px;
+    .progressIcon{
+      position: absolute;
+      right: -40px;
+      top: -25px;
+    }
+  }
+}

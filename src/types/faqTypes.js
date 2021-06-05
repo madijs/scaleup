@@ -1,0 +1,1 @@
+export const SET_FAQ = 'SET_FAQ';

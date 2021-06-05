@@ -1,0 +1,114 @@
+.container{
+  padding: 0 165px 100px 165px;
+  .title{
+    box-shadow: 0 10px 20px rgba(41, 41, 42, 0.07);
+    border-radius: 24px;
+    padding: 24px;
+    background: #FFFFFF;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 200px;
+    grid-gap: 20px;
+    .video{
+      border-radius: 32px;
+      overflow: hidden;
+      .iframe{
+      }
+    }
+    .content{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px 0;
+      .info{
+        .name{
+          font-style: normal;
+          font-weight: bold;
+          font-size: 24px;
+          line-height: 30px;
+          letter-spacing: 0.4px;
+          color: #0B132A;
+        }
+        .description{
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 22px;
+          color: #8F92A1;
+        }
+      }
+      .action{
+        .btn{
+          background: #FF494D;
+          border-radius: 16px;
+          padding: 12px 24px;
+          color: #FFFFFF;
+          display: flex;
+          border: none;
+          cursor: pointer;
+          &:hover{
+            opacity: .6;
+          }
+        }
+      }
+    }
+  }
+  .table{
+    background: #FFFFFF;
+    box-shadow: 0 10px 20px rgba(41, 41, 42, 0.07);
+    border-radius: 24px;
+    padding: 24px;
+    .table_header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .filter{
+        display: block;
+        .filter_title{
+          text-align: start;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 24px;
+          line-height: 20px;
+          color: #171717;
+        }
+        .filter_description{
+          margin-top: 12px;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 20px;
+          color: rgba(23, 23, 23, 0.8);
+        }
+      }
+      .add_btn{
+        padding: 12px 24px;
+        background: #FF494D;
+        border-radius: 16px;
+        color: #FFFFFF;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+    .admin_table_title{
+      display: flex;
+      margin-top: 24px;
+      table{
+        width: 100%;
+        //thead, tbody { display: block; }
+        //
+        //tbody {
+        //  height: 500px;       /* Just for the demo          */
+        //  overflow-y: scroll;    /* Trigger vertical scroll    */
+        //  overflow-x: hidden;  /* Hide the horizontal scroll */
+        //}
+      }
+    }
+    .admin_table_content{
+
+    }
+  }
+}

@@ -1,0 +1,122 @@
+.container{
+  .mypayments{
+    padding: 0 165px;
+    .head{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .btns{
+        display: flex;
+        align-items: center;
+      }
+      .btns div{
+        margin-left: 24px;
+      }
+    }
+    .table_title{
+      background: #FFFFFF;
+      box-shadow: 0 10px 20px rgba(41, 41, 42, 0.07);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      margin-top: 24px;
+      table{
+        width: 100%;
+        .container{
+          background: rgba(143, 146, 161, 0.05);
+          border-radius: 16px;
+          th{
+            padding: 12px 16px;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 20px;
+            letter-spacing: 1px;
+            text-align: start;
+            text-transform: uppercase;
+            color: #171717
+          }
+          div{
+            opacity: 1 !important;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #171717 !important;
+          }
+        }
+        tr:first-child th:first-child { border-top-right-radius: 10px; }
+        tr:first-child th:first-child { border-bottom-right-radius: 10px; }
+        tr:first-child th:last-child { border-top-right-radius: 10px; }
+        tr:first-child th:last-child { border-bottom-right-radius: 10px; }
+      }
+    }
+    .mobile_table_title{
+      display: none;
+      background: #FFFFFF;
+      box-shadow: 0 10px 20px rgba(41, 41, 42, 0.07);
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 24px;
+      .mobile_table_title_row{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        .row{
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 20px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          color: #171717;
+        }
+        .ans{
+          font-style: normal;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 20px;
+          color: #171717;
+        }
+      }
+    }
+  }
+}
+.action{
+  color: #00875A;
+  background: rgba(0, 135, 90, 0.2);
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+@media (max-width: 1024px) {
+  .mypayments{
+    padding: 0 50px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .mobile_table_title{
+    display: block !important;
+  }
+  .mypayments{
+    padding: 0 16px !important;
+  }
+  .table_title{
+    display: none !important;
+  }
+  .head{
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .btns{
+    width: 100% !important;
+    margin-top: 40px;
+    text-align: center;
+  }
+  .btns div{
+    margin-left: 0 !important;
+  }
+}

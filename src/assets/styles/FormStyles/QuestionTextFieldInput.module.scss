@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap');
+.textarea{
+  width: 100%;
+  .text_area{
+    border-radius: 16px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    display: flex;
+    align-items: center;
+    /* Gray/G100 */
+    color: #8F92A1;
+
+  }
+  textarea::-webkit-input-placeholder {
+    color: #8F92A1;
+  }
+  textarea{
+    font-family: 'IBM Plex Sans', sans-serif;
+    width: 100%;
+    margin-top: 15px;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    font-weight: 400;
+    color: #171717;
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+    resize: none;
+  }
+}
+.head{
+  display: flex;
+  justify-content: space-between;
+  .warning{
+    .comment{
+      cursor: pointer;
+    }
+  }
+}
+.root{
+  background: #FFFFFF;
+  box-shadow: 0 10px 20px rgba(41, 41, 42, 0.07);
+  border-radius: 24px;
+  padding: 24px;
+  .title{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #00875A;
+    margin-bottom: 10px;
+  }
+  .text{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #171717;
+    span{
+      color: red;
+      font-size: 1rem;
+    }
+  }
+  .input{
+    .textField{
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      width: 100%;
+      margin-top: 15px;
+      border: none;
+      border-radius: 15px;
+      color: #8F92A1;
+        label{
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-weight: bold;
+          color: #8F92A1;
+          font-size: 14px;
+          font-style: normal;
+          line-height: 20px;
+        }
+    }
+  }
+}
+.emptyModal{
+  flex: 0;
+  background: transparent;
+}
+.commentModal{
+  display: none !important;
+  flex: 0.4;
+  background: #F3F6F8;
+  border-radius: 24px;
+  height: 140px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  .commentContainer{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F3F6F8;
+    .comment{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #F3F6F8;
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      border-radius: 16px;
+      .commentHeader{
+        display: flex;
+        justify-content: flex-start;
+        position: relative;
+        .userLogo{
+          width: 32px;
+          height: 32px;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+          }
+        }
+        .userName{
+          margin-left: 10px;
+          .name{
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 20px;
+            color: #171717;
+          }
+          .date{
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 16px;
+            color: #8F92A1;
+          }
+        }
+      }
+      .commentText{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 16px;
+        color: rgba(23, 23, 23, 0.8);
+        padding: 5px;
+      }
+      .okBtn{
+        margin-top: 10px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        background: #00875A;
+        color: #FFFFFF;
+        padding: 10px 5px;
+        text-align: center;
+        border-radius: 20px;
+        cursor: pointer;
+        &:hover{
+          opacity: .6;
+        }
+      }
+      .readedBtn{
+        margin-top: 10px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        background: #00875A;
+        color: #FFFFFF;
+        padding: 10px 5px;
+        text-align: center;
+        border-radius: 20px;
+        cursor: pointer;
+        opacity: .6;
+      }
+    }
+  }
+}
+.comment{
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .commentModal{
+    display: block !important;
+  }
+}
