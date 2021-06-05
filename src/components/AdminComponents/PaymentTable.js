@@ -55,19 +55,20 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
             }else if (event.target.value === "Номеру телефона"){
                 dnt_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.phone.toLowerCase() < b.user.phone.toLowerCase()) {
+                    if(a.user.phone < b.user.phone) {
                         return -1; }
-                    if(a.user.phone.toLowerCase() > b.user.phone.toLowerCase()) {
+                    if(a.user.phone > b.user.phone) {
                         return 1; }
                     return 0;
                 });
                 setDntPaid(dnt_paid);
             }else if (event.target.value === "По email"){
+
                 dnt_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.email.toLowerCase() < b.user.email.toLowerCase()) {
+                    if(a.user.email < b.user.email) {
                         return -1; }
-                    if(a.user.email.toLowerCase() > b.user.email.toLowerCase()) {
+                    if(a.user.email > b.user.email) {
                         return 1; }
                     return 0;
                 });
@@ -75,9 +76,9 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
             }else if (event.target.value === "По дате"){
                 dnt_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.created_at.toLowerCase() < b.user.created_at.toLowerCase()) {
+                    if(a.user.created_at < b.user.created_at) {
                         return -1; }
-                    if(a.user.created_at.toLowerCase() > b.user.created_at.toLowerCase()) {
+                    if(a.user.created_at > b.user.created_at) {
                         return 1; }
                     return 0;
                 });
@@ -96,9 +97,9 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
             }else if (event.target.value === "Номеру телефона"){
                 crd_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.phone.toLowerCase() < b.user.phone.toLowerCase()) {
+                    if(a.user.phone < b.user.phone) {
                         return -1; }
-                    if(a.user.phone.toLowerCase() > b.user.phone.toLowerCase()) {
+                    if(a.user.phone > b.user.phone) {
                         return 1; }
                     return 0;
                 });
@@ -106,9 +107,9 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
             }else if (event.target.value === "По email"){
                 crd_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.email.toLowerCase() < b.user.email.toLowerCase()) {
+                    if(a.user.email < b.user.email) {
                         return -1; }
-                    if(a.user.email.toLowerCase() > b.user.email.toLowerCase()) {
+                    if(a.user.email > b.user.email) {
                         return 1; }
                     return 0;
                 });
@@ -116,9 +117,9 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
             }else if (event.target.value === "По дате"){
                 crd_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.created_at.toLowerCase() < b.user.created_at.toLowerCase()) {
+                    if(a.user.created_at < b.user.created_at) {
                         return -1; }
-                    if(a.user.created_at.toLowerCase() > b.user.created_at.toLowerCase()) {
+                    if(a.user.created_at > b.user.created_at) {
                         return 1; }
                     return 0;
                 });
@@ -137,9 +138,9 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
             }else if (event.target.value === "Номеру телефона"){
                 inv_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.phone.toLowerCase() < b.user.phone.toLowerCase()) {
+                    if(a.user.phone < b.user.phone) {
                         return -1; }
-                    if(a.user.phone.toLowerCase() > b.user.phone.toLowerCase()) {
+                    if(a.user.phone > b.user.phone) {
                         return 1; }
                     return 0;
                 });
@@ -147,9 +148,9 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
             }else if (event.target.value === "По email"){
                 inv_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.email.toLowerCase() < b.user.email.toLowerCase()) {
+                    if(a.user.email < b.user.email) {
                         return -1; }
-                    if(a.user.email.toLowerCase() > b.user.email.toLowerCase()) {
+                    if(a.user.email > b.user.email) {
                         return 1; }
                     return 0;
                 });
@@ -157,9 +158,9 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
             }else if (event.target.value === "По дате"){
                 inv_paid.sort(function(a, b){
                     console.log(a);
-                    if(a.user.created_at.toLowerCase() < b.user.created_at.toLowerCase()) {
+                    if(a.user.created_at < b.user.created_at) {
                         return -1; }
-                    if(a.user.created_at.toLowerCase() > b.user.created_at.toLowerCase()) {
+                    if(a.user.created_at > b.user.created_at) {
                         return 1; }
                     return 0;
                 });
