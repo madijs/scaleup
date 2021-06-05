@@ -1,1 +1,0 @@
-export const mediaLink = 'https://scaleup.dasspartners.com/storage';
