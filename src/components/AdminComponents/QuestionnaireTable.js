@@ -7,10 +7,15 @@ import AdminTableTitle from "./AdminTableTitle";
 import {SUCCESS} from "../../types/types";
 import AdminTableContent from "./AdminTableContent";
 import QuestionnaireTableContent from "./QuestionnaireTableContent";
+import {QUESTIONNAIRE_TABLE_SUCCESS} from "../../types/AdminTypes";
+import {useDispatch} from "react-redux";
 
 const QuestionnaireTable = ({data}) => {
+    const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
     const [sort, setSort] = React.useState('Наименованию');
+    const [updown,setUpDown] = useState('up');
+
 
     const [sortBy] = useState([
         "Наименованию"
@@ -26,9 +31,41 @@ const QuestionnaireTable = ({data}) => {
 
     const handleChange = (event) => {
         setSort(event.target.value);
+        if (event.target.value === "Наименованию"){
+            if (updown === 'down'){
+                const copy = [...data];
+                copy.sort(function(a, b){
+                    if(a.user.company.toLowerCase() < b.user.company.toLowerCase()) {
+                        return -1; }
+                    if(a.user.company.toLowerCase() > b.user.company.toLowerCase()) {
+                        return 1; }
+                    return 0;
+                });
+                dispatch({
+                    type: QUESTIONNAIRE_TABLE_SUCCESS,
+                    payload: copy
+                })
+            }else{
+                const copy = [...data];
+                copy.sort(function(a, b){
+                    if(a.user.company.toLowerCase() > b.user.company.toLowerCase()) {
+                        return -1; }
+                    if(a.user.company.toLowerCase() < b.user.company.toLowerCase()) {
+                        return 1; }
+                    return 0;
+                });
+                dispatch({
+                    type: QUESTIONNAIRE_TABLE_SUCCESS,
+                    payload: copy
+                })
+            }
+        }
     };
 
     const [tableTitle] = useState(['Наименование','Стратегический','Финансовый','юридический','маркетинг','Анкета']);
+
+
+
 
 
     return(
@@ -39,26 +76,41 @@ const QuestionnaireTable = ({data}) => {
                         <div className={styles.filter_title}>Фильтр</div>
                         <div className={styles.filter_icon}><FilterIcon/></div>
                     </div>
-                    {/*<div className={styles.sort}>*/}
-                    {/*    <div className={styles.sort_title}>*/}
-                    {/*        Сортировать по*/}
-                    {/*    </div>*/}
-                    {/*    <div className={styles.sort_select}>*/}
-                    {/*        <Select*/}
-                    {/*            labelId="demo-controlled-open-select-label"*/}
-                    {/*            id="demo-controlled-open-select"*/}
-                    {/*            open={open}*/}
-                    {/*            onClose={handleClose}*/}
-                    {/*            onOpen={handleOpen}*/}
-                    {/*            value={sort}*/}
-                    {/*            onChange={handleChange}*/}
-                    {/*        >*/}
-                    {/*            {sortBy.map((el,index)=>(*/}
-                    {/*                <MenuItem key={index} value={el}>{el}</MenuItem>*/}
-                    {/*            ))}*/}
-                    {/*        </Select>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
+                    <div className={styles.sort}>
+                        <div className={styles.sort_title}>
+                            Сортировать по
+                        </div>
+                        <div className={styles.sort_select}>
+                            <Select
+                                labelId="demo-controlled-open-select-label"
+                                id="demo-controlled-open-select"
+                                open={open}
+                                onClose={handleClose}
+                                onOpen={handleOpen}
+                                value={sort}
+                                onChange={handleChange}
+                            >
+                                {sortBy.map((el,index)=>(
+                                    <MenuItem key={index} value={el}>{el}</MenuItem>
+                                ))}
+                            </Select>
+                            {updown === 'up' ? (
+                                <div onClick={()=>{
+                                    setUpDown('down')
+                                    handleChange({target:{
+                                            value:sort
+                                        }})
+                                }} className={`${styles.arrow} ${styles.up}`}></div>
+                            ):(
+                                <div onClick={()=>{
+                                    setUpDown('up')
+                                    handleChange({target:{
+                                            value:sort
+                                        }})
+                                }} className={`${styles.arrow} ${styles.down}`}></div>
+                            )}
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.admin_table_title}>
                     <table rules="none">

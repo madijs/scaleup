@@ -7,7 +7,7 @@ import trashIcon from "../../../assets/icons/trashIcon.svg"
 const AdminSettingsTableContent = ({data=[],active,setSelectedUserForm,openModal,openDeleteModal,openServiceModal}) => {
     return(
         <>
-            {data.map((el,index)=>(
+            {data?.map((el,index)=>(
                 <>
                     {active === 1 && (
                         <tr key={index}>

@@ -229,7 +229,7 @@
   width: 100%;
   padding: 24px;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
 }
 
 .inner_dorectory .document {
@@ -275,7 +275,7 @@
   width: 100%;
   padding: 24px;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
 }
 
 .inner_dorectory .document {

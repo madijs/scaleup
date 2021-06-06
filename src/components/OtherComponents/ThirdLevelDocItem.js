@@ -91,14 +91,18 @@ class ThirdLevelDocItem extends Component {
                                                 className={`${styles.document} ${styles.pdf}`}>
                                                 <div className={styles.doc_svg_leftside}>
                                                     <>
-                                                        {docsData[key].data[key2].data[key3].data[key4].name.split('.')[1] === "docx" &&
-                                                        <WordIcon/>}
-                                                        {docsData[key].data[key2].data[key3].data[key4].name.split('.')[1] === "pdf" &&
-                                                        <PdfIcon/>}
-                                                        {docsData[key].data[key2].data[key3].data[key4].name.split('.')[1] === "xls" &&
-                                                        <XlsIcon/>}
-                                                        {docsData[key].data[key2].data[key3].data[key4].name.split('.')[1] === "pptx" &&
-                                                        <PptxIcon/>}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('docx') && (
+                                                            <WordIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('pdf') && (
+                                                            <PdfIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('xls') && (
+                                                            <XlsIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('pptx') && (
+                                                            <PptxIcon/>
+                                                        )}
                                                     </>
                                                 </div>
                                                 <div className={styles.doc_svg_rightside}>

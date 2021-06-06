@@ -5,13 +5,17 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import AdminTableTitle from "../../components/AdminComponents/AdminTableTitle";
 import DocumentTableContent from "./DocumentTableContent";
+import {useDispatch} from "react-redux";
+import {QUESTIONNAIRE_TABLE_SUCCESS} from "../../types/AdminTypes";
+import {DOCUMENT_TABLE_SUCCESS} from "../../types/documentTypes";
 
 const DocumentTable = ({data}) => {
     console.log(data);
+    const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
     const [tableTitle] = useState(['Наименование','Стратегический','Финансовый','юридический','маркетинг','Анкета']);
     const [sort, setSort] = React.useState('Наименованию');
-    const [sortBy] = useState([
+    const [updown,setUpDown] = useState('up');    const [sortBy] = useState([
         "Наименованию",
         // "Статусу анкеты"
     ]);
@@ -31,17 +35,35 @@ const DocumentTable = ({data}) => {
 
     const handleChange = (event) => {
         setSort(event.target.value);
-        // if (event.target.value === "Наименованию"){
-        //     data.sort(function(a, b){
-        //         console.log(a);
-        //         if(a.user.company.toLowerCase() < b.user.company.toLowerCase()) {
-        //             return -1; }
-        //         if(a.user.company.toLowerCase() > b.user.company.toLowerCase()) {
-        //             return 1; }
-        //         return 0;
-        //     });
-        //     setData(data);
-        // }
+        if (event.target.value === "Наименованию"){
+            if (updown === 'down'){
+                const copy = [...data];
+                copy.sort(function(a, b){
+                    if(a.user.company.toLowerCase() < b.user.company.toLowerCase()) {
+                        return -1; }
+                    if(a.user.company.toLowerCase() > b.user.company.toLowerCase()) {
+                        return 1; }
+                    return 0;
+                });
+                dispatch({
+                    type: DOCUMENT_TABLE_SUCCESS,
+                    payload: copy
+                })
+            }else{
+                const copy = [...data];
+                copy.sort(function(a, b){
+                    if(a.user.company.toLowerCase() > b.user.company.toLowerCase()) {
+                        return -1; }
+                    if(a.user.company.toLowerCase() < b.user.company.toLowerCase()) {
+                        return 1; }
+                    return 0;
+                });
+                dispatch({
+                    type: DOCUMENT_TABLE_SUCCESS,
+                    payload: copy
+                })
+            }
+        }
     };
 
     return(
@@ -70,6 +92,21 @@ const DocumentTable = ({data}) => {
                                     <MenuItem key={index} value={el}>{el}</MenuItem>
                                 ))}
                             </Select>
+                            {updown === 'up' ? (
+                                <div onClick={()=>{
+                                    setUpDown('down')
+                                    handleChange({target:{
+                                            value:sort
+                                        }})
+                                }} className={`${styles.arrow} ${styles.up}`}></div>
+                            ):(
+                                <div onClick={()=>{
+                                    setUpDown('up')
+                                    handleChange({target:{
+                                            value:sort
+                                        }})
+                                }} className={`${styles.arrow} ${styles.down}`}></div>
+                            )}
                         </div>
                     </div>
                 </div>

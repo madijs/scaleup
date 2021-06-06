@@ -26,8 +26,6 @@ const AdminSettingsPage = () => {
     const location = useLocation();
     const history = useHistory();
 
-    console.log(location);
-
     const [blockData,setBlockData] = useState([
         {
             title:'Приветсвенный блок',
@@ -86,6 +84,8 @@ const AdminSettingsPage = () => {
             dispatch(getContentAnketaAction());
         }
     },[]);
+
+
 
     return(
         <>
