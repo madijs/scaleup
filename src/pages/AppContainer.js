@@ -91,7 +91,7 @@ const AppContainer = ({userData}) => {
                     {/*<div className={styles.background_top}></div>*/}
                     {/*<div className={styles.background_bottom}></div>*/}
 
-                        <div style={{height:'auto'}}>
+                        <div style={{minHeight: 'calc(100vh - 182px)'}}>
                             <Route exact path={'/admin/dashboard'} render={()=><DashboardPage/>}/>
                             <Route exact path={'/profile'} render={() => <ProfilePage/>}/>
                             <Route exact path={'/'} render={() => <MainPage userData={userData}/>}/>

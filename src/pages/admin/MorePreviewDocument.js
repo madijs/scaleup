@@ -80,9 +80,11 @@ const MorePreviewDocument = ({folderName,setFolderName}) => {
     };
 
     const goBack = () => {
-        const copy = [...folderName];
-        copy.pop();
-        setFolderName(copy);
+        if (folderName){
+            const copy = [...folderName];
+            copy.pop();
+            setFolderName(copy);
+        }
     };
 
     return(
@@ -107,7 +109,7 @@ const MorePreviewDocument = ({folderName,setFolderName}) => {
             <div className={styles.head}>
                 <GoBack
                     action={goBack}
-                    title={folderName.length>0 ? folderName[folderName.length-1] : 'Мои документы'}
+                    title={folderName ? (folderName.length>0 && folderName[folderName.length-1] ) : "Документы"}
                     subtitle={"Предпросмотр"}
                 />
                 {!location.pathname.includes('/shared') && (

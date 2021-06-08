@@ -36,9 +36,11 @@ class DocumentItem extends Component {
                         this.props.history.push(this.props.location.pathname+'/detail/'+key+'&'+key2);
                     }
                 }
-                const copy = [...this.props.folderName];
-                copy.push(key2);
-                this.props.setFolderName(copy)
+                if (this.props.folderName){
+                    const copy = [...this.props.folderName];
+                    copy.push(key2);
+                    this.props.setFolderName(copy)
+                }
             }
             if (type === 'file'){
                 this.openFile(file,key);

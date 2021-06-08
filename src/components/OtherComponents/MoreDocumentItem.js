@@ -21,9 +21,11 @@ class MoreDocumentItem extends Component{
             console.log('double click');
             if (type === 'folder'){
                 this.props.history.push(this.props.location.pathname+'/more/'+key3);
-                const copy = [...this.props.folderName];
-                copy.push(key3);
-                this.props.setFolderName(copy)
+                if (this.props.folderName){
+                    const copy = [...this.props.folderName];
+                    copy.push(key3);
+                    this.props.setFolderName(copy)
+                }
             }
             if (type === 'file'){
                 this.openFile(file,key);

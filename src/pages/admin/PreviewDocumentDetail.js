@@ -147,7 +147,7 @@ const PreviewDocumentDetail = ({folderName,setFolderName}) => {
             <div className={styles.head}>
                 <GoBack
 
-                    title={folderName.length>0 ? folderName[folderName.length-1] : "Документы"}
+                    title={folderName ? (folderName.length>0 && folderName[folderName.length-1] ) : "Документы"}
                     subtitle={"Предпросмотр"}
                 />
                 {!location.pathname.includes('/shared') && (

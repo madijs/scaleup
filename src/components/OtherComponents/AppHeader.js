@@ -16,8 +16,29 @@ import {ReactComponent as Home} from "../../assets/icons/home.svg";
 import {ReactComponent as Documents} from "../../assets/icons/documentHeader.svg";
 import {ReactComponent as Payments} from "../../assets/icons/payments.svg";
 import MenuBtn from "../../assets/icons/menulines.svg"
+import { makeStyles } from '@material-ui/core/styles';
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
+import NotificationService from "../../services/NotificationService";
+import {returnDateFormat} from "../../tools/returnDateFormat";
+import NotificationSystemIcon from "../../assets/icons/notificsystem.svg";
+import Badge from '@material-ui/core/Badge';
+
+
+
+const useStyles = makeStyles((theme) => ({
+    typography: {
+        padding: theme.spacing(2),
+    },
+    root: {
+        '& > *': {
+            margin: theme.spacing(2),
+        },
+    },
+}));
 
 const AppHeader = ({userData,setMobileMenu}) => {
+    const classes = useStyles();
     const history = useHistory();
     const [modalProfileOpen,setModalProfileOpen] = useState(false);
     const [path,setPath] = useState([
@@ -71,6 +92,8 @@ const AppHeader = ({userData,setMobileMenu}) => {
             access: ['admin']
         }
     ]);
+    const [notifications,setNotifications] = useState(null);
+    const [notificationCount,setNotificationCount] = useState(0);
 
     const [clientPath,setClientPath] = useState([
         {
@@ -92,6 +115,19 @@ const AppHeader = ({userData,setMobileMenu}) => {
             path: "/my-payments"
         }
     ]);
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
 
     useEffect(()=>{
         const copy = [...path];
@@ -126,6 +162,20 @@ const AppHeader = ({userData,setMobileMenu}) => {
         setClientPath(copy);
         history.push(copy[index].path);
     };
+
+    useEffect(()=>{
+        const response = new NotificationService().getNotifications();
+        response.then(res=>{
+            setNotifications(res.data);
+            let cnt = 0;
+            for (let i=0;i<res.data.length;i++){
+                if (res.data[i].status == '0'){
+                    cnt++;
+                }
+            }
+            setNotificationCount(cnt);
+        })
+    },[]);
 
     return(
         <>
@@ -186,7 +236,56 @@ const AppHeader = ({userData,setMobileMenu}) => {
                     )}
                     <div className={styles.endHeader}>
                         <div className={styles.notificationIcon}>
-                            <img src={Bell} alt="bell"/>
+                            <Badge
+                                color={'secondary'}
+                                badgeContent={notificationCount}
+                            >
+                                <img onClick={handleClick} src={Bell} alt="bell"/>
+                            </Badge>
+                            <Popover
+                                id={id}
+                                open={open}
+                                anchorEl={anchorEl}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'center',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'center',
+                                }}
+                                style={{marginTop:'20px'}}
+                            >
+                                <div className={styles.notification_content}>
+                                    <div className={styles.notification}>
+                                        <div className={styles.head}>
+                                            <div onClick={handleClose} className={styles.close}>
+                                            </div>
+                                            <div className={styles.title}>
+                                                Уведомления
+                                            </div>
+                                        </div>
+                                        <div className={styles.notification_body}>
+                                        {notifications?.map((el,index)=>(
+                                            <div key={index} style={el.status == 0 ? {backgroundColor:'rgba(222, 53, 11, 0.05)'} : {}} className={styles.notification_item}>
+                                                <div>
+                                                    <img src={NotificationSystemIcon} alt="sysyemicon"/>
+                                                </div>
+                                                <div className={styles.notification_item_content}>
+                                                    <div className={styles.notification_item_message}>{el.message}</div>
+                                                    <div className={styles.notification_item_date}>{returnDateFormat(el.created_at)}</div>
+                                                </div>
+                                                {el.status == 0 && (
+                                                    <div style={{width:'5px',height:'5px',borderRadius:'50%',backgroundColor:'#FF494D',position:'absolute',top:'10px',right:'10px'}}>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </Popover>
                         </div>
                         <div className={styles.profile} style={{cursor:"pointer"}}>
                             <LetterAvatar
