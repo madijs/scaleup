@@ -1,0 +1,116 @@
+.title{
+  padding: 30px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0.4px;
+  color: #0B132A;
+}
+.content{
+  padding: 32px;
+  .period{
+    margin-top: 36px;
+    .period_title{
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 22px;
+      color: #8F92A1;
+    }
+    .period_types{
+
+    }
+  }
+  .industries{
+    margin-top: 36px;
+    .industries_title{
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 22px;
+      color: #8F92A1;
+    }
+    .industries_list{
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      .industry_type{
+        margin: 5px;
+        margin-left: 8px;
+        background: rgba(143, 146, 161, 0.2);
+        border-radius: 100px;
+        padding: 4px 12px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        color: #171717;
+        cursor: pointer;
+      }
+    }
+  }
+  .status{
+    .status_title{
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 22px;
+      color: #8F92A1;
+    }
+    .status_types{
+      display: flex;
+      margin-top: 16px;
+      flex-wrap: wrap;
+      .status_type{
+        margin-left: 8px;
+        background: rgba(143, 146, 161, 0.2);
+        border-radius: 100px;
+        padding: 4px 12px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
+        color: #171717;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.close {
+  cursor: pointer;
+  width: 22px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  top: 36px;
+  right: 50px;
+  content: ' ';
+  height: 20px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.textField{
+  width: 100%;
+  margin-top: 26px !important;
+  border: none;
+  border-radius: 15px;
+  label{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #8F92A1;
+  }
+}

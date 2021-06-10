@@ -30,7 +30,6 @@ import PreviewDocument from "./admin/PreviewDocument";
 import PreviewDocumentDetail from "./admin/PreviewDocumentDetail";
 import MorePreviewDocument from "./admin/MorePreviewDocument";
 import NewDocumentsPage from "./NewDocumentsPage";
-import UnauthorizedSharedDocumentDetail from "./admin/UnauthorizedSharedDocumentDetail";
 import DashboardPage from "./admin/DashboardPage";
 import ContentAnketa from "./admin/ContentAnketa";
 

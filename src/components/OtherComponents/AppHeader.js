@@ -23,6 +23,7 @@ import NotificationService from "../../services/NotificationService";
 import {returnDateFormat} from "../../tools/returnDateFormat";
 import NotificationSystemIcon from "../../assets/icons/notificsystem.svg";
 import Badge from '@material-ui/core/Badge';
+import getMediaUrls from "../../tools/getMediaUrls";
 
 
 
@@ -124,6 +125,17 @@ const AppHeader = ({userData,setMobileMenu}) => {
 
     const handleClose = () => {
         setAnchorEl(null);
+        const response = new NotificationService().getNotifications();
+        response.then(res=>{
+            setNotifications(res.data);
+            let cnt = 0;
+            for (let i=0;i<res.data.length;i++){
+                if (res.data[i].status == '0'){
+                    cnt++;
+                }
+            }
+            setNotificationCount(cnt);
+        })
     };
 
     const open = Boolean(anchorEl);
@@ -270,7 +282,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
                                         {notifications?.map((el,index)=>(
                                             <div key={index} style={el.status == 0 ? {backgroundColor:'rgba(222, 53, 11, 0.05)'} : {}} className={styles.notification_item}>
                                                 <div>
-                                                    <img src={NotificationSystemIcon} alt="sysyemicon"/>
+                                                    <img src={el.from ? (el.form?.avatar ? getMediaUrls(el.from.avatar) : NotificationSystemIcon) : NotificationSystemIcon} alt="sysyemicon"/>
                                                 </div>
                                                 <div className={styles.notification_item_content}>
                                                     <div className={styles.notification_item_message}>{el.message}</div>

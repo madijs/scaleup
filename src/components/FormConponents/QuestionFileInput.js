@@ -136,8 +136,6 @@ const QuestionFileInput = ({title = "", text = "", questionsData, id, getStrateg
                         {form ? (form.answer ? (form.answer.disabled == 1 ? (
                             <span className={styles.disabledSpan}>Выберите файл </span>
                         ):<span onClick={handleClick}>Выберите файл </span>):<span onClick={handleClick}>Выберите файл </span>):<span onClick={handleClick}>Выберите файл </span>}
-                        или перетащите
-                        его сюда
                     </div>
                     <div className={styles.subtitle}>Файлы не должны превышать 10 мб</div>
                 </div>
