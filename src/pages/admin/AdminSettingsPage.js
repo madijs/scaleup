@@ -19,29 +19,29 @@ import {getContentAnketaAction} from "../../redux/actions/settings/getContentAnk
 
 const AdminSettingsPage = () => {
     const dispatch = useDispatch();
-    const [active,setActive] = useState(1);
-    const {workers,services,users_list, anketa} = useSelector(state => state.SettingsPage);
-    const [folderName,setFolderName] = useState([]);
+    const [active, setActive] = useState(null);
+    const {workers, services, users_list, anketa} = useSelector(state => state.SettingsPage);
+    const [folderName, setFolderName] = useState([]);
 
     const location = useLocation();
     const history = useHistory();
 
-    const [blockData,setBlockData] = useState([
+    const [blockData, setBlockData] = useState([
         {
-            title:'Приветсвенный блок',
-            description:'Какое-то описание для этого блока',
-            path:'/admin/settings/welcome'
+            title: 'Приветсвенный блок',
+            description: 'Какое-то описание для этого блока',
+            path: '/admin/settings/welcome'
         },
         {
-            title:'Вопросы-ответы',
-            description:'Какое-то описание для этого блока',
-            path:'/admin/settings/faqs'
+            title: 'Вопросы-ответы',
+            description: 'Какое-то описание для этого блока',
+            path: '/admin/settings/faqs'
         }
     ]);
 
-    useEffect(()=>{
-        if (anketa){
-            for (let i=0;i<anketa.length;i++){
+    useEffect(() => {
+        if (anketa) {
+            for (let i = 0; i < anketa.length; i++) {
                 let obj = {
                     title: anketa[i].name,
                     description: anketa[i].description,
@@ -51,70 +51,71 @@ const AdminSettingsPage = () => {
                 setBlockData(blockData)
             }
         }
-    },[anketa]);
+    }, [anketa]);
 
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = "ScaleUp | Настройки";
         dispatch(getWorkersAction());
         dispatch(getServicesAction());
         dispatch(getUsersAction());
         dispatch(getSectionsAction());
-        if (!anketa){
+        if (!anketa) {
             dispatch(getContentAnketaAction());
         }
-    },[]);
+    }, []);
 
 
-
-    return(
+    return (
         <>
-        <div className={styles.container}>
-            <AdminTitle
-                title={"Настройки"}
-                description={"Админская панель"}
-                count={""}
-            />
-            <AdminSettingsTabs
-                active={active}
-                setActive={setActive}
-                history={history}
-            />
-            {(active === 1 && workers) && (
-                <AdminSettingsTable
-                    active={active}
-                    data={workers}
-                    count={workers.length}
+            <div className={styles.container}>
+                <AdminTitle
+                    title={"Настройки"}
+                    description={"Админская панель"}
+                    count={""}
                 />
-            )}
-            {(active === 2 &&  services ) && (
-                <AdminSettingsTable
+                <AdminSettingsTabs
                     active={active}
-                    data={services}
-                    count={services.length}
+                    setActive={setActive}
+                    history={history}
                 />
-            )}
+                {(active === 1 && workers) && (
+                    <AdminSettingsTable
+                        active={active}
+                        data={workers}
+                        count={workers.length}
+                    />
+                )}
+                {(active === 2 && services) && (
+                    <AdminSettingsTable
+                        active={active}
+                        data={services}
+                        count={services.length}
+                    />
+                )}
 
-            {active === 3 && (
-                <AdminSettingsContentBlock
-                    blockData={blockData}
-                />
-            )}
-            {(active === 4 && location.pathname==='/admin/settings') && (
-                <>
-                    <PreviewDocument folderName={folderName} setFolderName={setFolderName}/>
-                </>
-            )}
-            {(active === 5 && users_list) && (
-                <AdminSettingsTable
-                    active={active}
-                    data={users_list}
-                    count={users_list.length}
-                />
-            )}
-            <Route exact path={'/admin/settings/detail/:name'} render={()=><PreviewDocumentDetail setFolderName={setFolderName} folderName={folderName}/>}/>
-            <Route exact path={'/admin/settings/detail/:name/more/:name2'} render={()=><MorePreviewDocument setFolderName={setFolderName} folderName={folderName}/>}/>
-        </div>
+                {active === 3 && (
+                    <AdminSettingsContentBlock
+                        blockData={blockData}
+                    />
+                )}
+                {(active === 4 && location.pathname === '/admin/settings') && (
+                    <>
+                        <PreviewDocument folderName={folderName} setFolderName={setFolderName}/>
+                    </>
+                )}
+                {(active === 5 && users_list) && (
+                    <AdminSettingsTable
+                        active={active}
+                        data={users_list}
+                        count={users_list.length}
+                    />
+                )}
+                <Route exact path={'/admin/settings/detail/:name'}
+                       render={() => <PreviewDocumentDetail setFolderName={setFolderName} folderName={folderName}/>}/>
+                <Route exact path={'/admin/settings/detail/:name/more/:name2'}
+                       render={() => <MorePreviewDocument setFolderName={setFolderName} folderName={folderName}/>}/>
+            </div>
         </>
     )
 };

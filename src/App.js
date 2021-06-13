@@ -29,7 +29,7 @@ function App() {
       response.then(res=>{
         console.log(res.data);
         if (res.data.payment && res.data.roles[0].name === "client"){
-            if (res.data.payment.payment_status_id ===1){
+            if (res.data.payment.payment_status_id ===1 && location.pathname != '/privacyAgreement'){
               history.push('/payment')
             }
         }

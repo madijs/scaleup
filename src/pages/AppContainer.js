@@ -31,14 +31,17 @@ import MorePreviewDocument from "./admin/MorePreviewDocument";
 import NewDocumentsPage from "./NewDocumentsPage";
 import DashboardPage from "./admin/DashboardPage";
 import ContentAnketa from "./admin/ContentAnketa";
+import {useLocation} from "react-router-dom"
 
 const AppContainer = ({userData}) => {
     const history = useHistory();
+    const location = useLocation();
+
 
     useEffect(()=>{
         if (userData){
             if (history.location.pathname.includes('/admin') && userData.roles[0].name === 'client'){
-                if (userData.payment.payment_status_id == '2'){
+                if (userData.payment.payment_status_id == '2' && location.pathname != "/privacyAgreement"){
                     history.push('/payment')
                 }else{
                     history.push('/')
@@ -62,15 +65,13 @@ const AppContainer = ({userData}) => {
                 }
             }
         }
-    },[userData]);
-
-    useEffect(()=>{
         if (userData && userData.roles[0].name === 'client'){
-            if (userData.payment.payment_status_id == '2'){
+            if (userData.payment.payment_status_id == '2' && location.pathname != "/privacyAgreement"){
                 history.push('/payment')
             }
         }
     },[userData]);
+
 
     const [isMobileMenuOpen,setMobileMenu] = useState(false);
 

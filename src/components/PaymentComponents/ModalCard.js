@@ -52,7 +52,7 @@ const ModalCard = ({closeModal,selectedService}) => {
                 <div className={styles.modal_card_body}>
                     <div className={styles.modal_card_body_item}>
                         <input onClick={checkIt.bind(this, 0)} checked={isChecked[0]} type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                        <label>Я принимаю <span onClick={()=>window.open('/privacyAgreement')}> условия использования </span> сервиса ScaleUp</label><br/>
+                        <label>Я принимаю <span onClick={()=>history.push('/privacyAgreement')}> условия использования </span> сервиса ScaleUp</label><br/>
                     </div>
                     <div className={styles.modal_card_body_item}>
                         <input onClick={checkIt.bind(this, 1)} checked={isChecked[1]} type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
