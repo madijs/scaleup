@@ -9,7 +9,6 @@ import PaymentPage from "./PaymentPage";
 import ApplicationFormPage from "./ApplicationFormPage";
 import ProfilePage from "./ProfilePage";
 import AdminPage from "./admin/AdminPage";
-import QuestionnairePage from "./admin/QuestionnairePage";
 import QuestionnaireBlocksPage from "./admin/QuestionnaireBlocksPage";
 import AdminProfilePage from "./admin/AdminProfilePage";
 import AdminSettingsPage from "./admin/AdminSettingsPage";
@@ -58,7 +57,9 @@ const AppContainer = ({userData}) => {
                     history.push('/admin/production')
                 }else if (history.location.pathname === '/profile'){
                     history.push('/profile')
-                }else history.push('/admin')
+                }else {
+                    history.push('/admin')
+                }
             }
         }
     },[userData]);
@@ -115,8 +116,8 @@ const AppContainer = ({userData}) => {
                             <Route exact path={'/admin/production/financial/:id'} render={()=><FinancialFormContainer/>}/>
                             <Route exact path={'/admin/profile'} render={()=><AdminProfilePage/>}/>
                             <Route path={'/admin/settings'} render={()=><AdminSettingsPage/>}/>
-                            <Route exact path={'/settings/faqs'} render={()=> <AdminFaqsPage/>}/>
-                            <Route exact path={'/settings/welcome'} render={()=><WelcomeBlock/>}/>
+                            <Route exact path={'/admin/settings/faqs'} render={()=> <AdminFaqsPage/>}/>
+                            <Route exact path={'/admin/settings/welcome'} render={()=><WelcomeBlock/>}/>
                             <Route exact path={'/my-documents'} render={()=><MyDocumentsPage/>}/>
                             <Route exact path={'/my-payments'} render={()=><MyPaymentsPage/>}/>
                             <Route exact path={'/finish-document/:id'} render={()=> <PreviewDocument/>}/>

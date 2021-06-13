@@ -8,6 +8,9 @@ import {ReactComponent as PptxIcon} from "../../assets/icons/pptx.svg";
 import {ReactComponent as FolderIcon} from "../../assets/icons/folder.svg";
 import {ReactComponent as TrashIcon} from "../../assets/icons/trashIcon.svg";
 import axios from "../../plugins/axios";
+import {ReactComponent as PngIcon} from "../../assets/icons/png.svg";
+import {ReactComponent as JpgIcon} from "../../assets/icons/jpg.svg";
+import {ReactComponent as GifIcon} from "../../assets/icons/gif.svg";
 
 class MoreDocumentItem extends Component{
 
@@ -113,11 +116,37 @@ class MoreDocumentItem extends Component{
                                                         {docsData[key].data[key2].data[key3].name.substring(docsData[key].data[key2].data[key3].name.length-5).includes('pptx') && (
                                                             <PptxIcon/>
                                                         )}
+                                                        {docsData[key].data[key2].data[key3].name.substring(docsData[key].data[key2].data[key3].name.length-5).includes('pdf') && (
+                                                            <PdfIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].name.substring(docsData[key].data[key2].data[key3].name.length-5).includes('png') && (
+                                                            <PngIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].name.substring(docsData[key].data[key2].data[key3].name.length-5).includes('jpg') && (
+                                                            <JpgIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].name.substring(docsData[key].data[key2].data[key3].name.length-5).includes('jpeg') && (
+                                                            <JpgIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].name.substring(docsData[key].data[key2].data[key3].name.length-5).includes('gif') && (
+                                                            <GifIcon/>
+                                                        )}
                                                     </>
                                                 </div>
                                                 <div className={styles.doc_svg_rightside}>
                                                     <div className={styles.doc_name}>
-                                                        {docsData[key].data[key2].data[key3].name}
+                                                        <>
+                                                            {docsData[key].data[key2].data[key3].name.length > 19 ?(
+                                                                <>
+                                                                    {docsData[key].data[key2].data[key3].name.substring(0,16)+"..."}
+                                                                </>
+                                                            ):(
+                                                                <>
+                                                                    {docsData[key].data[key2].data[key3].name}
+                                                                </>
+                                                            )}
+                                                        </>
+
                                                     </div>
                                                     <div className={styles.doc_count}>
                                                         {docsData[key].data[key2].data[key3].size} kb
@@ -156,8 +185,6 @@ class MoreDocumentItem extends Component{
                                                 </div>
                                                 {this.props.userData && this.props.userData.roles[0].name !== 'client' && (
                                                     <div onClick={()=>{
-                                                        console.log('123')
-                                                        console.log(docsData[key].data[key2].data[key3].type);
                                                         this.deleteDocument(
                                                             id,
                                                             docsData[key].data[key2].data[key3].name,

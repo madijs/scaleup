@@ -55,8 +55,6 @@ const PreviewDocumentDetail = ({folderName,setFolderName}) => {
     const {name} = useParams();
     const hiddenFileInput = React.useRef(null);
 
-    console.log(name);
-
     const handleClick = (key) => {
         openAddFileModal();
         // hiddenFileInput.current.click()
@@ -125,6 +123,7 @@ const PreviewDocumentDetail = ({folderName,setFolderName}) => {
         }
     },[]);
 
+
     return(
         <>
             <Modal
@@ -146,11 +145,10 @@ const PreviewDocumentDetail = ({folderName,setFolderName}) => {
         <div className={styles.fake_container}>
             <div className={styles.head}>
                 <GoBack
-
-                    title={folderName ? (folderName.length>0 && folderName[folderName.length-1] ) : "Документы"}
+                    title={folderName ? (folderName.length>0 && folderName[folderName.length-1] ) : (name ? name.split("&")[1] : "Документы")}
                     subtitle={"Предпросмотр"}
                 />
-                {!location.pathname.includes('/shared') && (
+                {!location.pathname.includes('/shared') && userData.roles[0].name!=='client' && (
                     <SaveBtn
                         title={"Добавить файл"}
                         save={handleClick}

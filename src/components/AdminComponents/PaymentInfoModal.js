@@ -16,11 +16,9 @@ const PaymentInfoModal = ({info, closeModal}) => {
             dispatch(getPaymentTableAction());
             closeModal()
         }).catch(err=>{
-            console.log(err);
             closeModal()
         })
     };
-    console.log(info);
 
     return (
         <div className={styles.container}>

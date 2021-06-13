@@ -94,6 +94,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
         }
     ]);
     const [notifications,setNotifications] = useState(null);
+    console.log(notifications)
     const [notificationCount,setNotificationCount] = useState(0);
 
     const [clientPath,setClientPath] = useState([
@@ -281,8 +282,8 @@ const AppHeader = ({userData,setMobileMenu}) => {
                                         <div className={styles.notification_body}>
                                         {notifications?.map((el,index)=>(
                                             <div key={index} style={el.status == 0 ? {backgroundColor:'rgba(222, 53, 11, 0.05)'} : {}} className={styles.notification_item}>
-                                                <div>
-                                                    <img src={el.from ? (el.form?.avatar ? getMediaUrls(el.from.avatar) : NotificationSystemIcon) : NotificationSystemIcon} alt="sysyemicon"/>
+                                                <div className={styles.img}>
+                                                    <img src={el.from ? getMediaUrls(el.from.avatar): NotificationSystemIcon} alt="sysyemicon"/>
                                                 </div>
                                                 <div className={styles.notification_item_content}>
                                                     <div className={styles.notification_item_message}>{el.message}</div>

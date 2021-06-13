@@ -30,33 +30,13 @@ const AdminSettingsPage = () => {
         {
             title:'Приветсвенный блок',
             description:'Какое-то описание для этого блока',
-            path:'/settings/welcome'
+            path:'/admin/settings/welcome'
         },
         {
             title:'Вопросы-ответы',
             description:'Какое-то описание для этого блока',
-            path:'/settings/faqs'
+            path:'/admin/settings/faqs'
         }
-        // {
-        //     title:'Стратегический раздел',
-        //     description:'Какое-то описание для этого блока',
-        //     path:'/admin'
-        // },
-        // {
-        //     title:'Финансовый раздел',
-        //     description:'Какое-то описание для этого блока',
-        //     path:'/admin'
-        // },
-        // {
-        //     title:'Маркетинговый раздел',
-        //     description:'Какое-то описание для этого блока',
-        //     path:'/admin'
-        // },
-        // {
-        //     title:'Юридический раздел',
-        //     description:'Какое-то описание для этого блока',
-        //     path:'/admin'
-        // }
     ]);
 
     useEffect(()=>{

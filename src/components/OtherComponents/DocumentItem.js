@@ -5,7 +5,10 @@ import {ReactComponent as FolderIcon} from "../../assets/icons/folder.svg";
 import {ReactComponent as WordIcon} from "../../assets/icons/word.svg";
 import {ReactComponent as PdfIcon} from "../../assets/icons/pdf.svg";
 import {ReactComponent as XlsIcon} from "../../assets/icons/xls.svg";
-import {ReactComponent as PptxIcon} from "../../assets/icons/pptx.svg";
+import {ReactComponent as PptxIcon} from "../../assets/icons/powerpoint.svg";
+import {ReactComponent as JpgIcon} from "../../assets/icons/jpg.svg";
+import {ReactComponent as PngIcon} from "../../assets/icons/png.svg";
+import {ReactComponent as GifIcon} from "../../assets/icons/gif.svg";
 import {ReactComponent as TrashIcon} from "../../assets/icons/trashIcon.svg";
 import axios from "../../plugins/axios";
 
@@ -104,12 +107,30 @@ class DocumentItem extends Component {
                                 <FolderIcon/>
                             ) : (docsData[key].data[key2].type === 'file' && (
                                 <>
-                                    {docsData[key].data[key2].name.split('.')[1] === "docx" && <WordIcon/>}
-                                    {docsData[key].data[key2].name.split('.')[1] === "doc" && <WordIcon/>}
-                                    {docsData[key].data[key2].name.split('.')[1] === "pdf" && <PdfIcon/>}
-                                    {docsData[key].data[key2].name.split('.')[1] === "xlsx" && <XlsIcon/>}
-                                    {docsData[key].data[key2].name.split('.')[1] === "xls" && <XlsIcon/>}
-                                    {docsData[key].data[key2].name.split('.')[1] === "pptx" && <PptxIcon/>}
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('docx') && (
+                                        <WordIcon/>
+                                    )}
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('pdf') && (
+                                        <PdfIcon/>
+                                    )}
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('xls') && (
+                                        <XlsIcon/>
+                                    )}
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('pptx') && (
+                                        <PptxIcon/>
+                                    )}
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('png') && (
+                                        <PngIcon/>
+                                    )}
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('jpg') && (
+                                        <JpgIcon/>
+                                    )}
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('jpeg') && (
+                                        <JpgIcon/>
+                                    )}
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('gif') && (
+                                        <GifIcon/>
+                                    )}
                                 </>
                             ))}
                         </div>

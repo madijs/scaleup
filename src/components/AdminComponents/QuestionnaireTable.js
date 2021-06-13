@@ -8,11 +8,10 @@ import QuestionnaireTableContent from "./QuestionnaireTableContent";
 import {QUESTIONNAIRE_TABLE_SUCCESS} from "../../types/AdminTypes";
 import {useDispatch} from "react-redux";
 import {makeStyles} from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
-import filterStyle from "../../assets/styles/Filter.module.scss";
-import TextField from "@material-ui/core/TextField";
 import '../../assets/styles/OtherStyles/TextField.scss'
+import FilterComponent from "../OtherComponents/FIlterComponent";
+import FilterService from "../../services/FilterService";
 
 const useStyles = makeStyles({
     list: {
@@ -78,6 +77,8 @@ const QuestionnaireTable = ({data}) => {
             }
         ]
     );
+    const [startDate,setStartDate] = useState('');
+    const [endDate,setEndDate] = useState('');
 
 
     const [sortBy] = useState([
@@ -150,55 +151,135 @@ const QuestionnaireTable = ({data}) => {
         setState({...state, [anchor]: open});
     };
 
+    const setFilterParameters = () => {
+        let status = '';
+        let industries_list = '';
+        const from = startDate;
+        const to = endDate;
+        for (let i=0;i<statuses.length;i++){
+            if (statuses[i].active){
+                if (status.length>0){
+                    status+=','+statuses[i].value
+                }else{
+                    status+=statuses[i].value
+                }
+
+            }
+        }
+        for (let i=0;i<industries.length;i++){
+            if (industries[i].active){
+                if (industries_list.length>0){
+                    industries_list+=','+industries[i].value
+                }else{
+                    industries_list+=industries[i].value
+                }
+            }
+        }
+        const response = new FilterService().setFilterWorksheets({
+            status,
+            industries: industries_list,
+            from,
+            to
+        });
+        response.then(res=>{
+            dispatch({
+                type: QUESTIONNAIRE_TABLE_SUCCESS,
+                payload: res.data
+            })
+        });
+        setUpDown('up')
+    };
+
+    const setFilterNullable = () => {
+        setStatus([
+            {
+                text: 'Пустая',
+                value: 1,
+                active: false
+            },
+            {
+                text: 'В работе',
+                value: 2,
+                active: false
+            },
+            {
+                text: 'Сохранена',
+                value: 3,
+                active: false
+            }
+        ]);
+        setIndustries([
+            {
+                text: 'Общепит',
+                value: 1,
+                active: false
+            },
+            {
+                text: 'Услуги',
+                value: 2,
+                active: false
+            },
+            {
+                text: 'Развлечения',
+                value: 3,
+                active: false
+            },
+            {
+                text: 'Производство',
+                value: 4,
+                active: false
+            },
+            {
+                text: 'Торговля',
+                value: 5,
+                active: false
+            },
+            {
+                text: 'Образование',
+                value: 6,
+                active: false
+            }
+        ]);
+        setStartDate('');
+        setEndDate('');
+        setUpDown('up')
+        let status = '';
+        let industries_list = '';
+        const from = '';
+        const to = '';
+        const response = new FilterService().setFilterWorksheets({
+            status,
+            industries: industries_list,
+            from,
+            to
+        });
+        response.then(res=>{
+            dispatch({
+                type: QUESTIONNAIRE_TABLE_SUCCESS,
+                payload: res.data
+            })
+        });
+        setUpDown('up')
+    };
+
     const list = (anchor) => (
-        <div
-            className={classes.list}
-            role="presentation"
-            // onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-        >
-            <div onClick={toggleDrawer('right', false)} className={filterStyle.close}>
-            </div>
-            <div className={filterStyle.title}>
-                Фильтр
-            </div>
-            <Divider/>
-            <div className={filterStyle.content}>
-                <div className={filterStyle.status}>
-                    <div className={filterStyle.status_title}>
-                        По статусам анкет
-                    </div>
-                    <div className={filterStyle.status_types}>
-                        {statuses.map((el, index) => (
-                            <div key={index} className={filterStyle.status_type}>
-                                {el.text}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className={filterStyle.industries}>
-                    <div className={filterStyle.industries_title}>
-                        Отрасли
-                    </div>
-                    <div className={filterStyle.industries_list}>
-                        {industries.map((el, index) => (
-                            <div key={index} className={filterStyle.industry_type}>
-                                {el.text}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className={filterStyle.period}>
-                    <div className={filterStyle.period_title}>
-                        Период
-                    </div>
-                    <div className={filterStyle.period_types}>
-                        <TextField className={`${filterStyle.textField} on`} type={"date"}/>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <FilterComponent
+            classes={classes}
+            toggleDrawer={toggleDrawer}
+            statuses={statuses}
+            setStatus={setStatus}
+            industries={industries}
+            setIndustries={setIndustries}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+            setFilterParameters={setFilterParameters}
+            setFilterNullable={setFilterNullable}
+        />
     );
+
+
     /******************/
 
     return (

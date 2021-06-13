@@ -45,14 +45,15 @@ const PreviewDocument = ({setFolderName,folderName}) => {
     const history = useHistory();
     const location = useLocation();
     const [modalIsOpen,setOpen3] = useState(false);
-    const {docsData} = useSelector(state => state.DocumentPage);
+    const {docsData,companyData} = useSelector(state => state.DocumentPage);
+    console.log(companyData)
+    console.log(docsData);
     const {userData} = useSelector(state => state.AuthPage);
 
     const [isOpen,setOpen] = useState(false);
     const [shareOpen,setShareOpen] = useState(false);
     const [document,setDocument] = useState(null);
 
-    console.log(document);
 
 
     const [pathLink,setPathLink] = useState('');
@@ -217,6 +218,12 @@ const PreviewDocument = ({setFolderName,folderName}) => {
             {/*</div>*/}
         <div className={styles.fake_container}>
             <div className={styles.head}>
+                {companyData && (
+                    <GoBack
+                        unauthorized={true}
+                        title={companyData.company}
+                    />
+                )}
                 {(userData && userData.roles[0].name !== 'client' && !location.pathname.includes('/admin/settings')) && (
                     <GoBack
                         title={userInfo && userInfo.company}

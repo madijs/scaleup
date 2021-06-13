@@ -2,13 +2,15 @@ import {
     DOCUMENT_PREVIEW_SUCCESS,
     DOCUMENT_TABLE_ERROR,
     DOCUMENT_TABLE_PENDING,
-    DOCUMENT_TABLE_SUCCESS
+    DOCUMENT_TABLE_SUCCESS,
+    COMPANY_DATA_SUCCESS
 } from "../../types/documentTypes";
 import {ERROR, PENDING, SUCCESS} from "../../types/types";
 
 const initialState = {
     data: null,
     docsData: null,
+    companyData: null,
     document_status: ''
 };
 
@@ -30,6 +32,12 @@ export const DocumentReducer = (state=initialState,action) => {
             return {
                 ...state,
                 document_status: ERROR
+            }
+        }
+        case COMPANY_DATA_SUCCESS: {
+            return {
+                ...state,
+                companyData: action.payload
             }
         }
         case DOCUMENT_PREVIEW_SUCCESS:{

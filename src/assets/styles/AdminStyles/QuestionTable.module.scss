@@ -5,6 +5,8 @@
     box-shadow: 0 10px 20px rgba(41, 41, 42, 0.07);
     border-radius: 24px;
     padding: 24px;
+    height: 470px;
+    overflow-y: scroll;
     .table_header{
       display: flex;
       justify-content: space-between;

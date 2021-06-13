@@ -1,1 +1,1 @@
-export const mediaLink = 'https://scaleup.dasspartners.com/storage';
+export const mediaLink = 'http://platformapi.scaleup.plus/storage';

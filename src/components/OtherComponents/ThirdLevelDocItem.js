@@ -7,6 +7,9 @@ import {ReactComponent as PptxIcon} from "../../assets/icons/pptx.svg";
 import {ReactComponent as TrashIcon} from "../../assets/icons/trashIcon.svg";
 import axios from "../../plugins/axios";
 import _ from "lodash";
+import {ReactComponent as PngIcon} from "../../assets/icons/png.svg";
+import {ReactComponent as JpgIcon} from "../../assets/icons/jpg.svg";
+import {ReactComponent as GifIcon} from "../../assets/icons/gif.svg";
 
 class ThirdLevelDocItem extends Component {
 
@@ -92,8 +95,8 @@ class ThirdLevelDocItem extends Component {
                                                 <div className={styles.doc_svg_leftside}>
                                                     <>
                                                         {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('docx') && (
-                                                            <WordIcon/>
-                                                        )}
+                                                        <WordIcon/>
+                                                    )}
                                                         {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('pdf') && (
                                                             <PdfIcon/>
                                                         )}
@@ -103,11 +106,32 @@ class ThirdLevelDocItem extends Component {
                                                         {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('pptx') && (
                                                             <PptxIcon/>
                                                         )}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('pdf') && (
+                                                            <PdfIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('png') && (
+                                                            <PngIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('jpg') && (
+                                                            <JpgIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('jpeg') && (
+                                                            <JpgIcon/>
+                                                        )}
+                                                        {docsData[key].data[key2].data[key3].data[key4].name.substring(docsData[key].data[key2].data[key3].data[key4].name.length-5).includes('gif') && (
+                                                            <GifIcon/>
+                                                        )}
                                                     </>
                                                 </div>
                                                 <div className={styles.doc_svg_rightside}>
                                                     <div className={styles.doc_name}>
-                                                        {docsData[key].data[key2].data[key3].data[key4].name}
+                                                        <>
+                                                            {docsData[key].data[key2].data[key3].data[key4].name.length > 19 ? (
+                                                                <>{docsData[key].data[key2].data[key3].data[key4].name.substring(0,16)+"..."}</>
+                                                            ):(
+                                                                <>{docsData[key].data[key2].data[key3].data[key4].name}</>
+                                                            )}
+                                                        </>
                                                     </div>
                                                     <div className={styles.doc_count}>
                                                         {docsData[key].data[key2].data[key3].data[key4].size} kb

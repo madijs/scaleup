@@ -35,7 +35,8 @@ function App() {
         }
       });
       response.catch(err=>{
-        console.log(err.response)
+          localStorage.clear();
+          history.push('/');
       })
     }
   },[]);

@@ -299,25 +299,10 @@ const PaymentTable = ({dont_paid_data,invoice_paid_data,card_paid_data,active,st
     };
 
     const [tableTitle] = useState(['Компания','Телефон','email','Тариф','дата','статус платежа']);
-    const [isFilterOpen,setFilterOpen] = useState(false);
-
-    const openFilter = () => {
-        setFilterOpen(true);
-        document.getElementById("mySidenav").style.width = "400px";
-        document.getElementById("openNav").style.display = "flex";
-    };
-
-    const closeFilter = () => {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("openNav").style.display = "none";
-        setFilterOpen(false)
-    };
-
 
 
     return (
         <div className={styles.container}>
-            <FilterComponent  closeFilter={closeFilter}/>
             <div className={styles.table}>
                 <div className={styles.table_header}>
                     <div></div>
