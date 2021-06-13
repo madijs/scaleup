@@ -94,6 +94,7 @@ const AdminSettingsPage = () => {
                     count={services.length}
                 />
             )}
+
             {active === 3 && (
                 <AdminSettingsContentBlock
                     blockData={blockData}
