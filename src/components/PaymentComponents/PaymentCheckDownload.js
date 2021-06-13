@@ -112,7 +112,7 @@ const PaymentCheckDownload = ({setDownload}) => {
                                     ref={hiddenFileInput}
                                     onChange={handleChange}
                                     style={{display: 'none'}}/>
-                                <span onClick={handleClick}>Выберите файл</span> или перетащите его сюда
+                                <span onClick={handleClick}>Выберите файл</span>
                             </div>
                             <div className={styles.payment_file_place_description}>
                                 Файлы не должны превышать 10 мб

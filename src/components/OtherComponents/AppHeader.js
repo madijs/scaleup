@@ -300,7 +300,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
                                 </div>
                             </Popover>
                         </div>
-                        <div className={styles.profile} style={{cursor:"pointer"}}>
+                        <div onClick={()=>setModalProfileOpen(!modalProfileOpen)} className={styles.profile} style={{cursor:"pointer"}}>
                             <LetterAvatar
                                 name={userData.fio}
                             />

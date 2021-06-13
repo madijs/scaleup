@@ -92,8 +92,7 @@ const AddModalFile = ({closeAddFileModal,pathLink,id,folder=true}) => {
                                         style={{display: 'none'}}/>
                                     <div className={styles.file_select}>
                                         <span onClick={handleClick}>Выберите файл </span>
-                                        или перетащите
-                                        его сюда
+
                                     </div>
                                     <div className={styles.subtitle}>Файлы не должны превышать 10 мб</div>
                                 </div>

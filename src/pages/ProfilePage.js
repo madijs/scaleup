@@ -17,6 +17,9 @@ import ReactCrop from 'react-image-crop';
 import {getMeInfoAction} from "../redux/actions/getMeInfo";
 import getMediaUrls from "../tools/getMediaUrls";
 import {useHistory} from "react-router-dom";
+import LetterAvatar from "../components/OtherComponents/Avatar";
+import {letterAvatarFormat} from "../tools/letterAvatarFormat";
+import Avatar from "@material-ui/core/Avatar";
 
 
 const customStyles = {
@@ -88,6 +91,8 @@ const ProfilePage = () => {
     const [croppedImg,setCroppedImg] = useState(null);
     const [crop,setCrop] = useState({ aspect : 1});
     const [result,setResult] = useState(userData.avatar);
+
+    console.log(result);
 
     function getCroppedImg(croppedImg, crop) {
         const canvas = document.createElement('canvas');
@@ -236,7 +241,11 @@ const ProfilePage = () => {
             <div className={styles.profilePage}>
                 <div className={styles.avatar_container}>
                     <div className={styles.avatarIcon_container}>
-                        <img src={getMediaUrls(result)}/>
+                        {result === null ? (
+                            <LetterAvatar name={userData.fio}/>
+                        ):(
+                            <img src={getMediaUrls(result)}/>
+                        )}
                         <input
                             type="file"
                             accept="image/*"
