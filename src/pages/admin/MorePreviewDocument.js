@@ -109,7 +109,7 @@ const MorePreviewDocument = ({folderName,setFolderName}) => {
             <div className={styles.head}>
                 <GoBack
                     action={goBack}
-                    title={folderName ? (folderName.length>0 && folderName[folderName.length-1] ) : (name2 ? name2 : "Документы")}
+                    title={name2 ? name2 : "Документы"}
                     subtitle={"Предпросмотр"}
                 />
                 {!location.pathname.includes('/shared') && userData.roles[0].name!=='client' && (

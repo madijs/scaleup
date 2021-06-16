@@ -295,6 +295,7 @@ const QuestionnaireTable = ({data}) => {
                         <div className={styles.filter_title}>Фильтр</div>
                         <div className={styles.filter_icon}><FilterIcon/></div>
                     </div>
+                    <div className={styles.sort_container}>
                     <div className={styles.sort}>
                         <div className={styles.sort_title}>
                             Сортировать по
@@ -313,6 +314,9 @@ const QuestionnaireTable = ({data}) => {
                                     <MenuItem key={index} value={el}>{el}</MenuItem>
                                 ))}
                             </Select>
+                        </div>
+                    </div>
+                        <div className={styles.updown}>
                             {updown === 'up' ? (
                                 <div onClick={() => {
                                     setUpDown('down');

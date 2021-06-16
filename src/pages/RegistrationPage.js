@@ -101,6 +101,7 @@ const RegistrationPage = () => {
             })
         });
         response.catch(err=>{
+            console.log(err.response.data.errors[Object.keys(err.response.data.errors)[0]]);
             openPopupHandleChange({
                 title: "Упс!",
                 text: err.response.data.errors[Object.keys(err.response.data.errors)[0]],

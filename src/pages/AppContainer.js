@@ -32,6 +32,7 @@ import NewDocumentsPage from "./NewDocumentsPage";
 import DashboardPage from "./admin/DashboardPage";
 import ContentAnketa from "./admin/ContentAnketa";
 import {useLocation} from "react-router-dom"
+import AdminSettingsTemplate from "../components/AdminComponents/settings/AdminSettingsTemplates";
 
 const AppContainer = ({userData}) => {
     const history = useHistory();
@@ -61,7 +62,7 @@ const AppContainer = ({userData}) => {
                 }else if (history.location.pathname === '/profile'){
                     history.push('/profile')
                 }else {
-                    history.push('/admin')
+                    history.push('/admin/payment/1')
                 }
             }
         }
@@ -100,9 +101,10 @@ const AppContainer = ({userData}) => {
                             <Route exact path={'/privacyAgreement'} render={() => <PrivacyAgreement/>}/>
                             <Route exact path={'/payment'} render={() => <PaymentPage/>}/>
                             <Route path={'/form'} render={() => <ApplicationFormPage/>}/>
-                            <Route exact path={'/admin'} render={() => <AdminPage/>}/>
+                            {/*<Route exact path={'/admin'} render={() => <AdminPage/>}/>*/}
+                            <Route exact path={'/admin/payment/:id'} render={() => <AdminPage/>}/>
                             <Route exact path={'/admin/documents'} render={()=> <NewDocumentsPage/>}/>
-                            <Route exact path={'/admin/questionnaire'} render={() => <ProductionPage/>}/>
+                            <Route path={'/admin/questionnaire/tables'} render={() => <ProductionPage/>}/>
                             <Route exact path={'/admin/pre-questionnaire/:id'} render={()=><QuestionnaireBlocksPage/>}/>
                             <Route exact path={'/admin/questionnaire/:id'} render={()=> <ProductionBlocksPage/>}/>
                             <Route exact path={'/admin/questionnaire/strategy/:id'} render={()=><StrategyFormContainer/>}/>
@@ -117,8 +119,8 @@ const AppContainer = ({userData}) => {
                             <Route exact path={'/admin/production/financial/:id'} render={()=><FinancialFormContainer/>}/>
                             <Route exact path={'/admin/profile'} render={()=><AdminProfilePage/>}/>
                             <Route path={'/admin/settings'} render={()=><AdminSettingsPage/>}/>
-                            <Route exact path={'/admin/settings/faqs'} render={()=> <AdminFaqsPage/>}/>
-                            <Route exact path={'/admin/settings/welcome'} render={()=><WelcomeBlock/>}/>
+                            <Route exact path={'/admin/faqs'} render={()=> <AdminFaqsPage/>}/>
+                            <Route exact path={'/admin/welcome'} render={()=><WelcomeBlock/>}/>
                             <Route exact path={'/my-documents'} render={()=><MyDocumentsPage/>}/>
                             <Route exact path={'/my-payments'} render={()=><MyPaymentsPage/>}/>
                             <Route exact path={'/finish-document/:id'} render={()=> <PreviewDocument/>}/>
@@ -126,7 +128,7 @@ const AppContainer = ({userData}) => {
                             <Route exact path={'/preview-document/:id'} render={()=> <PreviewDocument/>}/>
                             <Route exact path={'/preview-document/:id/detail/:name'} render={()=><PreviewDocumentDetail/>}/>
                             <Route exact path={'/preview-document/:id/detail/:name/more/:name2'} render={()=><MorePreviewDocument/>}/>
-                            <Route exact path={'/content/anketa/:id'} render={()=><ContentAnketa/>}/>
+                            <Route exact path={'/admin/content/anketa/:id'} render={()=><ContentAnketa/>}/>
                         </div>
                     <AppFooter/>
                 </div>

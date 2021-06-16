@@ -144,7 +144,7 @@ const ForgottenPasswordPage = () => {
                         <>
                             {isEmailForgotTrue ? (
                                 <div className={styles.successEmail}>
-                                    На вашу почту <span>{email}</span> отправлена ссылка с восстноволением пароля,проверьте почту!
+                                    На вашу почту <span>{email}</span> отправлена ссылка с восстноволением пароля, проверьте почту!
                                 </div>
                             ):(
                                 <div className={styles.formFields}>

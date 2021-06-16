@@ -5,6 +5,8 @@
     box-shadow: 0 10px 20px rgba(41, 41, 42, 0.07);
     border-radius: 24px;
     padding: 24px;
+    height: 470px;
+    overflow-y: scroll;
     .table_header{
       display: flex;
       justify-content: space-between;
@@ -45,6 +47,7 @@
         justify-content: center;
         background: rgba(143, 146, 161, 0.05);
         border-radius: 16px;
+        margin-right: 20px;
         .sort_title{
           font-style: normal;
           font-weight: normal;
@@ -87,6 +90,13 @@
   display: inline-block;
   padding: 3px;
   cursor: pointer;
+}
+.sort_container{
+  display: flex;
+  align-items: center;
+}
+.updown{
+  width: 20px;
 }
 .up {
   transform: rotate(-135deg);

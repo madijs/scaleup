@@ -154,7 +154,7 @@ const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUs
                     <FormControl
                         className={focus === 'role' || form.role ? `${styles.textField} on` : `${styles.textField} off`}
                         variant="outlined">
-                        <InputLabel htmlFor="outlined-age-native-simple">Выберите роль</InputLabel>
+                        <InputLabel htmlFor="outlined-age-native-simple">Роль</InputLabel>
                         <Select
                             native
                             value={form.role}

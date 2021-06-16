@@ -312,6 +312,7 @@ const DocumentTable = ({data}) => {
                         <div className={styles.filter_title}>Фильтр</div>
                         <div className={styles.filter_icon}><FilterIcon/></div>
                     </div>
+                    <div className={styles.sort_container}>
                     <div className={styles.sort}>
                         <div className={styles.sort_title}>
                             Сортировать по
@@ -330,23 +331,26 @@ const DocumentTable = ({data}) => {
                                     <MenuItem key={index} value={el}>{el}</MenuItem>
                                 ))}
                             </Select>
-                            {updown === 'up' ? (
-                                <div onClick={()=>{
-                                    setUpDown('down')
-                                    handleChange({target:{
-                                            value:sort
-                                        }})
-                                }} className={`${styles.arrow} ${styles.up}`}></div>
-                            ):(
-                                <div onClick={()=>{
-                                    setUpDown('up')
-                                    handleChange({target:{
-                                            value:sort
-                                        }})
-                                }} className={`${styles.arrow} ${styles.down}`}></div>
-                            )}
                         </div>
                     </div>
+                    <div className={styles.updown}>
+                        {updown === 'up' ? (
+                            <div onClick={()=>{
+                                setUpDown('down')
+                                handleChange({target:{
+                                        value:sort
+                                    }})
+                            }} className={`${styles.arrow} ${styles.up}`}></div>
+                        ):(
+                            <div onClick={()=>{
+                                setUpDown('up')
+                                handleChange({target:{
+                                        value:sort
+                                    }})
+                            }} className={`${styles.arrow} ${styles.down}`}></div>
+                        )}
+                    </div>
+                </div>
                 </div>
                 <div className={styles.admin_table_title}>
                     <table rules="none">

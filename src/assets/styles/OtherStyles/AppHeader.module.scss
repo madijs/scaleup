@@ -113,6 +113,8 @@
 
 .notification_content{
   width: 340px;
+  height: 400px;
+  overflow-y: scroll;
   .notification{
     .notification_body{
       padding: 20px;

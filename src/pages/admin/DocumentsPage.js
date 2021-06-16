@@ -9,13 +9,13 @@ const DocumentsPage = () => {
     const dispatch = useDispatch();
     const {data} = useSelector(state => state.DocumentPage);
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = "ScaleUp | Производство";
         dispatch(getDocTableAction());
-    },[]);
+    }, []);
 
-    return(
-        <div style={{paddingTop:20, height: '100vh'}}>
+    return (
+        <div style={{paddingTop: 20, height: '100vh'}}>
             <AdminTitle
                 title={"Производство"}
                 description={"Общее количество компании"}

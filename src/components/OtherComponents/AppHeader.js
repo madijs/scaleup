@@ -54,7 +54,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
             icon: <OplataIcon width={"100%"} height={"100%"}/>,
             title: "Оплата",
             active: true,
-            path: '/admin',
+            path: '/admin/payment/1',
             access: ['sale_department','admin','moderator']
         },
         // {
@@ -68,7 +68,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
             icon: <AnketaIcon width={"100%"} height={"100%"}/>,
             title: "Анкета",
             active: false,
-            path: '/admin/questionnaire',
+            path: '/admin/questionnaire/tables',
             access: ['moderator','admin','editor','financier','lawyer','marketer']
         },
         {
@@ -199,7 +199,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
                             if (userData.roles[0].name === "client"){
                                 history.push('/')
                             }else if (userData.roles[0].name === "admin" || userData.roles[0].name === "moderator" || userData.roles[0].name === "sale_department"){
-                                history.push('/admin')
+                                history.push('/admin/payment/1')
                             }else{
                                 history.push('/admin/production')
                             }
@@ -283,7 +283,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
                                         {notifications?.map((el,index)=>(
                                             <div key={index} style={el.status == 0 ? {backgroundColor:'rgba(222, 53, 11, 0.05)'} : {}} className={styles.notification_item}>
                                                 <div className={styles.img}>
-                                                    <img src={el.from ? getMediaUrls(el.from.avatar): NotificationSystemIcon} alt="sysyemicon"/>
+                                                    <img src={(el.from && el.from.avatar) ? getMediaUrls(el.from.avatar): NotificationSystemIcon} alt="sysyemicon"/>
                                                 </div>
                                                 <div className={styles.notification_item_content}>
                                                     <div className={styles.notification_item_message}>{el.message}</div>

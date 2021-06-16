@@ -145,7 +145,7 @@ const PreviewDocumentDetail = ({folderName,setFolderName}) => {
         <div className={styles.fake_container}>
             <div className={styles.head}>
                 <GoBack
-                    title={folderName ? (folderName.length>0 && folderName[folderName.length-1] ) : (name ? name.split("&")[1] : "Документы")}
+                    title={name ? name.split("&")[1] : "Документы"}
                     subtitle={"Предпросмотр"}
                 />
                 {!location.pathname.includes('/shared') && userData.roles[0].name!=='client' && (

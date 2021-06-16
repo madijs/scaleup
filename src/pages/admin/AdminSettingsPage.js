@@ -15,11 +15,12 @@ import PreviewDocumentDetail from "./PreviewDocumentDetail";
 import MorePreviewDocument from "./MorePreviewDocument";
 import {useLocation, useHistory} from "react-router-dom";
 import {getContentAnketaAction} from "../../redux/actions/settings/getContentAnketaAction";
+import AdminSettingsTemplate from "../../components/AdminComponents/settings/AdminSettingsTemplates";
 
 
 const AdminSettingsPage = () => {
     const dispatch = useDispatch();
-    const [active, setActive] = useState(null);
+    const [active, setActive] = useState(1);
     const {workers, services, users_list, anketa} = useSelector(state => state.SettingsPage);
     const [folderName, setFolderName] = useState([]);
 
@@ -30,12 +31,12 @@ const AdminSettingsPage = () => {
         {
             title: 'Приветсвенный блок',
             description: 'Какое-то описание для этого блока',
-            path: '/admin/settings/welcome'
+            path: '/admin/welcome'
         },
         {
             title: 'Вопросы-ответы',
             description: 'Какое-то описание для этого блока',
-            path: '/admin/settings/faqs'
+            path: '/admin/faqs'
         }
     ]);
 
@@ -45,7 +46,7 @@ const AdminSettingsPage = () => {
                 let obj = {
                     title: anketa[i].name,
                     description: anketa[i].description,
-                    path: `/content/anketa/${anketa[i].id}`
+                    path: `/admin/content/anketa/${anketa[i].id}`
                 };
                 blockData.push(obj);
                 setBlockData(blockData)
@@ -64,6 +65,20 @@ const AdminSettingsPage = () => {
             dispatch(getContentAnketaAction());
         }
     }, []);
+
+    useEffect(()=>{
+        if (location.pathname === '/admin/settings/content') {
+            setActive(3);
+        } else if (location.pathname === '/admin/settings/templates') {
+            setActive(4);
+        } else if (location.pathname === '/admin/settings/users') {
+            setActive(5);
+        } else if (location.pathname === '/admin/settings/rates'){
+            setActive(2);
+        }else if (location.pathname === '/admin/settings'){
+            setActive(1);
+        }
+    },[location.pathname]);
 
 
     return (
@@ -86,31 +101,44 @@ const AdminSettingsPage = () => {
                         count={workers.length}
                     />
                 )}
-                {(active === 2 && services) && (
-                    <AdminSettingsTable
-                        active={active}
-                        data={services}
-                        count={services.length}
-                    />
-                )}
+                {/*{(active === 2 && services) && (*/}
+                {/*    <AdminSettingsTable*/}
+                {/*        active={active}*/}
+                {/*        data={services}*/}
+                {/*        count={services.length}*/}
+                {/*    />*/}
+                {/*)}*/}
 
-                {active === 3 && (
-                    <AdminSettingsContentBlock
-                        blockData={blockData}
-                    />
-                )}
-                {(active === 4 && location.pathname === '/admin/settings') && (
-                    <>
-                        <PreviewDocument folderName={folderName} setFolderName={setFolderName}/>
-                    </>
-                )}
-                {(active === 5 && users_list) && (
-                    <AdminSettingsTable
-                        active={active}
-                        data={users_list}
-                        count={users_list.length}
-                    />
-                )}
+                {/*{active === 3 && (*/}
+                {/*    <AdminSettingsContentBlock*/}
+                {/*        blockData={blockData}*/}
+                {/*    />*/}
+                {/*)}*/}
+                <Route exact path={'/admin/settings/rates'} render={()=><AdminSettingsTable
+                    active={active}
+                    data={services}
+                    count={services ? services.length : ''}
+                />}/>
+                <Route exact path={'/admin/settings/content'}
+                       render={() => <AdminSettingsContentBlock blockData={blockData}/>}/>
+                <Route exact path={'/admin/settings/templates'} render={() => <AdminSettingsTemplate/>}/>
+                <Route exact path={'/admin/settings/users'} render={() => <AdminSettingsTable
+                    active={active}
+                    data={users_list}
+                    count={users_list ? users_list.length : ''}
+                />}/>
+                {/*{(active === 4 && location.pathname === '/admin/settings') && (*/}
+                {/*    <>*/}
+                {/*       */}
+                {/*    </>*/}
+                {/*)}*/}
+                {/*{(active === 5 && users_list) && (*/}
+                {/*    <AdminSettingsTable*/}
+                {/*        active={active}*/}
+                {/*        data={users_list}*/}
+                {/*        count={users_list.length}*/}
+                {/*    />*/}
+                {/*)}*/}
                 <Route exact path={'/admin/settings/detail/:name'}
                        render={() => <PreviewDocumentDetail setFolderName={setFolderName} folderName={folderName}/>}/>
                 <Route exact path={'/admin/settings/detail/:name/more/:name2'}

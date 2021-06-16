@@ -105,12 +105,12 @@ const ShareDocsModal = ({userData,closePopupHandleChange}) => {
                 </div>
                 <div className={styles.link_container}>
                     <div className={styles.link}>
-                        <input value={`http://scale-up.dasspartners.com/shared?token=${userData && userData.public_document && userData.public_document.token}`} type="text"/>
+                        <input value={`http://platform.scaleup.plus/shared?token=${userData && userData.public_document && userData.public_document.token}`} type="text"/>
                     </div>
                     {!isCopied ? (
                         <button onClick={()=>{
                             try {
-                                navigator.clipboard.writeText(`http://scale-up.dasspartners.com/shared?token=${userData && userData.public_document && userData.public_document.token}`);
+                                navigator.clipboard.writeText(`http://platform.scaleup.plus/shared?token=${userData && userData.public_document && userData.public_document.token}`);
                                 setCopy(true)
                             }catch (e) {
 

@@ -64,7 +64,7 @@ const DocsView = ({document}) => {
                 <>
                     {(document && userData.roles[0].name !== "client" && !location.pathname.includes('/admin/settings')) && (
                         <iframe
-                            src={`https://docs.google.com/viewer?url=https://scaleup.dasspartners.com/api/docs/google-document-file/${id}?link=${document.key}/${document.file}&embedded=true`}
+                            src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file/${id}?link=${document.key}/${document.file}&embedded=true`}
                             title="file"
                             width="100%"
                             height="600"
@@ -72,7 +72,7 @@ const DocsView = ({document}) => {
                     )}
                     {location.pathname.includes('/admin/settings') && (
                         <iframe
-                            src={`https://docs.google.com/viewer?url=https://scaleup.dasspartners.com/api/templates/get-file/?link=${document.key}/${document.file}&embedded=true`}
+                            src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/templates/get-file/?link=${document.key}/${document.file}&embedded=true`}
                             title="file"
                             width="100%"
                             height="600"
@@ -88,7 +88,7 @@ const DocsView = ({document}) => {
                     {/*)}*/}
                     {(document && userData.roles[0].name === "client") && (
                         <iframe
-                            src={`https://docs.google.com/viewer?url=https://scaleup.dasspartners.com/api/docs/google-document-file/${userData.id}?link=${document.key}/${document.file}&embedded=true`}
+                            src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file/${userData.id}?link=${document.key}/${document.file}&embedded=true`}
                             title="file"
                             width="100%"
                             height="600"
@@ -106,7 +106,7 @@ const DocsView = ({document}) => {
             {/*)}*/}
             {location.pathname.includes('/shared') && (
                 <iframe
-                    src={`https://docs.google.com/viewer?url=https://scaleup.dasspartners.com/api/docs/google-document-file-public/${localStorage.getItem('shared_token')}?link=${document.key}/${document.file}&embedded=true`}
+                    src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file-public/${localStorage.getItem('shared_token')}?link=${document.key}/${document.file}&embedded=true`}
                     title="file"
                     width="100%"
                     height="600"

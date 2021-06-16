@@ -4,9 +4,10 @@ import AdminTabs from "../../components/AdminComponents/AdminTabs";
 import PaymentTable from "../../components/AdminComponents/PaymentTable";
 import {getPaymentTableAction} from "../../redux/actions/getPaymentTableAction";
 import {useDispatch, useSelector} from "react-redux";
-import {useHistory} from "react-router-dom";
+import {useHistory,useLocation,useParams} from "react-router-dom";
 import Modal from "react-modal";
 import PaymentInfoModal from "../../components/AdminComponents/PaymentInfoModal";
+import {Route} from 'react-router-dom'
 
 const customStyles = {
     content : {
@@ -23,8 +24,10 @@ const customStyles = {
 
 const AdminPage = () => {
     const history = useHistory();
+    const location = useLocation();
     const {userData} = useSelector(state => state.AuthPage);
     const dispatch = useDispatch();
+    const {id} = useParams();
     const [modalIsOpen,setOpen] = useState(false);
     const {card_paid_data,invoice_paid_data,dont_paid_data,status} = useSelector(state => state.AdminPage);
     const [active,setActive] = useState(localStorage.getItem('payment_tab') ? localStorage.getItem('payment_tab') : 1);
@@ -52,7 +55,19 @@ const AdminPage = () => {
         if (!bool){
             history.push('/admin/production')
         }
+
     },[]);
+
+    useEffect(()=>{
+        if (id === '1'){
+            setActive(1)
+        }else if (id === '2'){
+            setActive(2)
+        }else if (id === '3'){
+            setActive(3)
+        }
+    },[location.pathname]);
+
 
     return (
         <>

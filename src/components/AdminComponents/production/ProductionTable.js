@@ -11,6 +11,7 @@ import Drawer from "@material-ui/core/Drawer/Drawer";
 import FilterComponent from "../../OtherComponents/FIlterComponent";
 import FilterService from "../../../services/FilterService";
 import {makeStyles} from "@material-ui/core";
+
 const useStyles = makeStyles({
     list: {
         width: 412,
@@ -85,8 +86,8 @@ const ProductionTable = ({data}) => {
             }
         ]
     );
-    const [startDate,setStartDate] = useState('');
-    const [endDate,setEndDate] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
 
     const handleOpen = () => {
         setOpen(true);
@@ -154,22 +155,22 @@ const ProductionTable = ({data}) => {
         let industries_list = '';
         const from = startDate;
         const to = endDate;
-        for (let i=0;i<statuses.length;i++){
-            if (statuses[i].active){
-                if (status.length>0){
-                    status+=','+statuses[i].value
-                }else{
-                    status+=statuses[i].value
+        for (let i = 0; i < statuses.length; i++) {
+            if (statuses[i].active) {
+                if (status.length > 0) {
+                    status += ',' + statuses[i].value
+                } else {
+                    status += statuses[i].value
                 }
 
             }
         }
-        for (let i=0;i<industries.length;i++){
-            if (industries[i].active){
-                if (industries_list.length>0){
-                    industries_list+=','+industries[i].value
-                }else{
-                    industries_list+=industries[i].value
+        for (let i = 0; i < industries.length; i++) {
+            if (industries[i].active) {
+                if (industries_list.length > 0) {
+                    industries_list += ',' + industries[i].value
+                } else {
+                    industries_list += industries[i].value
                 }
             }
         }
@@ -179,7 +180,7 @@ const ProductionTable = ({data}) => {
             from,
             to
         });
-        response.then(res=>{
+        response.then(res => {
             dispatch({
                 type: PRODUCTION_TABLE_SUCCESS,
                 payload: res.data
@@ -244,7 +245,7 @@ const ProductionTable = ({data}) => {
                 value: 6,
                 active: false
             }
-        ])
+        ]);
         setUpDown('up');
         let status = '';
         let industries_list = '';
@@ -256,7 +257,7 @@ const ProductionTable = ({data}) => {
             from,
             to
         });
-        response.then(res=>{
+        response.then(res => {
             dispatch({
                 type: PRODUCTION_TABLE_SUCCESS,
                 payload: res.data
@@ -293,41 +294,49 @@ const ProductionTable = ({data}) => {
                     >
                         {list("right")}
                     </Drawer>
-                    <div onClick={toggleDrawer('right', true)}  className={styles.filter}>
+                    <div onClick={toggleDrawer('right', true)} className={styles.filter}>
                         <div className={styles.filter_title}>Фильтр</div>
                         <div className={styles.filter_icon}><FilterIcon/></div>
                     </div>
-                    <div className={styles.sort}>
-                        <div className={styles.sort_title}>
-                            Сортировать по
+                    <div className={styles.sort_container}>
+                        <div className={styles.sort}>
+                            <div className={styles.sort_title}>
+                                Сортировать по
+                            </div>
+                            <div className={styles.sort_select}>
+                                <Select
+                                    labelId="demo-controlled-open-select-label"
+                                    id="demo-controlled-open-select"
+                                    open={open}
+                                    onClose={handleClose}
+                                    onOpen={handleOpen}
+                                    value={sort}
+                                    onChange={handleChange}
+                                >
+                                    {sortBy.map((el, index) => (
+                                        <MenuItem key={index} value={el}>{el}</MenuItem>
+                                    ))}
+                                </Select>
+                            </div>
                         </div>
-                        <div className={styles.sort_select}>
-                            <Select
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                open={open}
-                                onClose={handleClose}
-                                onOpen={handleOpen}
-                                value={sort}
-                                onChange={handleChange}
-                            >
-                                {sortBy.map((el, index) => (
-                                    <MenuItem key={index} value={el}>{el}</MenuItem>
-                                ))}
-                            </Select>
+                        <div className={styles.updown}>
                             {updown === 'up' ? (
-                                <div onClick={()=>{
-                                    setUpDown('down')
-                                    handleChange({target:{
-                                            value:sort
-                                        }})
+                                <div onClick={() => {
+                                    setUpDown('down');
+                                    handleChange({
+                                        target: {
+                                            value: sort
+                                        }
+                                    })
                                 }} className={`${styles.arrow} ${styles.up}`}></div>
-                            ):(
-                                <div onClick={()=>{
-                                    setUpDown('up')
-                                    handleChange({target:{
-                                            value:sort
-                                        }})
+                            ) : (
+                                <div onClick={() => {
+                                    setUpDown('up');
+                                    handleChange({
+                                        target: {
+                                            value: sort
+                                        }
+                                    })
                                 }} className={`${styles.arrow} ${styles.down}`}></div>
                             )}
                         </div>
