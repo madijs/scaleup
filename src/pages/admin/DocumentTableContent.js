@@ -78,7 +78,7 @@ const DocumentTableContent = ({data}) => {
 
                     {(userData.roles[0].name === 'moderator' || userData.roles[0].name === 'admin') ? (
                         <>
-                            {statusCheck( (el.strategy ==='1' && (el.strategy === el.r_strategy)) ? 1 : 0  )}
+                            {statusCheck( (el.strategy =='1' && (el.strategy === el.r_strategy)) ? 1 : 0  )}
                         </>
                     ):(
                         <>
@@ -88,7 +88,7 @@ const DocumentTableContent = ({data}) => {
 
                     {(userData.roles[0].name === 'moderator' || userData.roles[0].name === 'admin') ? (
                         <>
-                            {statusCheck( (el.financial ==='1' && (el.financial === el.r_financial)) ? 1 : 0  )}
+                            {statusCheck( (el.financial =='1' && (el.financial === el.r_financial)) ? 1 : 0  )}
                         </>
                     ):(
                         <>
@@ -97,7 +97,7 @@ const DocumentTableContent = ({data}) => {
 
                     {(userData.roles[0].name === 'moderator' || userData.roles[0].name === 'admin') ? (
                         <>
-                            {statusCheck( (el.legal ==='1' && (el.legal === el.r_legal)) ? 1 : 0  )}
+                            {statusCheck( (el.legal == '1' && (el.legal === el.r_legal)) ? 1 : 0  )}
                         </>
                     ):(
                         <>
@@ -106,7 +106,7 @@ const DocumentTableContent = ({data}) => {
                     )}
                     {(userData.roles[0].name === 'moderator' || userData.roles[0].name === 'admin') ? (
                         <>
-                            {statusCheck( (el.marketing ==='1' && (el.marketing === el.r_marketing)) ? 1 : 0  )}
+                            {statusCheck( (el.marketing =='1' && (el.marketing === el.r_marketing)) ? 1 : 0  )}
                         </>
                     ):(
                         <>

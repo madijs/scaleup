@@ -15,7 +15,7 @@ import InputMask from 'react-input-mask';
 import validateEmail from "../../../tools/validateEmail";
 
 
-const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUserForm,openPopupHandleChange}) => {
+const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUserForm,openPopupHandleChange,txt}) => {
     const dispatch = useDispatch();
     const [focus,setFocus] = useState('');
     const [form,setForm] = useState({
@@ -62,22 +62,29 @@ const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUs
     };
 
     const updateUser = () => {
-        if (form.password === form.confirmPassword){
-            console.log(selectedUserForm);
-            console.log(selectedUserForm.company);
-            if (selectedUserForm.roles[0].client){
-                const response = new SettingsService().updateJustUser(selectedUserForm.id,form.fio,phone,company,form.email,form.password,form.confirmPassword);
-                response.then(res=>{
-                    dispatch(getUsersAction());
-                    closeModal();
-                })
-            }else{
-                const response = new SettingsService().updateSystemUser(selectedUserForm.id,form.fio,form.role,form.email,form.password,form.confirmPassword);
-                response.then(res=>{
-                    dispatch(getWorkersAction());
-                    closeModal();
-                })
+        if (form.password.length > 0) {
+            if (form.password === form.confirmPassword){
+                console.log(selectedUserForm);
+                console.log(selectedUserForm.company);
+                if (selectedUserForm.roles[0].client){
+                    const response = new SettingsService().updateJustUser(selectedUserForm.id,form.fio,phone,company,form.email,form.password,form.confirmPassword);
+                    response.then(res=>{
+                        dispatch(getUsersAction());
+                        closeModal();
+                    })
+                }else{
+                    const response = new SettingsService().updateSystemUser(selectedUserForm.id,form.fio,form.role,form.email,form.password,form.confirmPassword);
+                    response.then(res=>{
+                        dispatch(getWorkersAction());
+                        closeModal();
+                    })
+                }
             }
+        }else{
+            setFocus('password');
+            const copy = {...isChanged};
+            copy.password = true;
+            setChanged(copy);
         }
     };
 
@@ -85,7 +92,7 @@ const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUs
         <div className={styles.container}>
             <div className={styles.header}>
                 <div className={styles.header_content}>
-                    <div className={styles.header_content_title}>Редактирование</div>
+                    <div className={styles.header_content_title}>{txt}</div>
                     <div onClick={closeModal} className={styles.close}></div>
                 </div>
             </div>
@@ -243,6 +250,8 @@ const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUs
                 </InputMask>
 
                 <TextField
+                    error={form.password.length === 0 && isChanged.password}
+                    // helperText={(form.password.length === 0 && isChanged) ? "Обязательное поле" : ''}
                     className={focus === 'password' || form.password ? `${styles.textField} on` : `${styles.textField} off`}
                     id="outlined-basic"
                     label="Введите пароль"
@@ -279,6 +288,8 @@ const CreateAndEditModal = ({closeModal,rolesList,selectedUserForm,setSelectedUs
                     }}
                 />
                 <TextField
+                    error={(form.password.length === 0 && isChanged.password) || form.password !== form.confirmPassword}
+                    // helperText={((form.password.length === 0 && isChanged) || form.password !== form.confirmPassword) ? "Обязательное поле" : ''}
                     className={focus === 'confirmPassword' || form.confirmPassword ? `${styles.textField} on` : `${styles.textField} off`}
                     id="outlined-basic"
                     label="Повторите пароль"

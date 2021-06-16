@@ -24,7 +24,7 @@ const AdminSettingsTableContent = ({data=[],active,setSelectedUserForm,openModal
                                 <div className={styles.action}>
                                     <img onClick={()=>{
                                         setSelectedUserForm(el);
-                                        openModal()
+                                        openModal('client')
                                     }} src={editIcon} alt="edit"/>
                                     <img onClick={()=>{
                                         setSelectedUserForm(el);

@@ -76,7 +76,7 @@ const AdminSettingsPage = () => {
         } else if (location.pathname === '/admin/settings/rates'){
             setActive(2);
         }else if (location.pathname === '/admin/settings'){
-            setActive(1);
+            setActive(1)
         }
     },[location.pathname]);
 

@@ -24,6 +24,7 @@ const customStyles = {
 };
 
 const AdminSettingsTable = ({active, count = 0, data = []}) => {
+    const [txt,setTxt] = useState('');
     const [modalIsOpen,setOpen] = useState(false);
     const [selectedUserForm,setSelectedUserForm] = useState(null);
     const [tableTitle] = useState({
@@ -47,9 +48,12 @@ const AdminSettingsTable = ({active, count = 0, data = []}) => {
     const [client,setClient] = useState(null);
 
     const openModal = (name=null) => {
+        console.log(name);
         if (name === 'client'){
+            setTxt("Редактирование");
             setClient(true);
         }else {
+            setTxt("Добавление");
             setClient(false);
         }
         setOpen(true);
@@ -124,6 +128,7 @@ const AdminSettingsTable = ({active, count = 0, data = []}) => {
                 contentLabel="Example Modal"
             >
                 <CreateAndEditModal
+                    txt={txt}
                     openPopupHandleChange={openPopupHandleChange}
                     setSelectedUserForm={setSelectedUserForm}
                     selectedUserForm={selectedUserForm}
