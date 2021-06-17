@@ -23,6 +23,7 @@ import {saveAnketaValueAction} from "../../redux/actions/anketa/saveAnketaValueA
 import ErrorPopupModal from "../OtherComponents/ErrorPopupModal";
 import Faq from "../FaqComponents/Faq";
 import getMediaUrls from "../../tools/getMediaUrls";
+import NotificationSystemIcon from "../../assets/icons/notificsystem.svg";
 
 const customStyles = {
     content : {
@@ -374,7 +375,7 @@ const StrategyForm = () => {
                                                                                     <div className={styles.commentHeader}>
                                                                                         <div className={styles.userLogo}>
                                                                                             <img
-                                                                                                src={getMediaUrls(commentInfo.user?.avatar)}
+                                                                                                src={(commentInfo && commentInfo.user && commentInfo.user.avatar) ? getMediaUrls(commentInfo.user.avatar) : NotificationSystemIcon}
                                                                                                 alt={commentInfo.logo}/>
                                                                                         </div>
                                                                                         <div className={styles.userName}>
@@ -463,7 +464,7 @@ const StrategyForm = () => {
                                                                     <div className={styles.commentHeader}>
                                                                         <div className={styles.userLogo}>
                                                                             <img
-                                                                                src={commentInfo.user?.avatar}
+                                                                                src={(commentInfo && commentInfo.user && commentInfo.user.avatar) ? getMediaUrls(commentInfo.user.avatar) : NotificationSystemIcon}
                                                                                 alt="userLogo"/>
                                                                         </div>
                                                                         <img onClick={()=>{
