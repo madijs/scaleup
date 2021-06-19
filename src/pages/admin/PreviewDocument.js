@@ -58,6 +58,7 @@ const PreviewDocument = ({setFolderName,folderName}) => {
     const [userInfo,setUserInfo] = useState(null);
 
 
+
     const [isOpenAddModal,setOpenFileModal] = useState(false);
 
 
@@ -107,6 +108,7 @@ const PreviewDocument = ({setFolderName,folderName}) => {
         if (location.pathname.includes('/finish-document') || location.pathname.includes('/success-document')){
             const response = new AdminService().getUserInfo(id);
             response.then(res=>{
+                console.log(res);
                 setUserInfo(res.data)
             })
         }

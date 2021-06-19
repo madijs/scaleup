@@ -52,11 +52,11 @@ const DocsView = ({document}) => {
             {(userData && (userData && userData.roles[0].name !=='client' && !location.pathname.includes('/admin/settings'))) && (
                 <div onClick={()=>{
                     if (link){
-                        window.open(`https://docs.google.com/document/d/${link}/edit`,'__blank')
+                        window.open(link,'__blank')
                     }else{
                         alert('Подождите несколько секунд и нажмите еще раз!')
                     }
-                }} className={styles.avatarIcon_editDiv}>
+                }} className={styles.editIconDoc}>
                     <img src={EditAva} alt="edit"/>
                 </div>
             )}

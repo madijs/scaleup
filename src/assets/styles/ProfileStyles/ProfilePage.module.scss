@@ -167,6 +167,20 @@
     opacity: .6;
   }
 }
+.editIconDoc{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #FF494D;
+  mix-blend-mode: normal;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
 //.avatarIcon_editDiv{
 //  position: absolute;
 //  width: 48px;
