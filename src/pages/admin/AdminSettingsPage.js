@@ -16,6 +16,7 @@ import MorePreviewDocument from "./MorePreviewDocument";
 import {useLocation, useHistory} from "react-router-dom";
 import {getContentAnketaAction} from "../../redux/actions/settings/getContentAnketaAction";
 import AdminSettingsTemplate from "../../components/AdminComponents/settings/AdminSettingsTemplates";
+import RequirementDocs from "./RequirementDocs";
 
 
 const AdminSettingsPage = () => {
@@ -76,7 +77,9 @@ const AdminSettingsPage = () => {
         } else if (location.pathname === '/admin/settings/rates'){
             setActive(2);
         }else if (location.pathname === '/admin/settings'){
-            setActive(1)
+            setActive(1);
+        }else if (location.pathname === '/admin/settings/requirement/docs'){
+            setActive(6);
         }
     },[location.pathname]);
 
@@ -139,10 +142,12 @@ const AdminSettingsPage = () => {
                 {/*        count={users_list.length}*/}
                 {/*    />*/}
                 {/*)}*/}
-                <Route exact path={'/admin/settings/detail/:name'}
+                <Route exact path={'/admin/settings/templates/detail/:name'}
                        render={() => <PreviewDocumentDetail setFolderName={setFolderName} folderName={folderName}/>}/>
-                <Route exact path={'/admin/settings/detail/:name/more/:name2'}
+                <Route exact path={'/admin/settings/templates/detail/:name/more/:name2'}
                        render={() => <MorePreviewDocument setFolderName={setFolderName} folderName={folderName}/>}/>
+                <Route exact path={'/admin/settings/requirement/docs'}
+                       render={()=><RequirementDocs/>}/>
             </div>
         </>
     )

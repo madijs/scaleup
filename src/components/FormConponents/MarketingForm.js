@@ -327,6 +327,7 @@ const MarketingForm = () => {
                                                         setInfo={setInfo}
                                                         commentInfo={commentInfo}
                                                         allData={questionsData}
+                                                        saveAnketa={saveAnketa}
                                                     />
                                                 </div>
                                             )}

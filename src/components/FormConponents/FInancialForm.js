@@ -336,6 +336,7 @@ const FinancialForm = () => {
                                                         commentInfo={commentInfo}
                                                         answer={el.answer}
                                                         readIt={readIt}
+                                                        saveAnketa={saveAnketa}
                                                     />
                                                 </div>
                                             )}

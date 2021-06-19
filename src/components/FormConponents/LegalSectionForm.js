@@ -380,6 +380,7 @@ const LegalSectionForm = () => {
                                                 commentInfo={commentInfo}
                                                 answer={el.answer}
                                                 readIt={readIt}
+                                                saveAnketa={saveAnketa}
                                             />
                                         </div>
                                     )}

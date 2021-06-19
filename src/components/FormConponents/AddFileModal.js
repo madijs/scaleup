@@ -3,7 +3,7 @@ import styles from "../../assets/styles/AddFileModal.module.scss";
 import axios from "../../plugins/axios";
 import {DOCUMENT_PREVIEW_SUCCESS} from "../../types/documentTypes";
 import {useDispatch} from "react-redux";
-import {useLocation} from "react-router-dom";
+import {useLocation,useParams} from "react-router-dom";
 import trashIcon from "../../assets/icons/trashIcon.svg";
 import CircularIndeterminate from "./ProgressCircle";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -12,8 +12,7 @@ import Warning from "../../assets/icons/warning.svg";
 import TextField from "@material-ui/core/TextField/TextField";
 import SettingsService from "../../services/SettingsService";
 
-const AddModalFile = ({closeAddFileModal,pathLink,id,folder=true}) => {
-
+const AddModalFile = ({closeAddFileModal,pathLink,id='',folder=true}) => {
     const [type,setType] = useState(null);
     const [focus,setFocus] = useState('');
     const [folderName,setFolderName] = useState('');
@@ -138,15 +137,27 @@ const AddModalFile = ({closeAddFileModal,pathLink,id,folder=true}) => {
                         />
                         <div className={styles.btns}>
                             <div onClick={()=>{
-                                const response = new SettingsService().createFolder(folderName,pathLink)
-                                response.then(res=>{
-                                    closeAddFileModal();
-                                    dispatch({
-                                        type: DOCUMENT_PREVIEW_SUCCESS,
-                                        payload: res.data
-                                    });
-                                    console.log(res);
-                                })
+                                if (location.pathname.includes('/finish-document')){
+                                    const response = new SettingsService().createFolderInProd(folderName,pathLink,id);
+                                    response.then(res=>{
+                                        closeAddFileModal();
+                                        dispatch({
+                                            type: DOCUMENT_PREVIEW_SUCCESS,
+                                            payload: res.data
+                                        });
+                                        console.log(res);
+                                    })
+                                }else{
+                                    const response = new SettingsService().createFolder(folderName,pathLink,id);
+                                    response.then(res=>{
+                                        closeAddFileModal();
+                                        dispatch({
+                                            type: DOCUMENT_PREVIEW_SUCCESS,
+                                            payload: res.data
+                                        });
+                                        console.log(res);
+                                    })
+                                }
                             }} className={styles.accessBtn}>Сохранить</div>
                             <div onClick={()=>setType(null)} className={styles.cancelBtn}>Отмена</div>
                         </div>

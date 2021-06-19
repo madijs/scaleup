@@ -46,8 +46,6 @@ const PreviewDocument = ({setFolderName,folderName}) => {
     const location = useLocation();
     const [modalIsOpen,setOpen3] = useState(false);
     const {docsData,companyData} = useSelector(state => state.DocumentPage);
-    console.log(companyData)
-    console.log(docsData);
     const {userData} = useSelector(state => state.AuthPage);
 
     const [isOpen,setOpen] = useState(false);

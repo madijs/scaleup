@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.4c4e92e7.chunk.css",
-    "main.js": "/static/js/main.bfed0ccc.chunk.js",
-    "main.js.map": "/static/js/main.bfed0ccc.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.bb4603fb.js",
-    "runtime-main.js.map": "/static/js/runtime-main.bb4603fb.js.map",
+    "main.css": "/static/css/main.d22ef30b.chunk.css",
+    "main.js": "/static/js/main.7837c5a4.chunk.js",
+    "main.js.map": "/static/js/main.7837c5a4.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.66d32a07.js",
+    "runtime-main.js.map": "/static/js/runtime-main.66d32a07.js.map",
     "static/css/2.bc1f36dc.chunk.css": "/static/css/2.bc1f36dc.chunk.css",
-    "static/js/2.f88e9ec3.chunk.js": "/static/js/2.f88e9ec3.chunk.js",
-    "static/js/2.f88e9ec3.chunk.js.map": "/static/js/2.f88e9ec3.chunk.js.map",
-    "static/js/3.091b1b23.chunk.js": "/static/js/3.091b1b23.chunk.js",
-    "static/js/3.091b1b23.chunk.js.map": "/static/js/3.091b1b23.chunk.js.map",
+    "static/js/2.b8054c4e.chunk.js": "/static/js/2.b8054c4e.chunk.js",
+    "static/js/2.b8054c4e.chunk.js.map": "/static/js/2.b8054c4e.chunk.js.map",
+    "static/js/3.27661c2e.chunk.js": "/static/js/3.27661c2e.chunk.js",
+    "static/js/3.27661c2e.chunk.js.map": "/static/js/3.27661c2e.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.bc1f36dc.chunk.css.map": "/static/css/2.bc1f36dc.chunk.css.map",
-    "static/css/main.4c4e92e7.chunk.css.map": "/static/css/main.4c4e92e7.chunk.css.map",
-    "static/js/2.f88e9ec3.chunk.js.LICENSE.txt": "/static/js/2.f88e9ec3.chunk.js.LICENSE.txt",
+    "static/css/main.d22ef30b.chunk.css.map": "/static/css/main.d22ef30b.chunk.css.map",
+    "static/js/2.b8054c4e.chunk.js.LICENSE.txt": "/static/js/2.b8054c4e.chunk.js.LICENSE.txt",
     "static/media/Bell.59e272af.svg": "/static/media/Bell.59e272af.svg",
     "static/media/Flag.eefa3274.svg": "/static/media/Flag.eefa3274.svg",
     "static/media/Icon.965822b3.svg": "/static/media/Icon.965822b3.svg",
@@ -69,10 +69,10 @@
     "static/media/xls.fbeece1b.svg": "/static/media/xls.fbeece1b.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.bb4603fb.js",
+    "static/js/runtime-main.66d32a07.js",
     "static/css/2.bc1f36dc.chunk.css",
-    "static/js/2.f88e9ec3.chunk.js",
-    "static/css/main.4c4e92e7.chunk.css",
-    "static/js/main.bfed0ccc.chunk.js"
+    "static/js/2.b8054c4e.chunk.js",
+    "static/css/main.d22ef30b.chunk.css",
+    "static/js/main.7837c5a4.chunk.js"
   ]
 }

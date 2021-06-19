@@ -7,8 +7,9 @@ import axios from "../../plugins/axios"
 import Comment from "../../assets/icons/comment.svg";
 import {useDispatch, useSelector} from "react-redux";
 import {CHECK_COMPLETED_ANSWERS, SAVE_FILE_IN_ANKETA} from "../../types/anketaTypes";
+import QuestionCheckboxInput from "./QuestionCheckboxInput";
 
-const QuestionFileInput = ({title = "", text = "", questionsData, id, getStrategyQuestion = null, getFinancial = null, setOpen, setInfo, commentOpen, commentInfo,user_id,allData,section}) => {
+const QuestionFileInput = ({title = "",  saveAnketa,text = "", questionsData, id, getStrategyQuestion = null, getFinancial = null, setOpen, setInfo, commentOpen, commentInfo,user_id,allData,section}) => {
     const [form, setForm] = useState(questionsData ? questionsData : null);
     const [error, setError] = useState(form.answer ? (form.answer.commentary ? (form.answer.commentary.read == 0 ? true : false) : false) : false);
     const dispatch = useDispatch();
@@ -46,7 +47,8 @@ const QuestionFileInput = ({title = "", text = "", questionsData, id, getStrateg
                     type: CHECK_COMPLETED_ANSWERS,
                     payload: allData
                 });
-                // getStrategyQuestion()
+                saveAnketa();
+                getStrategyQuestion()
             })
         }
     };
@@ -92,7 +94,25 @@ const QuestionFileInput = ({title = "", text = "", questionsData, id, getStrateg
         }
     },[questionsData]);
 
-    console.log(questionsData);
+    const downloadFile = (file) => {
+
+        const response =  axios({
+            url: 'http://platformapi.scaleup.plus/api/get-answer-file', //your url
+            method: 'GET',
+            responseType: 'blob',// important
+            params: {
+                link: file
+            }
+        });
+        response.then(res=>{
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', file); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+        });
+    };
 
 
     return (
@@ -146,11 +166,11 @@ const QuestionFileInput = ({title = "", text = "", questionsData, id, getStrateg
                         {form.answer && form.answer.answers && form.answer.answers.map((el, index) => (
                             <>
                                 {el.name ? (
-                                    <div className={styles.fileName} key={index}>
+                                    <div onClick={()=>alert('qwe')} className={styles.fileName} key={index}>
                                         {el.name}
                                     </div>
                                 ) : (
-                                    <div className={styles.fileName} key={index}>
+                                    <div onClick={()=>downloadFile(el)} className={styles.fileName} key={index}>
                                         {el}
                                     </div>
                                 )}

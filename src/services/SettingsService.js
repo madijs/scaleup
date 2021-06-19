@@ -149,10 +149,26 @@ export default class SettingsService {
         return await this.putResource(`/anketa/update`,body)
     }
 
-    async createFolder(folderName,link){
-        return await this.postResource('/docs/templates/upload-folder',{
+    async createFolder(folderName,link,userId=''){
+        return await this.postResource(`/docs/templates/upload-folder`,{
             folder:folderName,
             link
         })
+    }
+
+    async createFolderInProd(folderName,link,userId=''){
+        return await this.postResource(`/docs/upload-folder/${userId}`,{
+            folder:folderName,
+            link
+        })
+    }
+
+
+    async getRequirementDocs(){
+        return await this.getResource(`/preview-files`)
+    }
+
+    async updateRequirementDocs(formData){
+        return await this.postResource(`/preview-files`,formData)
     }
 }
