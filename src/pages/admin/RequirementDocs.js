@@ -6,10 +6,6 @@ import SettingsService from "../../services/SettingsService";
 const RequirementDocs = () => {
     const [isPending,setPending] = useState(false);
 
-    const [file1,setFile1] = useState(null);
-    const [file2,setFile2] = useState(null);
-    const [file3,setFile3] = useState(null);
-
     const [invoiceForPaymentFile,setInvoiceForPaymentFile] = useState(null);
     const [termsOofAgreementFile,setTermsForAgreementFile] = useState(null);
     const [confidentialityFile,setConfidentialityFile] = useState(null);
@@ -38,46 +34,33 @@ const RequirementDocs = () => {
     const handleChange = (type,event) => {
         console.log(event.target.files[0]);
         if (type === 'invoice'){
-            setFile1(event.target.files[0]);
-            updateDoc('invoice')
+            const formData = new FormData();
+            formData.append('type',type);
+            formData.append('file',event.target.files[0]);
+            const response = new SettingsService().updateRequirementDocs(formData);
+            response.then(res=>{
+                getDocs();
+            })
         }else if (type === 'agreeScaleUp'){
-            setFile2(event.target.files[0]);
-            updateDoc('agreeScaleUp')
+            const formData = new FormData();
+            formData.append('type',type);
+            formData.append('file',event.target.files[0]);
+            const response = new SettingsService().updateRequirementDocs(formData);
+            response.then(res=>{
+                getDocs();
+            })
         }else if (type === 'useScaleUp'){
-            setFile3(event.target.files[0]);
-            updateDoc('useScaleUp')
+            const formData = new FormData();
+            formData.append('type',type);
+            formData.append('file',event.target.files[0]);
+            const response = new SettingsService().updateRequirementDocs(formData);
+            response.then(res=>{
+                getDocs();
+            })
         }
+
     };
 
-    const updateDoc = (type) => {
-        if (type === 'invoice'){
-            const formData = new FormData();
-            console.log(file1);
-            formData.append('type',type);
-            formData.append('file',file1)
-            const response = new SettingsService().updateRequirementDocs(formData);
-            response.then(res=>{
-                console.log(res);
-            })
-        }else if (type === 'agreeScaleUp'){
-            const formData = new FormData();
-            formData.append('type',type);
-            formData.append('file',file2)
-            const response = new SettingsService().updateRequirementDocs(formData);
-            response.then(res=>{
-                console.log(res)
-            })
-        }else if (type === 'useScaleUp'){
-            const formData = new FormData();
-            formData.append('type',type);
-            formData.append('file',file3)
-            const response = new SettingsService().updateRequirementDocs(formData);
-            response.then(res=>{
-                console.log(res);
-            })
-        }
-        getDocs();
-    };
 
     useEffect(()=>{
         getDocs();
@@ -90,21 +73,18 @@ const RequirementDocs = () => {
             <div className={styles.content}>
                 <RequirementDocsItem
                     handleChange={handleChange}
-                    updateDoc={updateDoc}
                     isPending={isPending}
                     file={invoiceForPaymentFile}
                     title={"Счет на оплату"}
                 />
                 <RequirementDocsItem
                     handleChange={handleChange}
-                    updateDoc={updateDoc}
                     isPending={isPending}
                     file={termsOofAgreementFile}
                     title={"Условия соглашения"}
                 />
                 <RequirementDocsItem
                     handleChange={handleChange}
-                    updateDoc={updateDoc}
                     isPending={isPending}
                     file={confidentialityFile}
                     title={"Договор о конфиденциальности"}

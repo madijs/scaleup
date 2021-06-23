@@ -32,7 +32,6 @@ import NewDocumentsPage from "./NewDocumentsPage";
 import DashboardPage from "./admin/DashboardPage";
 import ContentAnketa from "./admin/ContentAnketa";
 import {useLocation} from "react-router-dom"
-import AdminSettingsTemplate from "../components/AdminComponents/settings/AdminSettingsTemplates";
 
 const AppContainer = ({userData}) => {
     const history = useHistory();

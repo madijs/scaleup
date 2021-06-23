@@ -13,6 +13,7 @@ import Slider from "react-slick";
 import '../assets/styles/Slider.css';
 import {useHistory} from "react-router-dom";
 import SaveBtn from "../components/OtherComponents/SaveBtn";
+import SettingsService from "../services/SettingsService";
 
 
 const customStyles = {
@@ -49,6 +50,28 @@ const BeforePaymentMainPage = () => {
     const {userData} = useSelector(state => state.AuthPage);
     const [selectedService,setSelectedService] = useState('');
 
+    const [invoiceForPaymentFile,setInvoiceForPaymentFile] = useState(null);
+    const [termsOofAgreementFile,setTermsForAgreementFile] = useState(null);
+    const [confidentialityFile,setConfidentialityFile] = useState(null);
+
+
+    const getDocs = () => {
+        const response = new SettingsService().getRequirementDocs();
+        response.then(res=>{
+            console.log(res);
+            for (let i=0;i<res.data.length;i++){
+                if (res.data[i].type === 'invoice'){
+                    setInvoiceForPaymentFile(res.data[i])
+                }else if (res.data[i].type === 'agreeScaleUp'){
+                    setTermsForAgreementFile(res.data[i])
+                }else if (res.data[i].type === 'useScaleUp'){
+                    setConfidentialityFile(res.data[i])
+                }
+            }
+        }).catch(err=>{
+        })
+    };
+
     function openModal(num) {
         setSelectedService(num);
         setIsOpen(true);
@@ -75,7 +98,9 @@ const BeforePaymentMainPage = () => {
             setServices(copyService);
         }).catch(err=>{
             console.log(err)
-        })
+        });
+
+        getDocs();
     },[]);
 
 
@@ -89,7 +114,10 @@ const BeforePaymentMainPage = () => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <ModalCard selectedService={selectedService} closeModal={closeModal}/>
+                <ModalCard
+                    termsOofAgreementFile={termsOofAgreementFile}
+                    confidentialityFile={confidentialityFile}
+                    selectedService={selectedService} closeModal={closeModal}/>
             </Modal>
             <div className={styles.mainPageContainer}>
                 <div className={styles.container}>

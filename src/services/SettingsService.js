@@ -169,6 +169,7 @@ export default class SettingsService {
     }
 
     async updateRequirementDocs(formData){
+        console.log(formData)
         return await this.postResource(`/preview-files`,formData)
     }
 }
