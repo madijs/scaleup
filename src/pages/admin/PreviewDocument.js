@@ -25,6 +25,7 @@ import AdminService from "../../services/AdminService";
 import CompanyInfoModal from "../../components/AdminComponents/CompanyInfoModal";
 import {returnDateFormat} from "../../tools/returnDateFormat";
 import AddModalFile from "../../components/FormConponents/AddFileModal";
+import CircularIndeterminate from "../../components/FormConponents/ProgressCircle";
 
 const customStyles = {
     content : {
@@ -52,6 +53,8 @@ const PreviewDocument = ({setFolderName,folderName}) => {
     const [isOpen,setOpen] = useState(false);
     const [shareOpen,setShareOpen] = useState(false);
     const [document,setDocument] = useState(null);
+
+    const [isPending,setPending] = useState(false);
 
 
 
@@ -123,12 +126,15 @@ const PreviewDocument = ({setFolderName,folderName}) => {
                 a = 3
             }
             const response = new DocumentService().getTemplates(a);
+            setPending(true);
             response.then(res=>{
+                setPending(false);
                 dispatch({
                     type: DOCUMENT_PREVIEW_SUCCESS,
                     payload: res.data
                 })
             }).catch(err=>{
+                setPending(false);
                 dispatch({
                     type: DOCUMENT_TABLE_ERROR
                 })
@@ -226,108 +232,119 @@ const PreviewDocument = ({setFolderName,folderName}) => {
             {/*    <div className={styles.close}>Закрыть</div>*/}
             {/*</div>*/}
         <div className={styles.fake_container}>
-            <div className={styles.head}>
-                {companyData && (
-                    <GoBack
-                        unauthorized={true}
-                        title={companyData.company}
-                    />
-                )}
-                {(userData && userData.roles[0].name !== 'client' && !location.pathname.includes('/admin/settings')) && (
-                    <GoBack
-                        title={userInfo && userInfo.company}
-                    />
-                )}
-                {userData && userData.roles[0].name === 'client' && (
-                    <GoBack
-                        title={"Мои документы"}
-                        subtitle={"Ваши документы готовы"}
-                    />
-                )}
-                {(location.pathname.includes('/finish-document') || location.pathname.includes('/success-document'))&& (
-                    <>
-                        {(userData.roles[0].name === 'moderator'|| userData.roles[0].name === 'admin') ? (
-                            <SaveBtn
-                                title={"Инфо о компании"}
-                                color={"#171717"}
-                                backgroundColor={"rgba(143, 146, 161, 0.1)"}
-                                save={handleOpen}
+            {tarif && (
+                <div className={styles.tarif}>
+                    {tarif}
+                </div>
+            )}
+            {!isPending ? (
+                <>
+                    <div className={styles.head}>
+                        {companyData && (
+                            <GoBack
+                                unauthorized={true}
+                                title={companyData.company}
                             />
-                        ):(
+                        )}
+                        {(userData && userData.roles[0].name !== 'client' && !location.pathname.includes('/admin/settings')) && (
+                            <GoBack
+                                title={userInfo && userInfo.company}
+                            />
+                        )}
+                        {userData && userData.roles[0].name === 'client' && (
+                            <GoBack
+                                title={"Мои документы"}
+                                subtitle={"Ваши документы готовы"}
+                            />
+                        )}
+                        {(location.pathname.includes('/finish-document') || location.pathname.includes('/success-document'))&& (
+                            <>
+                                {(userData.roles[0].name === 'moderator'|| userData.roles[0].name === 'admin') ? (
+                                    <SaveBtn
+                                        title={"Инфо о компании"}
+                                        color={"#171717"}
+                                        backgroundColor={"rgba(143, 146, 161, 0.1)"}
+                                        save={handleOpen}
+                                    />
+                                ):(
+                                    <div className={styles.save_btns}>
+                                        <SaveBtn
+                                            title={"Готово"}
+                                            save={sendOrSave}
+                                        />
+                                        <SaveBtn
+                                            title={"Инфо о компании"}
+                                            color={"#171717"}
+                                            backgroundColor={"rgba(143, 146, 161, 0.1)"}
+                                        />
+                                    </div>
+                                )}
+                            </>
+                        )}
+                        {location.pathname.includes('/my-documents') && userData.roles[0].name === "client" && (
                             <div className={styles.save_btns}>
-                            <SaveBtn
-                                title={"Готово"}
-                                save={sendOrSave}
-                            />
                                 <SaveBtn
-                                    title={"Инфо о компании"}
-                                    color={"#171717"}
-                                    backgroundColor={"rgba(143, 146, 161, 0.1)"}
+                                    title={"Поделиться"}
+                                    backgroundColor="rgba(143, 146, 161, 0.1)"
+                                    color="#000"
+                                    save={()=>setShareOpen(true)}
+                                />
+                                <SaveBtn
+                                    title={"Скачать все документы"}
                                 />
                             </div>
                         )}
-                    </>
-                )}
-                {location.pathname.includes('/my-documents') && userData.roles[0].name === "client" && (
-                    <div className={styles.save_btns}>
-                        <SaveBtn
-                            title={"Поделиться"}
-                            backgroundColor="rgba(143, 146, 161, 0.1)"
-                            color="#000"
-                            save={()=>setShareOpen(true)}
-                        />
-                        <SaveBtn
-                            title={"Скачать все документы"}
-                        />
                     </div>
-                )}
-            </div>
-            <div className={styles.fake_wrappers}>
-                {(location.pathname.includes('/finish-document/') && (userData && (userData.roles[0].name === "moderator" || userData.roles[0].name === "admin"))) && (
-                    <div className={styles.status_block}>
-                        <div className={styles.changeStatus_txt}>
-                            Чтобы отправить документы клиенту, нажмите на кнопку "Отправить документы"
-                        </div>
-                        <div onClick={()=>{
-                            sendOrSave();
-                        }} className={styles.changeStatus_btn}>
-                            Отправить документы
-                        </div>
-                    </div>
-                )}
-                {docsData && Object.keys(docsData).map((key,index) => (
-                    <div key={key} className={styles.four_containers}>
-                        <div className={styles.doc_heading}>
-                            <div className={styles.svg_leftside}>
-                                {/*<div className={styles.pinky}></div>*/}
-                                {key === "finance" && (<FinanceIcon/>)}
-                                {key === "strategy" && (<StrategyIcon/>)}
-                                {key === "marketing" && (<MarketingIcon/>)}
-                                {key === "law" && (<LegalIcon/>)}
-                            </div>
-                            <div className={styles.svg_rightside}>
-                                <div className={styles.heading_name}>
-                                    {key === "finance" && "Финансовый раздел"}
-                                    {key === "strategy" && "Стратегический раздел"}
-                                    {key === "marketing" && "Маркетинговый раздел"}
-                                    {key === "law" && "Юридический раздел"}
+                    <div className={styles.fake_wrappers}>
+                        {(location.pathname.includes('/finish-document/') && (userData && (userData.roles[0].name === "moderator" || userData.roles[0].name === "admin"))) && (
+                            <div className={styles.status_block}>
+                                <div className={styles.changeStatus_txt}>
+                                    Чтобы отправить документы клиенту, нажмите на кнопку "Отправить документы"
                                 </div>
-                                <div className={styles.count}>
-                                    {docsData[key].count+" файлов"}
+                                <div onClick={()=>{
+                                    sendOrSave();
+                                }} className={styles.changeStatus_btn}>
+                                    Отправить документы
                                 </div>
                             </div>
-                            {userData && userData.roles[0].name !=="client" && (
-                                <div onClick={(e)=>handleClick(key)} className={styles.addFileIcon}>
-                                    <AddDocIcon/>
+                        )}
+                        {docsData && Object.keys(docsData).map((key,index) => (
+                            <div key={key} className={styles.four_containers}>
+                                <div className={styles.doc_heading}>
+                                    <div className={styles.svg_leftside}>
+                                        {/*<div className={styles.pinky}></div>*/}
+                                        {key === "finance" && (<FinanceIcon/>)}
+                                        {key === "strategy" && (<StrategyIcon/>)}
+                                        {key === "marketing" && (<MarketingIcon/>)}
+                                        {key === "law" && (<LegalIcon/>)}
+                                    </div>
+                                    <div className={styles.svg_rightside}>
+                                        <div className={styles.heading_name}>
+                                            {key === "finance" && "Финансовый раздел"}
+                                            {key === "strategy" && "Стратегический раздел"}
+                                            {key === "marketing" && "Маркетинговый раздел"}
+                                            {key === "law" && "Юридический раздел"}
+                                        </div>
+                                        <div className={styles.count}>
+                                            {docsData[key].count+" файлов"}
+                                        </div>
+                                    </div>
+                                    {userData && userData.roles[0].name !=="client" && (
+                                        <div onClick={(e)=>handleClick(key)} className={styles.addFileIcon}>
+                                            <AddDocIcon/>
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                        </div>
-                        <div className={styles.main_docs}>
-                            <DocumentItem tarif={tarif} folderName={folderName} setFolderName={setFolderName} userData={userData ? userData: null} setDocs={setDocs} setOpen={setOpen} setDocument={setDocument} id={id} location={location} history={history} docsData={docsData} keyName={key}/>
-                        </div>
+                                <div className={styles.main_docs}>
+                                    <DocumentItem tarif={tarif} folderName={folderName} setFolderName={setFolderName} userData={userData ? userData: null} setDocs={setDocs} setOpen={setOpen} setDocument={setDocument} id={id} location={location} history={history} docsData={docsData} keyName={key}/>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
+                </>
+            ):(
+                <CircularIndeterminate/>
+            )}
         </div>
         </>
     )

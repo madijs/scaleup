@@ -22,6 +22,10 @@
 }
 .fake_container {
 }
+.tarif{
+  font-size: 30px;
+  font-weight: bold;
+}
 .head{
   display: flex;
   justify-content: space-between;

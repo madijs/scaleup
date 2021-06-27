@@ -142,9 +142,9 @@ const AdminSettingsPage = () => {
                 {/*        count={users_list.length}*/}
                 {/*    />*/}
                 {/*)}*/}
-                <Route exact path={'/admin/settings/templates/detail/:name'}
+                <Route exact path={'/admin/settings/templates/:tarif/detail/:name'}
                        render={() => <PreviewDocumentDetail setFolderName={setFolderName} folderName={folderName}/>}/>
-                <Route exact path={'/admin/settings/templates/detail/:name/more/:name2'}
+                <Route exact path={'/admin/settings/templates/:tarif/detail/:name/more/:name2'}
                        render={() => <MorePreviewDocument setFolderName={setFolderName} folderName={folderName}/>}/>
                 <Route exact path={'/admin/settings/requirement/docs'}
                        render={()=><RequirementDocs/>}/>
