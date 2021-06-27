@@ -120,28 +120,28 @@ class DocumentItem extends Component {
                                 <FolderIcon/>
                             ) : (docsData[key].data[key2].type === 'file' && (
                                 <>
-                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('docx') && (
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).toLowerCase().includes('docx') && (
                                         <WordIcon/>
                                     )}
-                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('pdf') && (
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).toLowerCase().includes('pdf') && (
                                         <PdfIcon/>
                                     )}
-                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('xls') && (
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).toLowerCase().includes('xls') && (
                                         <XlsIcon/>
                                     )}
-                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('pptx') && (
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).toLowerCase().includes('pptx') && (
                                         <PptxIcon/>
                                     )}
-                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('png') && (
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).toLowerCase().includes('png') && (
                                         <PngIcon/>
                                     )}
-                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('jpg') && (
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).toLowerCase().includes('jpg') && (
                                         <JpgIcon/>
                                     )}
-                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('jpeg') && (
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).toLowerCase().includes('jpeg') && (
                                         <JpgIcon/>
                                     )}
-                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).includes('gif') && (
+                                    {docsData[key].data[key2].name.substring(docsData[key].data[key2].name.length-5).toLowerCase().includes('gif') && (
                                         <GifIcon/>
                                     )}
                                 </>
