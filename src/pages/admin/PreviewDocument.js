@@ -41,6 +41,7 @@ const customStyles = {
 
 const PreviewDocument = ({setFolderName,folderName}) => {
     const {id} = useParams();
+    const {tarif} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
@@ -113,7 +114,15 @@ const PreviewDocument = ({setFolderName,folderName}) => {
             })
         }
         if (location.pathname.includes('/admin/settings')){
-            const response = new DocumentService().getTemplates();
+            let a = '';
+            if (tarif === 'startup'){
+                a = 1
+            }else if (tarif === 'scaleforce'){
+                a = 2
+            }else if (tarif === 'scaleup'){
+                a = 3
+            }
+            const response = new DocumentService().getTemplates(a);
             response.then(res=>{
                 dispatch({
                     type: DOCUMENT_PREVIEW_SUCCESS,
@@ -194,7 +203,7 @@ const PreviewDocument = ({setFolderName,folderName}) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <AddModalFile id={id} pathLink={pathLink} closeAddFileModal={closeAddFileModal}/>
+                <AddModalFile tarif={tarif} id={id} pathLink={pathLink} closeAddFileModal={closeAddFileModal}/>
             </Modal>
             <Modal  isOpen={isOpen2}
                     onRequestClose={()=>setOpen2(false)}
@@ -314,7 +323,7 @@ const PreviewDocument = ({setFolderName,folderName}) => {
                             )}
                         </div>
                         <div className={styles.main_docs}>
-                            <DocumentItem folderName={folderName} setFolderName={setFolderName} userData={userData ? userData: null} setDocs={setDocs} setOpen={setOpen} setDocument={setDocument} id={id} location={location} history={history} docsData={docsData} keyName={key}/>
+                            <DocumentItem tarif={tarif} folderName={folderName} setFolderName={setFolderName} userData={userData ? userData: null} setDocs={setDocs} setOpen={setOpen} setDocument={setDocument} id={id} location={location} history={history} docsData={docsData} keyName={key}/>
                         </div>
                     </div>
                 ))}

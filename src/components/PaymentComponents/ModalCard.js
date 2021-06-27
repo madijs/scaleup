@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom'
 import PaymentSerivce from "../../services/PaymentService";
 import {getMeInfoAction} from "../../redux/actions/getMeInfo";
 import {useDispatch} from "react-redux";
+import axios from "../../plugins/axios";
 
 const ModalCard = ({closeModal,selectedService,confidentialityFile,termsOofAgreementFile}) => {
     const dispatch = useDispatch();
@@ -35,8 +36,6 @@ const ModalCard = ({closeModal,selectedService,confidentialityFile,termsOofAgree
     };
 
 
-
-
     return(
         <div className={styles.modal_card_container}>
             <span style={{borderBottom:'1px solid #8F92A1'}}>
@@ -54,13 +53,12 @@ const ModalCard = ({closeModal,selectedService,confidentialityFile,termsOofAgree
                 <div className={styles.modal_card_body}>
                     <div className={styles.modal_card_body_item}>
                         <input onClick={checkIt.bind(this, 0)} checked={isChecked[0]} type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                        <label>Я принимаю <span onClick={()=>{
-                            setDocVisible(true)
-                        }}> условия использования </span> сервиса ScaleUp</label><br/>
+                        <label>Я принимаю <a href={`http://platformapi.scaleup.plus/${termsOofAgreementFile.name}`} target={'_blank'}> условия использования </a> сервиса ScaleUp</label><br/>
                     </div>
                     <div className={styles.modal_card_body_item}>
                         <input onClick={checkIt.bind(this, 1)} checked={isChecked[1]} type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                        <label>Я принимаю <span> соглашение о конфиденциальности </span> </label><br/>
+                        <label>Я принимаю <a href={`http://platformapi.scaleup.plus/${confidentialityFile.name}`} target={'_blank'}
+                        > соглашение о конфиденциальности </a> </label><br/>
                     </div>
                     <div onClick={payHandleChange} style={isChecked[0] && isChecked[1] ? {transition:'.4s'} : {backgroundColor:'#ccc',transition:'.4s'}} className={styles.modal_btn}>
                         Продолжить

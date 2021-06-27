@@ -55,8 +55,16 @@ class MoreDocumentItem extends Component{
         console.log(file);
         console.log(type);
         if (this.props.location.pathname.includes('/admin/settings')){
+            let a = '';
+            if (this.props.tarif === 'startup'){
+                a = 1
+            }else if (this.props.tarif === 'scaleforce'){
+                a = 2
+            }else if (this.props.tarif === 'scaleup'){
+                a = 3
+            }
             if (type !== 'folder'){
-                axios.delete(`/docs/templates/delete-file?link=${key}/${file}`,{
+                axios.delete(`/docs/templates${a}/delete-file?link=${key}/${file}`,{
                     params:{
                         link:key+'/'+file
                     }
@@ -64,7 +72,7 @@ class MoreDocumentItem extends Component{
                     this.props.setDocs(res.data);
                 })
             }else if (type == 'folder'){
-                axios.delete(`/docs/templates/delete-folder`,{
+                axios.delete(`/docs/templates${a}/delete-folder`,{
                     params:{
                         link:key+'/'+key3
                     }

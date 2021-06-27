@@ -29,8 +29,8 @@ function App() {
       response.then(res=>{
         console.log(res.data);
         if (res.data.payment && res.data.roles[0].name === "client"){
-            if (res.data.payment.payment_status_id ===1 && location.pathname != '/privacyAgreement'){
-              history.push('/payment')
+            if (res.data.payment.payment_status_id == '1' && res.data.payment.service_id == '4' && res.data.payment.payment_type_id == '3' && location.pathname != '/privacyAgreement'){
+              history.push('/')
             }
         }
       });

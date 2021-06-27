@@ -148,6 +148,7 @@ const AdminSettingsPage = () => {
                        render={() => <MorePreviewDocument setFolderName={setFolderName} folderName={folderName}/>}/>
                 <Route exact path={'/admin/settings/requirement/docs'}
                        render={()=><RequirementDocs/>}/>
+                <Route exact path={'/admin/settings/templates/:tarif'} render={()=><PreviewDocument/>} />
             </div>
         </>
     )

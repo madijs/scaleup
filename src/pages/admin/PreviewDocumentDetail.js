@@ -33,6 +33,7 @@ const customStyles = {
 };
 
 const PreviewDocumentDetail = ({folderName,setFolderName}) => {
+    const {tarif} = useParams();
     const {userData} = useSelector(state => state.AuthPage);
     const search = new URLSearchParams(useLocation().search);
     const token = search.get('token');
@@ -132,7 +133,7 @@ const PreviewDocumentDetail = ({folderName,setFolderName}) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <AddModalFile id={id} pathLink={name.split("&")[0]+'/'+name.split("&")[1]} closeAddFileModal={closeAddFileModal}/>
+                <AddModalFile tarif={tarif} id={id} pathLink={name.split("&")[0]+'/'+name.split("&")[1]} closeAddFileModal={closeAddFileModal}/>
             </Modal>
             <Modal
                 isOpen={isOpen}
@@ -165,6 +166,7 @@ const PreviewDocumentDetail = ({folderName,setFolderName}) => {
                 {docsData && (
                     <div className={styles.inner_dorectory}>
                         <MoreDocumentItem
+                            tarif={tarif}
                             folderName={folderName}
                             setFolderName={setFolderName}
                             id={id}

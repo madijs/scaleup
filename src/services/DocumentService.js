@@ -43,8 +43,8 @@ export default class DocumentService {
     }
 
 
-    async getTemplates(){
-        return await this.getResource(`/docs/templates`)
+    async getTemplates(a=""){
+        return await this.getResource(`/docs/templates${a}`)
     }
 
 }

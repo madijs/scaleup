@@ -47,8 +47,16 @@ class ThirdLevelDocItem extends Component {
     }
 
     deleteDocument(id,file,key){
+        let a = '';
+        if (this.props.tarif === 'startup'){
+            a = 1
+        }else if (this.props.tarif === 'scaleforce'){
+            a = 2
+        }else if (this.props.tarif === 'scaleup'){
+            a = 3
+        }
         if (this.props.location.pathname.includes('/admin/settings')){
-            axios.delete(`/docs/templates/delete-file?link=${key}/${file}`,{
+            axios.delete(`/docs/templates${a}/delete-file?link=${key}/${file}`,{
                 params:{
                     link:key+'/'+file
                 }

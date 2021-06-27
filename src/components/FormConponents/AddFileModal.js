@@ -12,7 +12,7 @@ import Warning from "../../assets/icons/warning.svg";
 import TextField from "@material-ui/core/TextField/TextField";
 import SettingsService from "../../services/SettingsService";
 
-const AddModalFile = ({closeAddFileModal,pathLink,id='',folder=true}) => {
+const AddModalFile = ({closeAddFileModal,pathLink,id='',folder=true,tarif}) => {
     const [type,setType] = useState(null);
     const [focus,setFocus] = useState('');
     const [folderName,setFolderName] = useState('');
@@ -39,7 +39,15 @@ const AddModalFile = ({closeAddFileModal,pathLink,id='',folder=true}) => {
         formData.append('file',file);
         if (location.pathname.includes("/admin/settings")){
             setFilePending(true);
-            axios.post(`/docs/templates/upload-file`,formData).then(res=>{
+            let a = '';
+            if (tarif === 'startup'){
+                a = 1
+            }else if (tarif === 'scaleforce'){
+                a = 2
+            }else if (tarif === 'scaleup'){
+                a = 3
+            }
+            axios.post(`/docs/templates${a}/upload-file`,formData).then(res=>{
                 setFilePending(false);
                 dispatch({
                     type: DOCUMENT_PREVIEW_SUCCESS,
@@ -148,7 +156,15 @@ const AddModalFile = ({closeAddFileModal,pathLink,id='',folder=true}) => {
                                         console.log(res);
                                     })
                                 }else{
-                                    const response = new SettingsService().createFolder(folderName,pathLink,id);
+                                    let a = '';
+                                    if (tarif === 'startup'){
+                                        a = 1
+                                    }else if (tarif === 'scaleforce'){
+                                        a = 2
+                                    }else if (tarif === 'scaleup'){
+                                        a = 3
+                                    }
+                                    const response = new SettingsService().createFolder(folderName,pathLink,id,a);
                                     response.then(res=>{
                                         closeAddFileModal();
                                         dispatch({

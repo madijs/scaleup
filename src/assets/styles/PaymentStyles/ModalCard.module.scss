@@ -45,10 +45,11 @@
           margin-left: 10px;
           color: #171717;
           font-size: 14px;
-          span{
+          a{
             color: #FF494D;
             font-weight: bold;
             cursor: pointer;
+            text-decoration: none;
             &:hover{
               text-decoration: underline;
             }

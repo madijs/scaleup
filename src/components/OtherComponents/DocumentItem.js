@@ -65,10 +65,17 @@ class DocumentItem extends Component {
     }
 
     deleteDocument(id,file,key,type,key2){
-        console.log(id);
         if (this.props.location.pathname.includes('/admin/settings')){
             if (type === 'file'){
-                axios.delete(`/docs/templates/delete-file?link=${key}/${file}`,{
+                let a = '';
+                if (this.props.tarif === 'startup'){
+                    a = 1
+                }else if (this.props.tarif === 'scaleforce'){
+                    a = 2
+                }else if (this.props.tarif === 'scaleup'){
+                    a = 3
+                }
+                axios.delete(`/docs/templates${a}/delete-file?link=${key}/${file}`,{
                     params:{
                         link:key+'/'+file
                     }
@@ -76,9 +83,15 @@ class DocumentItem extends Component {
                     this.props.setDocs(res.data);
                 })
             }else{
-                console.log(key)
-                console.log(key2)
-                axios.delete(`/docs/templates/delete-folder`,{
+                let a = '';
+                if (this.props.tarif === 'startup'){
+                    a = 1
+                }else if (this.props.tarif === 'scaleforce'){
+                    a = 2
+                }else if (this.props.tarif === 'scaleup'){
+                    a = 3
+                }
+                axios.delete(`/docs/templates${a}/delete-folder`,{
                     params:{
                         link:key+'/'+key2
                     }
@@ -94,7 +107,7 @@ class DocumentItem extends Component {
     }
 
     render() {
-        const {docsData,keyName,id} = this.props;
+        const {docsData,keyName,id,tarif} = this.props;
         let key = keyName;
         return (
             <>

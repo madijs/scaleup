@@ -35,6 +35,7 @@ const customStyles = {
 
 
 const MorePreviewDocument = ({folderName,setFolderName}) => {
+    const {tarif} = useParams();
     const [isOpen,setOpen] = useState(false);
     const [document,setDocument] = useState(null);
     const {userData} = useSelector(state => state.AuthPage);
@@ -95,7 +96,7 @@ const MorePreviewDocument = ({folderName,setFolderName}) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <AddModalFile folder={null} id={id} pathLink={name.split("&")[0]+'/'+name.split("&")[1]+'/'+name2} closeAddFileModal={closeAddFileModal}/>
+                <AddModalFile tarif={tarif} folder={null} id={id} pathLink={name.split("&")[0]+'/'+name.split("&")[1]+'/'+name2} closeAddFileModal={closeAddFileModal}/>
             </Modal>
             <Modal
                 isOpen={isOpen}
@@ -129,6 +130,7 @@ const MorePreviewDocument = ({folderName,setFolderName}) => {
                 {docsData && (
                     <div className={styles.inner_dorectory}>
                        <ThirdLevelDocItem
+                           tarif={tarif}
                            userData={userData}
                            id={id}
                            setDocs={setDocs}
