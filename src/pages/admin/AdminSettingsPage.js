@@ -80,6 +80,8 @@ const AdminSettingsPage = () => {
             setActive(1);
         }else if (location.pathname === '/admin/settings/requirement/docs'){
             setActive(6);
+        }else if (location.pathname.includes('/admin/settings/templates')){
+            setActive(4);
         }
     },[location.pathname]);
 

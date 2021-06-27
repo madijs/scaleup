@@ -232,9 +232,19 @@ const PreviewDocument = ({setFolderName,folderName}) => {
             {/*    <div className={styles.close}>Закрыть</div>*/}
             {/*</div>*/}
         <div className={styles.fake_container}>
-            {tarif && (
+            {tarif === 'startup' && (
                 <div className={styles.tarif}>
-                    {tarif}
+                    StartUp
+                </div>
+            )}
+            {tarif === 'scaleforce' && (
+                <div className={styles.tarif}>
+                    ScaleFORCE
+                </div>
+            )}
+            {tarif === 'scaleUp' && (
+                <div className={styles.tarif}>
+                    ScaleUp
                 </div>
             )}
             {!isPending ? (
