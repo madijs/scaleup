@@ -106,7 +106,7 @@ const QuestionTextFieldInput = ({readIt,answer,allData,questionNumber,index,id,t
                     {questionsData.input == "textarea" && (
                         <div className={styles.textarea}>
                             <textarea
-                                className={error ?  `${styles.textField} warning` : ( focus || (questionsData.answer && questionsData.answer.answers && questionsData.answer.answers['1']) ? `on` : `off`)}
+                                className={error ?  ` warning` : ( focus || (questionsData.answer && questionsData.answer.answers && questionsData.answer.answers['1']) ? `on` : `off`)}
                                 disabled={(userData.roles[0].name === "client" && (questionsData ? (questionsData.answer ? (questionsData.answer.disabled == 1 ) : false) : false)) || (userData.roles[0].name === "editor" || userData.roles[0].name === "marketer" || userData.roles[0].name === "financier" || userData.roles[0].name==="lawyer")}
                                 name=""
                                 placeholder={placeholder}

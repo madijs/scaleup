@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 
 const ShareDocsModal = ({userData,closePopupHandleChange}) => {
     const dispatch= useDispatch();
+    const [token,setToken] = useState(null);
     const [isCopied,setCopy] = useState(false);
     const [isStrategyChecked,setStrategyChecked] = useState(false);
     const [isMarketingChecked,setMarketingChecked] = useState(false);
@@ -14,6 +15,7 @@ const ShareDocsModal = ({userData,closePopupHandleChange}) => {
 
     useEffect(()=>{
         dispatch(getMeInfoAction());
+        setToken(userData.public_document.token)
     },[]);
 
     useEffect(()=>{
@@ -73,6 +75,7 @@ const ShareDocsModal = ({userData,closePopupHandleChange}) => {
                     setMarketingChecked(false);
                 }
             }
+            setToken(res.data.token)
         })
     };
 
@@ -105,7 +108,7 @@ const ShareDocsModal = ({userData,closePopupHandleChange}) => {
                 </div>
                 <div className={styles.link_container}>
                     <div className={styles.link}>
-                        <input value={`http://platform.scaleup.plus/shared?token=${userData && userData.public_document && userData.public_document.token}`} type="text"/>
+                        <input value={`http://platform.scaleup.plus/shared?token=${userData && userData.public_document && token}`} type="text"/>
                     </div>
                     {!isCopied ? (
                         <button onClick={()=>{

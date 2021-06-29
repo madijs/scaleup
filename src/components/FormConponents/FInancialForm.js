@@ -274,25 +274,27 @@ const FinancialForm = () => {
                                         <div className={styles.question}>
                                             {el.type == 1 && (
                                                 <div key={el.key} style={{margin: '16px 10px 0 0', flex: 1}}>
-                                                    <QuestionTextFieldInput
-                                                        allData={questionsData}
-                                                        questionNumber={questionNumber}
-                                                        index={index}
-                                                        user_id={id}
-                                                        getStrategyQuestion={getStrategyQuestion}
-                                                        id={el.id}
-                                                        key={el.key}
-                                                        questionsData={questionsData[questionNumber].forms[index]}
-                                                        placeholder={el.placeholder}
-                                                        // title={!questionsData[questionNumber].title && `Вопросы ${questionNumber + 1} из ${questionsData.length}`}
-                                                        text={el.title}
-                                                        commentOpen={commentOpen}
-                                                        setOpen={setOpen}
-                                                        setInfo={setInfo}
-                                                        commentInfo={commentInfo}
-                                                        answer={el.answer}
-                                                        readIt={readIt}
-                                                    />
+                                                    {el.title.length !==0 && (
+                                                        <QuestionTextFieldInput
+                                                            allData={questionsData}
+                                                            questionNumber={questionNumber}
+                                                            index={index}
+                                                            user_id={id}
+                                                            getStrategyQuestion={getStrategyQuestion}
+                                                            id={el.id}
+                                                            key={el.key}
+                                                            questionsData={questionsData[questionNumber].forms[index]}
+                                                            placeholder={el.placeholder}
+                                                            // title={!questionsData[questionNumber].title && `Вопросы ${questionNumber + 1} из ${questionsData.length}`}
+                                                            text={el.title}
+                                                            commentOpen={commentOpen}
+                                                            setOpen={setOpen}
+                                                            setInfo={setInfo}
+                                                            commentInfo={commentInfo}
+                                                            answer={el.answer}
+                                                            readIt={readIt}
+                                                        />
+                                                    )}
                                                 </div>
                                             )}
                                             {el.type == 2 && (

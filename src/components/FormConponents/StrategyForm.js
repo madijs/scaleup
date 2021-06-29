@@ -48,6 +48,7 @@ const StrategyForm = () => {
     const {questionsData,completed} = useSelector(state => state.AnketaPage);
     const [commentOpen, setOpen] = useState(false);
     const [commentInfo, setInfo] = useState(null);
+    const [popUpText,setPopUpText] = useState(null);
     const search = new URLSearchParams(useLocation().search);
 
     const handleChangeQuestion = (event, newPage) => {
@@ -149,11 +150,16 @@ const StrategyForm = () => {
         }
     };
 
-    const saveAnketa = () => {
+    const saveAnketa = (type=null) => {
         save();
         if (userData.roles[0].name === 'client'){
             const response = new AnketaService().savedAnketa('strategy');
             response.then(res=>{
+                if (type === null){
+                    setPopUpText("Анкета успешно сохранена!")
+                }else{
+                    setPopUpText("Файл успешно добавлен")
+                }
                 openSuccessSaved();
             })
         }
@@ -190,7 +196,7 @@ const StrategyForm = () => {
                 contentLabel=""
             >
                 <ErrorPopupModal
-                    data={{type:"success",title:"Отлично",text:"Анкета успешно сохранена!"}}
+                    data={{type:"success",title:"Отлично",text:popUpText}}
                     closePopupHandleChange={closeSuccessSaved}
                 />
             </Modal>
@@ -269,25 +275,27 @@ const StrategyForm = () => {
                                         <div className={styles.question}>
                                             {el.type == 1 && (
                                                 <div key={el.key} className={styles.quest}>
-                                                    <QuestionTextFieldInput
-                                                        questionNumber={questionNumber}
-                                                        index={index}
-                                                        user_id={id}
-                                                        getStrategyQuestion={getStrategyQuestion}
-                                                        id={el.id}
-                                                        key={el.key}
-                                                        allData={questionsData}
-                                                        questionsData={questionsData[questionNumber].forms[index]}
-                                                        placeholder={el.placeholder}
-                                                        title={!questionsData[questionNumber].title && `Вопросы ${questionNumber + 1} из ${questionsData.length}`}
-                                                        text={el.title}
-                                                        commentOpen={commentOpen}
-                                                        setOpen={setOpen}
-                                                        setInfo={setInfo}
-                                                        commentInfo={commentInfo}
-                                                        answer={el.answer}
-                                                        readIt={readIt}
-                                                    />
+                                                    {el.title.length !== 0 && (
+                                                        <QuestionTextFieldInput
+                                                            questionNumber={questionNumber}
+                                                            index={index}
+                                                            user_id={id}
+                                                            getStrategyQuestion={getStrategyQuestion}
+                                                            id={el.id}
+                                                            key={el.key}
+                                                            allData={questionsData}
+                                                            questionsData={questionsData[questionNumber].forms[index]}
+                                                            placeholder={el.placeholder}
+                                                            title={!questionsData[questionNumber].title && `Вопросы ${questionNumber + 1} из ${questionsData.length}`}
+                                                            text={el.title}
+                                                            commentOpen={commentOpen}
+                                                            setOpen={setOpen}
+                                                            setInfo={setInfo}
+                                                            commentInfo={commentInfo}
+                                                            answer={el.answer}
+                                                            readIt={readIt}
+                                                        />
+                                                    )}
                                                 </div>
                                             )}
                                             {el.type == 2 && (

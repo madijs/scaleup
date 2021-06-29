@@ -47,7 +47,7 @@ const QuestionFileInput = ({title = "",  saveAnketa,text = "", questionsData, id
                     type: CHECK_COMPLETED_ANSWERS,
                     payload: allData
                 });
-                saveAnketa();
+                saveAnketa('file');
                 getStrategyQuestion()
             })
         }
