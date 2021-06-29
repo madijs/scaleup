@@ -49,6 +49,8 @@ const FinancialForm = () => {
     const [commentInfo, setInfo] = useState(null);
     const search = new URLSearchParams(useLocation().search);
     const location = useLocation();
+    const [popUpText,setPopUpText] = useState(null);
+
 
 
 
@@ -151,13 +153,17 @@ const FinancialForm = () => {
         }
     };
 
-    const saveAnketa = () => {
+    const saveAnketa = (type=null) => {
         save();
         if (userData.roles[0].name === 'client') {
             const response = new AnketaService().savedAnketa('financial');
             response.then(res => {
+                if (type === null){
+                    setPopUpText("Анкета успешно сохранена!")
+                }else{
+                    setPopUpText("Файл успешно добавлен!")
+                }
                 openSuccessSaved();
-                console.log(res);
             })
         }
     };
@@ -193,7 +199,7 @@ const FinancialForm = () => {
                 contentLabel=""
             >
                 <ErrorPopupModal
-                    data={{type:"success",title:"Отлично",text:"Анкета успешно сохранена!"}}
+                    data={{type:"success",title:"Отлично",text:popUpText}}
                     closePopupHandleChange={closeSuccessSaved}
                 />
             </Modal>

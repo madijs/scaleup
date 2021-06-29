@@ -158,7 +158,7 @@ const StrategyForm = () => {
                 if (type === null){
                     setPopUpText("Анкета успешно сохранена!")
                 }else{
-                    setPopUpText("Файл успешно добавлен")
+                    setPopUpText("Файл успешно добавлен!")
                 }
                 openSuccessSaved();
             })
