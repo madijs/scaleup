@@ -6,17 +6,27 @@ import {useLocation} from "react-router-dom"
 import styles from "../../assets/styles/ProfileStyles/ProfilePage.module.scss";
 import EditAva from "../../assets/icons/editAva.svg";
 
-const DocsView = ({document}) => {
+const DocsView = ({document,tarif=''}) => {
     const search = new URLSearchParams(useLocation().search);
     const {userData} = useSelector(state => state.AuthPage);
     const {id} = useParams();
     const location = useLocation();
     const [link,setLink] = useState(null);
     const token = search.get('token');
+    const [tarifNum,setTarifNum] = useState('');
 
-    console.log(link)
+    console.log(location);
 
     useEffect(()=>{
+        let a = '';
+        if (tarif === 'startup'){
+            a = 1
+        }else if (tarif === 'scaleforce'){
+            a = 2
+        }else if (tarif === 'scaleup'){
+            a = 3
+        }
+        setTarifNum(a);
         if (userData && userData.roles[0].name !=="client" && !location.pathname.includes('/admin/settings'))
         axios.get(`/docs/google-document-file-open/${id}?link=${document.key}/${document.file}`).then(res=>{
             console.log(res);
@@ -70,9 +80,9 @@ const DocsView = ({document}) => {
                             height="600"
                         ></iframe>
                     )}
-                    {location.pathname.includes('/admin/settings') && (
+                    {location.pathname.includes('/admin/settings/templates') && (
                         <iframe
-                            src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/templates/get-file/?link=${document.key}/${document.file}&embedded=true`}
+                            src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/templates${tarifNum}/get-file/?link=${document.key}/${document.file}&embedded=true`}
                             title="file"
                             width="100%"
                             height="600"

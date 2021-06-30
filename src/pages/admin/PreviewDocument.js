@@ -201,7 +201,7 @@ const PreviewDocument = ({setFolderName,folderName}) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <DocsView document={document} />
+                <DocsView tarif={tarif} document={document} />
             </Modal>
             <Modal
                 isOpen={isOpenAddModal}
