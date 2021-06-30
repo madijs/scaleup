@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getFaqListAction} from "../../redux/actions/getFaqListAction";
 import {useHistory} from 'react-router-dom';
 import FaqList from "./FaqList";
+import {useLocation} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Faq = () => {
+    const location = useLocation();
     const history = useHistory();
     const {faqData} = useSelector(state => state.MainPage);
     const dispatch = useDispatch();
@@ -35,10 +37,10 @@ const Faq = () => {
                            Часто задаваемые вопросы
                        </div>
                        <div className={styles.faq_text}>
-                           Learn from a growing library of 1,982 websites and 3,829 component examples. Easily filterable to find the inspiration you need, quickly.
+                           {/*Learn from a growing library of 1,982 websites and 3,829 component examples. Easily filterable to find the inspiration you need, quickly.*/}
                        </div>
                        {faqData && (
-                           <FaqList faqData={faqData}/>
+                           <FaqList location={location}/>
                        )}
                        <div onClick={()=>history.push('/faq')} className={styles.allQuestions}>
                            Все вопросы-ответы
