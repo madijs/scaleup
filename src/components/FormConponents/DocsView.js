@@ -16,6 +16,7 @@ const DocsView = ({document,tarif=''}) => {
     const [tarifNum,setTarifNum] = useState('');
 
     console.log(location);
+    console.log(tarif);
 
     useEffect(()=>{
         let a = '';

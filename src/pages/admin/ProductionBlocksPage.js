@@ -32,7 +32,6 @@ const customStyles = {
 const ProductionBlocksPage = () => {
     const {userData} = useSelector(state=>state.AuthPage);
     const [modalIsOpen,setOpen] = useState(false);
-    const history = useHistory();
     const dispatch = useDispatch();
     const {id} = useParams();
     const {currentItemData} = useSelector(state => state.ProductionPage);
@@ -143,7 +142,7 @@ const ProductionBlocksPage = () => {
             setSendErrorData({
                 type: 'success',
                 title:"Успешно",
-                text: 'Документы успешно отправлены на этап "документы"'
+                text: 'Документы успешно отправлены. Через 10 минут они появятся на этапе "Производства".'
             });
         }).catch(err=>{
             setPopUp(true);

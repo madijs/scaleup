@@ -141,7 +141,7 @@ const PreviewDocumentDetail = ({folderName,setFolderName}) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <DocsView document={document} />
+                <DocsView tarif={tarif} document={document} />
             </Modal>
         <div className={styles.fake_container}>
             <div className={styles.head}>
