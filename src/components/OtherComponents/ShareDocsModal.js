@@ -41,42 +41,77 @@ const ShareDocsModal = ({userData,closePopupHandleChange}) => {
     },[userData]);
 
     const handleChange = (section,value) => {
-        let val = '0';
-        if (value === true){
-            val = '1'
+        let payload = {};
+        if (section === 'strategy'){
+            setStrategyChecked(!isStrategyChecked)
+            payload = {
+                strategy: !isStrategyChecked ? '1' : '0',
+                financial: isFinancialChecked ? '1' : '0',
+                legal: isLegalChecked ? '1' : '0',
+                marketing: isMarketingChecked ? '1' : '0'
+            };
+        }else if (section === 'financial'){
+            setFinancialChecked(!isFinancialChecked);
+            payload = {
+                strategy: isStrategyChecked ? '1' : '0',
+                financial: !isFinancialChecked ? '1' : '0',
+                legal: isLegalChecked ? '1' : '0',
+                marketing: isMarketingChecked ? '1' : '0'
+            };
+        }else if (section === 'legal'){
+            setLegalChecked('legal');
+            payload = {
+                strategy: isStrategyChecked ? '1' : '0',
+                financial: isFinancialChecked ? '1' : '0',
+                legal: !isLegalChecked ? '1' : '0',
+                marketing: isMarketingChecked ? '1' : '0'
+            };
+        }else if (section === 'marketing'){
+            setMarketingChecked(!isMarketingChecked);
+            payload = {
+                strategy: isStrategyChecked ? '1' : '0',
+                financial: isFinancialChecked ? '1' : '0',
+                legal: isLegalChecked ? '1' : '0',
+                marketing: !isMarketingChecked ? '1' : '0'
+            };
         }
-        const response = new DocumentService().shareDocs(section,val);
+
+        const response = new DocumentService().shareDocs(payload);
         response.then(res=>{
-            if (section === 'strategy'){
-                if (res.data.strategy === '1'){
-                    setStrategyChecked(true)
-                }else{
-                    setStrategyChecked(false)
-                }
-            }
-            if (section === 'legal'){
-                if (res.data.legal === '1'){
-                    setLegalChecked(true);
-                }else{
-                    setLegalChecked(false);
-                }
-            }
-            if (section === 'financial'){
-                if (res.data.financial === '1'){
-                    setFinancialChecked(true);
-                }else{
-                    setFinancialChecked(false);
-                }
-            }
-            if (section === 'marketing'){
-                if (res.data.marketing === '1'){
-                    setMarketingChecked(true);
-                }else{
-                    setMarketingChecked(false);
-                }
-            }
+            console.log(res);
             setToken(res.data.token)
         })
+        // response.then(res=>{
+        //     if (section === 'strategy'){
+        //         if (res.data.strategy === '1'){
+        //             setStrategyChecked(true)
+        //         }else{
+        //             setStrategyChecked(false)
+        //         }
+        //     }
+        //     if (section === 'legal'){
+        //         if (res.data.legal === '1'){
+        //             setLegalChecked(true);
+        //         }else{
+        //             setLegalChecked(false);
+        //         }
+        //     }
+        //     if (section === 'financial'){
+        //         if (res.data.financial === '1'){
+        //             setFinancialChecked(true);
+        //         }else{
+        //             setFinancialChecked(false);
+        //         }
+        //     }
+        //     if (section === 'marketing'){
+        //         if (res.data.marketing === '1'){
+        //             setMarketingChecked(true);
+        //         }else{
+        //             setMarketingChecked(false);
+        //         }
+        //     }
+        //     setToken(res.data.token)
+        // })
     };
 
     return(

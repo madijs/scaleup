@@ -22,11 +22,7 @@ export default class DocumentService {
         return await this.getResource(`/docs/get-user-files/${id}`)
     }
 
-    async shareDocs(section,value){
-        const payload = {
-            section,
-            value
-        };
+    async shareDocs(payload){
         return await this.putResource('/public-document/update',payload)
     }
 
