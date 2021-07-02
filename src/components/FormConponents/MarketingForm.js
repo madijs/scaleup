@@ -23,6 +23,7 @@ import {CREATE_ANKETA_FORM, DELETE_COMMENT} from "../../types/anketaTypes";
 import ErrorPopupModal from "../OtherComponents/ErrorPopupModal";
 import getMediaUrls from "../../tools/getMediaUrls";
 import NotificationSystemIcon from "../../assets/icons/notificsystem.svg";
+import Faq from "../FaqComponents/Faq";
 
 const customStyles = {
     content : {
@@ -516,6 +517,7 @@ const MarketingForm = () => {
                     </div>
                 </div>
             </div>
+            <Faq/>
         </>
     )
 };

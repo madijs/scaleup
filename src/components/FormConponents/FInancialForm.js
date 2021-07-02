@@ -23,6 +23,7 @@ import {saveAnketaValueAction} from "../../redux/actions/anketa/saveAnketaValueA
 import ErrorPopupModal from "../OtherComponents/ErrorPopupModal";
 import getMediaUrls from "../../tools/getMediaUrls";
 import NotificationSystemIcon from "../../assets/icons/notificsystem.svg";
+import Faq from "../FaqComponents/Faq";
 
 
 const customStyles = {
@@ -536,6 +537,7 @@ const FinancialForm = () => {
                     </div>
                 </div>
             </div>
+            <Faq/>
         </>
     )
 };
