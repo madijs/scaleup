@@ -10,9 +10,10 @@ import MainService from "../services/MainService";
 import RocketBlock from "../components/FormConponents/RocketBlock";
 import AnketaProgress from "../components/FormConponents/AnketaProgress";
 import CircularIndeterminate from "../components/FormConponents/ProgressCircle";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import DocumentService from "../services/DocumentService";
+import {getJustFaqsAction} from "../redux/actions/getJustFaqsAction";
 
 const textStyle = {
     fontStyle: 'normal',
@@ -23,12 +24,14 @@ const textStyle = {
     color: '#171717'
 };
 const AfterPaymentMainPage = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
     const [sections,setSections] = useState(null);
     const [sectionTitles] = useState(["strategy","financial","legal","marketing"]);
     const {userData} = useSelector(state => state.AuthPage);
     const [rocketStatus,setRocketStatus] = useState(-1);
     const [docsEmpty,setDocsIsEmpty] = useState(true);
+    const [faqData,setFaqData] = useState(null);
 
 
     useEffect(()=>{
@@ -59,6 +62,16 @@ const AfterPaymentMainPage = () => {
         }).catch(err=>{
             setDocsIsEmpty(true);
         });
+
+        const response3 = dispatch(getJustFaqsAction());
+        response3.then(res=>{
+            for (let i=0;i<res.data.length;i++){
+                if (res.data[i].id == 2){
+                    setFaqData(res.data[i].faqs)
+                }
+            }
+            console.log(res.data);
+        })
     },[]);
 
     useEffect(()=>{
@@ -121,7 +134,7 @@ const AfterPaymentMainPage = () => {
                     ))}
                 </div>
             </div>
-            <Faq/>
+            <Faq faqData={faqData}/>
         </div>
     )
 };

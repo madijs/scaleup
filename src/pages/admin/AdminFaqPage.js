@@ -102,8 +102,7 @@ const AdminFaqsPage = () => {
         setForm(copy);
     };
 
-    const updateFaqs = async () => {
-
+    const updateFaqs = () => {
         const response = new SettingsService().updateFaqsQuestions(form);
         response.then(res=>{
             getFaqsFunc();
@@ -123,6 +122,7 @@ const AdminFaqsPage = () => {
     };
 
     const deleteCategory = (id) => {
+        updateFaqs();
         const response = new SettingsService().deleteCategory(id);
         response.then(res=>{
             let arr = [];
@@ -135,14 +135,16 @@ const AdminFaqsPage = () => {
         })
     };
 
-    const addCategory = () => {
+    const addCategory = async () => {
+        await updateFaqs();
         const response = new SettingsService().addCategoryAPI();
         response.then(res=>{
             getFaqsFunc();
         })
     };
 
-   const addQuestion = () => {
+   const addQuestion = async () => {
+       await updateFaqs();
        const response = new SettingsService().addQuestionAPI(currentData.id);
        response.then(res=>{
            getFaqsFunc();
@@ -163,7 +165,8 @@ const AdminFaqsPage = () => {
         // })
    };
 
-   const deleteQuestion = (id) => {
+   const deleteQuestion = async (id) => {
+       await updateFaqs();
        const response = new SettingsService().deleteQuestionAPI(id);
        response.then(res=>{
            getFaqsFunc();

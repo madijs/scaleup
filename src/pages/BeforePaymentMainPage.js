@@ -6,7 +6,7 @@ import MainFirstItem from "../components/MainComponents/MainFirstItem";
 import MainSecondItem from "../components/MainComponents/MainSecondItem";
 import MainThirdItem from "../components/MainComponents/MainThirdItem";
 import Faq from "../components/FaqComponents/Faq";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import MainService from "../services/MainService";
 import BlockItem from "../components/MainComponents/BlockItem";
 import Slider from "react-slick";
@@ -14,6 +14,7 @@ import '../assets/styles/Slider.css';
 import {useHistory} from "react-router-dom";
 import SaveBtn from "../components/OtherComponents/SaveBtn";
 import SettingsService from "../services/SettingsService";
+import {getJustFaqsAction} from "../redux/actions/getJustFaqsAction";
 
 
 const customStyles = {
@@ -39,6 +40,7 @@ const settings = {
     arrows:false,
 };
 const BeforePaymentMainPage = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
     const [blockInfo,setBlock] = useState(null);
     const [servicesInfo,setServices] = useState({
@@ -53,6 +55,8 @@ const BeforePaymentMainPage = () => {
     const [invoiceForPaymentFile,setInvoiceForPaymentFile] = useState(null);
     const [termsOofAgreementFile,setTermsForAgreementFile] = useState(null);
     const [confidentialityFile,setConfidentialityFile] = useState(null);
+
+    const [faqData,setFaqData] = useState(null);
 
 
     const getDocs = () => {
@@ -101,6 +105,15 @@ const BeforePaymentMainPage = () => {
         });
 
         getDocs();
+        const response2 = dispatch(getJustFaqsAction());
+        response2.then(res=>{
+            for (let i=0;i<res.data.length;i++){
+                if (res.data[i].id == 1){
+                    setFaqData(res.data[i].faqs)
+                }
+            }
+            console.log(res.data);
+        })
     },[]);
 
 
@@ -201,7 +214,7 @@ const BeforePaymentMainPage = () => {
                         </div>
                     </div>
                 </div>
-                <Faq/>
+                <Faq faqData={faqData}/>
             </div>
         </>
     )

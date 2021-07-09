@@ -17,16 +17,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Faq = () => {
+const Faq = ({faqData=[]}) => {
     const location = useLocation();
     const history = useHistory();
-    const {faqData} = useSelector(state => state.MainPage);
+    // const {faqData} = useSelector(state => state.MainPage);
     const dispatch = useDispatch();
     const classes = useStyles();
 
-    useEffect(()=>{
-        dispatch(getFaqListAction());
-    },[]);
+    // useEffect(()=>{
+    //     dispatch(getFaqListAction());
+    // },[]);
 
     return(
         <>
@@ -40,7 +40,7 @@ const Faq = () => {
                            {/*Learn from a growing library of 1,982 websites and 3,829 component examples. Easily filterable to find the inspiration you need, quickly.*/}
                        </div>
                        {faqData && (
-                           <FaqList location={location}/>
+                           <FaqList faqDatas={faqData} location={location}/>
                        )}
                        <div onClick={()=>history.push('/faq')} className={styles.allQuestions}>
                            Все вопросы-ответы
