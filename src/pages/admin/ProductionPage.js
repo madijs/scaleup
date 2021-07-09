@@ -46,7 +46,7 @@ const ProductionPage = () => {
                     <div
                         onClick={()=>{
                             setActive(1);
-                            history.push('/admin/questionnaire/tables');
+                            history.push('/admin/questionnaire/tables/1');
                         }}
                         className={ active === 1 ? `${styles.tab} ${styles.active}`: `${styles.tab}`}
                     >Не отправленные<span className={styles.count}>({data2 ? data2.length : '0'})</span></div>

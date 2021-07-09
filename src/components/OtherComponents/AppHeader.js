@@ -68,7 +68,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
             icon: <AnketaIcon width={"100%"} height={"100%"}/>,
             title: "Анкета",
             active: false,
-            path: '/admin/questionnaire/tables',
+            path: '/admin/questionnaire/tables/1',
             access: ['moderator','admin','editor','financier','lawyer','marketer']
         },
         {

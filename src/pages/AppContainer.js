@@ -103,7 +103,7 @@ const AppContainer = ({userData}) => {
                             {/*<Route exact path={'/admin'} render={() => <AdminPage/>}/>*/}
                             <Route exact path={'/admin/payment/:id'} render={() => <AdminPage/>}/>
                             <Route exact path={'/admin/documents'} render={()=> <NewDocumentsPage/>}/>
-                            <Route path={'/admin/questionnaire/tables'} render={() => <ProductionPage/>}/>
+                            <Route exact path={'/admin/questionnaire/tables/:id'} render={() => <ProductionPage/>}/>
                             <Route exact path={'/admin/pre-questionnaire/:id'} render={()=><QuestionnaireBlocksPage/>}/>
                             <Route exact path={'/admin/questionnaire/:id'} render={()=> <ProductionBlocksPage/>}/>
                             <Route exact path={'/admin/questionnaire/strategy/:id'} render={()=><StrategyFormContainer/>}/>
