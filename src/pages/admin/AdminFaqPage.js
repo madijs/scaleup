@@ -7,8 +7,11 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import trashIcon from "../../assets/icons/trashIcon.svg";
 import editIcon from "../../assets/icons/editTableIcon.svg";
 import SettingsService from "../../services/SettingsService";
+import {useParams,useHistory} from "react-router-dom";
 
 const AdminFaqsPage = () => {
+    const {id} = useParams();
+    const history = useHistory();
     const dispatch = useDispatch();
     const [allData, setAllData] = useState(null);
     const [currentData, setCurrentData] = useState(allData ? allData[0].faqs[0] : null);
@@ -19,6 +22,17 @@ const AdminFaqsPage = () => {
 
     const [editCategoryId,setEditCategoryId] = useState(null );
 
+    const openQuestionsHandleChange = id => {
+        console.log(id);
+        for (let i = 0; i < allData.length; i++) {
+            if (allData[i].id == id) {
+                console.log(allData[i]);
+                history.push('/admin/faqs/'+id);
+                setCurrentData(allData[i]);
+                setEditCategoryId('')
+            }
+        }
+    };
 
     const getFaqsFunc = () => {
         const response = dispatch(getJustFaqsAction());
@@ -27,23 +41,25 @@ const AdminFaqsPage = () => {
             setAllData(res.data);
             setCurrentData(res.data[0]);
             console.log(res)
+            if (id){
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].id == id) {
+                        console.log(res.data[i]);
+                        history.push('/admin/faqs/'+id);
+                        setCurrentData(allData[i]);
+                        setEditCategoryId('')
+                    }
+                }            }
         }).catch(err => {
             console.log(err)
         })
     };
 
+
+
     useEffect(() => {
         getFaqsFunc();
     }, []);
-
-    const openQuestionsHandleChange = id => {
-        for (let i = 0; i < allData.length; i++) {
-            if (allData[i].id === id) {
-                setCurrentData(allData[i]);
-                setEditCategoryId('')
-            }
-        }
-    };
 
     useEffect(()=>{
         if (currentData){
@@ -60,7 +76,7 @@ const AdminFaqsPage = () => {
         }
     },[currentData]);
 
-    useEffect(()=>{
+    useEffect(async ()=>{
         if (allData){
             const copy = [...category];
             for (let i=0;i<allData.length;i++){
@@ -69,7 +85,8 @@ const AdminFaqsPage = () => {
                     title: allData[i].title
                 }
             }
-            setCategory(copy);
+            await setCategory(copy);
+            openQuestionsHandleChange(id);
         }
     },[allData]);
 
@@ -86,9 +103,16 @@ const AdminFaqsPage = () => {
     };
 
     const updateFaqs = async () => {
-        new SettingsService().updateFaqsQuestions(form);
-        new SettingsService().updateFaqsCategory(category);
-        getFaqsFunc()
+
+        const response = new SettingsService().updateFaqsQuestions(form);
+        response.then(res=>{
+            getFaqsFunc();
+        });
+        const response2 = new SettingsService().updateFaqsCategory(category);
+        response2.then(res=>{
+            getFaqsFunc();
+        })
+
     };
 
     const handleFaqsCategoryChange = (index,value) => {
@@ -119,10 +143,24 @@ const AdminFaqsPage = () => {
     };
 
    const addQuestion = () => {
-        const response = new SettingsService().addQuestionAPI(currentData.id);
-        response.then(res=>{
-            getFaqsFunc();
-        })
+       const response = new SettingsService().addQuestionAPI(currentData.id);
+       response.then(res=>{
+           getFaqsFunc();
+       })
+        // const response = new SettingsService().addQuestionAPI(currentData.id);
+        // response.then(res=>{
+        //     console.log(res.data);
+        //     console.log(allData);
+        //     const copy = [...allData];
+        //     for (let i=0;i<copy.length;i++){
+        //         if (res.data.faq_category_id == copy[i].id){
+        //             copy[i].faqs.push(res.data);
+        //         }
+        //     }
+        //     console.log(copy);
+        //     setAllData(copy);
+        //     // getFaqsFunc();
+        // })
    };
 
    const deleteQuestion = (id) => {
@@ -138,6 +176,9 @@ const AdminFaqsPage = () => {
            setForm(arr);
        });
    };
+
+   console.log(allData);
+   console.log(currentData);
 
 
     return (
@@ -206,7 +247,7 @@ const AdminFaqsPage = () => {
                                     <div onClick={addQuestion} className={styles.add_text}>
                                         Добавить вопрос
                                     </div>
-                                    {form.length && currentData.faqs.map((el, index) => (
+                                    {form.length && currentData?.faqs.map((el, index) => (
                                         <div className={styles.question}>
                                             <div className={styles.question_title}>
                                                 <TextareaAutosize

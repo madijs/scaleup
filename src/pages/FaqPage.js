@@ -30,12 +30,13 @@ const FaqPage = () => {
     // const {faqData} = useSelector(state => state.MainPage);
     const [allData,setAllData] = useState(null);
 
-    const [currentData,setCurrentData] = useState( allData ? allData[0].faqs[0] : null);
+    const [currentData,setCurrentData] = useState( null);
 
 
     useEffect(()=>{
        const response = dispatch(getJustFaqsAction());
        response.then(res=>{
+           console.log(res.data);
            setAllData(res.data);
            setCurrentData(res.data[0]);
            if (res.data.length>0){
@@ -107,7 +108,7 @@ const FaqPage = () => {
                             </div>
                             {currentData && (
                                 <div className={styles.questions_block}>
-                                    <FaqList faqData={currentData.faqs}/>
+                                    <FaqList faqDatas={currentData ? currentData.faqs : []}/>
                                 </div>
                             )}
                         </>

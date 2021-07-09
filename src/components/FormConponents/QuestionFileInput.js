@@ -166,7 +166,7 @@ const QuestionFileInput = ({title = "",  saveAnketa,text = "", questionsData, id
                         {form.answer && form.answer.answers && form.answer.answers.map((el, index) => (
                             <>
                                 {el.name ? (
-                                    <div onClick={()=>alert('qwe')} className={styles.fileName} key={index}>
+                                    <div onClick={()=>alert('Файл еще не загружен!')} className={styles.fileName} key={index}>
                                         {el.name}
                                     </div>
                                 ) : (

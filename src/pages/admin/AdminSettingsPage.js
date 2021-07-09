@@ -37,7 +37,7 @@ const AdminSettingsPage = () => {
         {
             title: 'Вопросы-ответы',
             description: 'Какое-то описание для этого блока',
-            path: '/admin/faqs'
+            path: '/admin/faqs/1'
         }
     ]);
 

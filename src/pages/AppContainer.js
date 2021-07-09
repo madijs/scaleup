@@ -118,7 +118,7 @@ const AppContainer = ({userData}) => {
                             <Route exact path={'/admin/production/financial/:id'} render={()=><FinancialFormContainer/>}/>
                             <Route exact path={'/admin/profile'} render={()=><AdminProfilePage/>}/>
                             <Route path={'/admin/settings'} render={()=><AdminSettingsPage/>}/>
-                            <Route exact path={'/admin/faqs'} render={()=> <AdminFaqsPage/>}/>
+                            <Route exact path={'/admin/faqs/:id'} render={()=> <AdminFaqsPage/>}/>
                             <Route exact path={'/admin/welcome'} render={()=><WelcomeBlock/>}/>
                             <Route exact path={'/my-documents'} render={()=><MyDocumentsPage/>}/>
                             <Route exact path={'/my-payments'} render={()=><MyPaymentsPage/>}/>
