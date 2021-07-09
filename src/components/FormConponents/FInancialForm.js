@@ -150,7 +150,12 @@ const FinancialForm = () => {
         if (userData.roles[0].name === "client") {
             dispatch(saveAnketaValueAction(userData.id,questionsData,'financial'));
         } else {
-            dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'financial'));
+            const response = dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'financial'));
+            response.then(res=>{
+                setPopUpText("Анкета успешно сохранена!")
+                openSuccessSaved();
+            });
+            // dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'financial'));
         }
     };
 

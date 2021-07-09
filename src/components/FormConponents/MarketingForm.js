@@ -145,7 +145,11 @@ const MarketingForm = () => {
         if (userData.roles[0].name === "client"){
             dispatch(saveAnketaValueAction(userData.id,questionsData,'marketing'));
         }else{
-            dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'marketing'));
+            const response = dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'marketing'));
+            response.then(res=>{
+                setPopUpText("Анкета успешно сохранена!")
+                openSuccessSaved();
+            })
         }
     };
 
