@@ -150,13 +150,14 @@ const FinancialForm = () => {
         if (userData.roles[0].name === "client") {
             dispatch(saveAnketaValueAction(userData.id,questionsData,'financial'));
         } else {
-            if (!pagination){
+
                 const response = dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'financial'));
                 response.then(res=>{
-                    setPopUpText("Анкета успешно сохранена!")
-                    openSuccessSaved();
+                    if (!pagination) {
+                        setPopUpText("Анкета успешно сохранена!")
+                        openSuccessSaved();
+                    }
                 });
-            }
             // dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'financial'));
         }
     };
