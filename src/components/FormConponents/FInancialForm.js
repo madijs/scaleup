@@ -145,16 +145,18 @@ const FinancialForm = () => {
         setChangeStatusModal(false);
     };
 
-    const save = () => {
-        setModal('')
+    const save = (pagination=false) => {
+        setModal('');
         if (userData.roles[0].name === "client") {
             dispatch(saveAnketaValueAction(userData.id,questionsData,'financial'));
         } else {
-            const response = dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'financial'));
-            response.then(res=>{
-                setPopUpText("Анкета успешно сохранена!")
-                openSuccessSaved();
-            });
+            if (!pagination){
+                const response = dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'financial'));
+                response.then(res=>{
+                    setPopUpText("Анкета успешно сохранена!")
+                    openSuccessSaved();
+                });
+            }
             // dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'financial'));
         }
     };

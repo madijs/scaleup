@@ -140,16 +140,19 @@ const MarketingForm = () => {
         setChangeStatusModal(false);
     };
 
-    const save = () => {
+    const save = (pagination=false) => {
         setModal('');
         if (userData.roles[0].name === "client"){
             dispatch(saveAnketaValueAction(userData.id,questionsData,'marketing'));
         }else{
-            const response = dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'marketing'));
-            response.then(res=>{
-                setPopUpText("Анкета успешно сохранена!")
-                openSuccessSaved();
-            })
+            if (!pagination){
+                const response = dispatch(saveAnketaValueAction(localStorage.getItem('user_id'),questionsData,'marketing'));
+                response.then(res=>{
+                    setPopUpText("Анкета успешно сохранена!")
+                    openSuccessSaved();
+                })
+            }
+
         }
     };
 

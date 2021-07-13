@@ -40,7 +40,7 @@ export default function PaginationComponent({count,page,handleChangeQuestion,sav
                         size="small"
                         page={page} onChange={(e,p)=>{
                         handleChangeQuestion(e,p);
-                        save()
+                        save(true)
                     }}  count={count} hidePrevButton />
                 </div>
             </div>
