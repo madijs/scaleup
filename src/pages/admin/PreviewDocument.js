@@ -52,7 +52,7 @@ const PreviewDocument = ({setFolderName,folderName}) => {
 
     const [isOpen,setOpen] = useState(false);
     const [shareOpen,setShareOpen] = useState(false);
-    const [document,setDocument] = useState(null);
+    const [documentt,setDocument] = useState(null);
 
     const [isPending,setPending] = useState(false);
 
@@ -201,7 +201,7 @@ const PreviewDocument = ({setFolderName,folderName}) => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <DocsView tarif={tarif} document={document} />
+                <DocsView tarif={tarif} document={documentt} />
             </Modal>
             <Modal
                 isOpen={isOpenAddModal}
@@ -300,6 +300,22 @@ const PreviewDocument = ({setFolderName,folderName}) => {
                                     save={()=>setShareOpen(true)}
                                 />
                                 <SaveBtn
+                                    save={()=>{
+                                        const response =  axios({
+                                            url:`http://platformapi.scaleup.plus/api/docs/google-document-zip/${userData.id}`, //your url
+                                            method: 'GET',
+                                            responseType: 'blob',// important
+                                        });
+                                        response.then(res=>{
+                                            console.log(res);
+                                            const url = window.URL.createObjectURL(new Blob([res.data]));
+                                            const link = document.createElement('a');
+                                            link.href = url;
+                                            link.setAttribute('download', 'files.zip'); //or any other extension
+                                            document.body.appendChild(link);
+                                            link.click();
+                                        })
+                                    }}
                                     title={"Скачать все документы"}
                                 />
                             </div>
