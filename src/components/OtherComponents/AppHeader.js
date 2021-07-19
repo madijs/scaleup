@@ -24,6 +24,7 @@ import {returnDateFormat} from "../../tools/returnDateFormat";
 import NotificationSystemIcon from "../../assets/icons/notificsystem.svg";
 import Badge from '@material-ui/core/Badge';
 import getMediaUrls from "../../tools/getMediaUrls";
+import audioUrl from "../../notification.mp3"
 
 
 
@@ -187,6 +188,25 @@ const AppHeader = ({userData,setMobileMenu}) => {
                 }
             }
             setNotificationCount(cnt);
+            if (cnt > 0 ){
+                let audio = new Audio(audioUrl);
+                audio.play();
+            }
+            //
+            // if (playPromise !== undefined) {
+            //     playPromise
+            //         .then(_ => {
+            //             // Automatic playback started!
+            //             // Show playing UI.
+            //             console.log("audio played auto");
+            //         })
+            //         .catch(error => {
+            //             // Auto-play was prevented
+            //             // Show paused UI.
+            //             console.log("playback prevented");
+            //         });
+            // }
+
         })
     },[]);
 
@@ -253,7 +273,7 @@ const AppHeader = ({userData,setMobileMenu}) => {
                                 color={'secondary'}
                                 badgeContent={notificationCount}
                             >
-                                <img onClick={handleClick} src={Bell} alt="bell"/>
+                                <img className={styles.blink} onClick={handleClick} src={Bell} alt="bell"/>
                             </Badge>
                             <Popover
                                 id={id}

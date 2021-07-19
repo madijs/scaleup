@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.8fb285f7.chunk.css",
-    "main.js": "/static/js/main.9fa21913.chunk.js",
-    "main.js.map": "/static/js/main.9fa21913.chunk.js.map",
+    "main.js": "/static/js/main.fdae9ce7.chunk.js",
+    "main.js.map": "/static/js/main.fdae9ce7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.66d32a07.js",
     "runtime-main.js.map": "/static/js/runtime-main.66d32a07.js.map",
     "static/css/2.bc1f36dc.chunk.css": "/static/css/2.bc1f36dc.chunk.css",
-    "static/js/2.1ea47368.chunk.js": "/static/js/2.1ea47368.chunk.js",
-    "static/js/2.1ea47368.chunk.js.map": "/static/js/2.1ea47368.chunk.js.map",
+    "static/js/2.c54bf0b8.chunk.js": "/static/js/2.c54bf0b8.chunk.js",
+    "static/js/2.c54bf0b8.chunk.js.map": "/static/js/2.c54bf0b8.chunk.js.map",
     "static/js/3.27661c2e.chunk.js": "/static/js/3.27661c2e.chunk.js",
     "static/js/3.27661c2e.chunk.js.map": "/static/js/3.27661c2e.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.bc1f36dc.chunk.css.map": "/static/css/2.bc1f36dc.chunk.css.map",
     "static/css/main.8fb285f7.chunk.css.map": "/static/css/main.8fb285f7.chunk.css.map",
-    "static/js/2.1ea47368.chunk.js.LICENSE.txt": "/static/js/2.1ea47368.chunk.js.LICENSE.txt",
+    "static/js/2.c54bf0b8.chunk.js.LICENSE.txt": "/static/js/2.c54bf0b8.chunk.js.LICENSE.txt",
     "static/media/Bell.59e272af.svg": "/static/media/Bell.59e272af.svg",
     "static/media/Flag.eefa3274.svg": "/static/media/Flag.eefa3274.svg",
     "static/media/Icon.965822b3.svg": "/static/media/Icon.965822b3.svg",
@@ -45,6 +45,7 @@
     "static/media/mastercard.05aa6013.svg": "/static/media/mastercard.05aa6013.svg",
     "static/media/menulines.254f5eb1.svg": "/static/media/menulines.254f5eb1.svg",
     "static/media/minus.42bec286.svg": "/static/media/minus.42bec286.svg",
+    "static/media/notification.01bfd32f.mp3": "/static/media/notification.01bfd32f.mp3",
     "static/media/notificsystem.79dda6ba.svg": "/static/media/notificsystem.79dda6ba.svg",
     "static/media/oplataHeader.730dc5ba.svg": "/static/media/oplataHeader.730dc5ba.svg",
     "static/media/payments.730dc5ba.svg": "/static/media/payments.730dc5ba.svg",
@@ -71,8 +72,8 @@
   "entrypoints": [
     "static/js/runtime-main.66d32a07.js",
     "static/css/2.bc1f36dc.chunk.css",
-    "static/js/2.1ea47368.chunk.js",
+    "static/js/2.c54bf0b8.chunk.js",
     "static/css/main.8fb285f7.chunk.css",
-    "static/js/main.9fa21913.chunk.js"
+    "static/js/main.fdae9ce7.chunk.js"
   ]
 }
