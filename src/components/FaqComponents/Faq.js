@@ -31,11 +31,23 @@ const Faq = ({faqData=[]}) => {
     // },[]);
 
     useEffect(()=>{
-        if (location.pathname.includes('/form/strategy') || location.pathname.includes('/form/financial') || location.pathname.includes('/form/marketing') || location.pathname.includes('/form/legal')){
+        if (location.pathname.includes('/form/strategy') || location.pathname.includes('/form/financial') || location.pathname.includes('/form/marketing') || location.pathname.includes('/form/legal')
+            || location.pathname.includes('/admin/questionnaire/') || location.pathname.includes('/admin/production/')
+        ){
             const response2 = dispatch(getJustFaqsAction());
             response2.then(res=>{
                 for (let i=0;i<res.data.length;i++){
                     if (res.data[i].id == 2){
+                        setFaqData(res.data[i].faqs)
+                    }
+                }
+                console.log(res.data);
+            })
+        }else if (location.pathname.includes('/my-documents')){
+            const response2 = dispatch(getJustFaqsAction());
+            response2.then(res=>{
+                for (let i=0;i<res.data.length;i++){
+                    if (res.data[i].id == 1){
                         setFaqData(res.data[i].faqs)
                     }
                 }

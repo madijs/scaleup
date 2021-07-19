@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(5),
         },
         '& .Mui-selected': {
-            background: 'rgba(0, 135, 90, 0.1)',
-            color:'#00875A',
+            backgroundColor: 'rgba(0, 135, 90, 0.1)',
+            color:'#FF494D',
         },
         '& .MuiPaginationItem-page':{
             background: 'rgba(143, 146, 161, 0.1)',
@@ -30,7 +30,7 @@ export default function PaginationComponent({count,page,handleChangeQuestion,sav
                     <Pagination
                         page={page} onChange={(e,p)=>{
                         handleChangeQuestion(e,p);
-                        save()
+                        save(true)
                     }}  count={count} hidePrevButton />
                 </div>
             </div>

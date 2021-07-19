@@ -63,7 +63,7 @@ const PaymentModal = ({close,setDownload}) => {
                             name="fio"
                             type="text"
                             variant="outlined"
-                            label={"Название/ФИО оплачивающего лица"}
+                            label={"Название компании или ФИО оплачивающего лица"}
                             value={fio}
                             onFocus={()=>{
                                 setFocus('fio')

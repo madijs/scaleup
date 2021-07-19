@@ -5,8 +5,9 @@ import axios from "../../plugins/axios"
 import {useLocation} from "react-router-dom"
 import styles from "../../assets/styles/ProfileStyles/ProfilePage.module.scss";
 import EditAva from "../../assets/icons/editAva.svg";
+import {mediaLink} from "../../tools/medaiLink";
 
-const DocsView = ({document,tarif=''}) => {
+const DocsView = ({document,tarif='',invoice=false}) => {
     const search = new URLSearchParams(useLocation().search);
     const {userData} = useSelector(state => state.AuthPage);
     const {id} = useParams();
@@ -28,7 +29,7 @@ const DocsView = ({document,tarif=''}) => {
             a = 3
         }
         setTarifNum(a);
-        if (userData && userData.roles[0].name !=="client" && !location.pathname.includes('/admin/settings'))
+        if (userData && userData.roles[0].name !=="client" && !location.pathname.includes('/admin/settings') && !invoice)
         axios.get(`/docs/google-document-file-open/${id}?link=${document.key}/${document.file}`).then(res=>{
             console.log(res);
             setLink(res.data.link)
@@ -60,7 +61,7 @@ const DocsView = ({document,tarif=''}) => {
             {/*        Редактировать*/}
             {/*    </div>*/}
             {/*)}*/}
-            {(userData && (userData && userData.roles[0].name !=='client' && !location.pathname.includes('/admin/settings'))) && (
+            {(userData && (userData && userData.roles[0].name !=='client' && !location.pathname.includes('/admin/settings'))) && !invoice && (
                 <div onClick={()=>{
                     if (link){
                         window.open(link,'__blank')
@@ -73,7 +74,7 @@ const DocsView = ({document,tarif=''}) => {
             )}
             {userData && (
                 <>
-                    {(document && userData.roles[0].name !== "client" && !location.pathname.includes('/admin/settings')) && (
+                    {(document && userData.roles[0].name !== "client" && !location.pathname.includes('/admin/settings')) && !invoice && (
                         <iframe
                             src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file/${id}?link=${document.key}/${document.file}&embedded=true`}
                             title="file"
@@ -100,6 +101,14 @@ const DocsView = ({document,tarif=''}) => {
                     {(document && userData.roles[0].name === "client") && (
                         <iframe
                             src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file/${userData.id}?link=${document.key}/${document.file}&embedded=true`}
+                            title="file"
+                            width="100%"
+                            height="600"
+                        ></iframe>
+                    )}
+                    {invoice && (
+                        <iframe
+                            src={`https://docs.google.com/viewer?url=${mediaLink}/${document}&embedded=true`}
                             title="file"
                             width="100%"
                             height="600"

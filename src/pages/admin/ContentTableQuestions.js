@@ -35,7 +35,7 @@ const ContentTableQuestions = ({data=[],setForm,open,setType}) => {
                                 {e.id}
                             </td>
                             <td>
-                                {e.key}
+                                {"${"+e.key+"}"}
                             </td>
                             <td>
                                 {e.title}

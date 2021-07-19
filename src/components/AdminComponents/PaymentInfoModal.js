@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "../../assets/styles/AdminStyles/PaymentInfoModal.module.scss"
 import {phoneFormat} from "../../tools/phoneForm";
 import {returnDateFormat} from "../../tools/returnDateFormat";
@@ -6,7 +6,20 @@ import {mediaLink} from "../../tools/medaiLink";
 import AdminService from "../../services/AdminService";
 import {useDispatch} from "react-redux";
 import {getPaymentTableAction} from "../../redux/actions/getPaymentTableAction";
-
+import DocsView from "../FormConponents/DocsView";
+import Modal from "react-modal";
+const customStyles = {
+    content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)',
+        borderRadius          : '32px',
+        padding               : 0
+    }
+};
 const PaymentInfoModal = ({info, closeModal}) => {
     const dispatch = useDispatch();
 
@@ -19,8 +32,19 @@ const PaymentInfoModal = ({info, closeModal}) => {
             closeModal()
         })
     };
+    const [isOpen,setOpen] = useState(false);
+
 
     return (
+        <>
+            <Modal
+                isOpen={isOpen}
+                onRequestClose={()=>setOpen(false)}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <DocsView invoice={true} document={info.invoice.link} />
+            </Modal>
         <div className={styles.container}>
             <div className={styles.modal_header}>
                 <div className={styles.title}>
@@ -99,7 +123,10 @@ const PaymentInfoModal = ({info, closeModal}) => {
                         <div className={styles.key}>
                             Платежное поручение
                         </div>
-                        <div onClick={()=>window.open(mediaLink + '/' + info.invoice.link)}
+                        <div onClick={
+                            ()=>setOpen(true)
+                            // ()=>window.open(mediaLink+'/'+info.invoice.link)
+                        }
                              className={`${styles.value} ${styles.fileName}`}>
                             {info.invoice.link.replace('invoices/', '')}
                         </div>
@@ -143,6 +170,7 @@ const PaymentInfoModal = ({info, closeModal}) => {
                 )}
             </div>
         </div>
+            </>
     )
 };
 

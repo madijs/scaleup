@@ -19,7 +19,7 @@ const QuestionnaireBlockItem = ({user_id,id,icon,count,status,percent,name}) => 
                         <div className={`${styles.circle} ${styles.saved}`}>
                         </div>
                         <div>
-                            Готово
+                            Сохранена
                         </div>
                     </div>
                 );
@@ -39,7 +39,7 @@ const QuestionnaireBlockItem = ({user_id,id,icon,count,status,percent,name}) => 
                         <div className={`${styles.circle} ${styles.in_work}`}>
                         </div>
                         <div>
-                            Проверяю
+                            В работе
                         </div>
                     </div>
                 )
@@ -49,7 +49,7 @@ const QuestionnaireBlockItem = ({user_id,id,icon,count,status,percent,name}) => 
                         <div className={`${styles.circle} ${styles.empty}`}>
                         </div>
                         <div>
-                            К проверке
+                            Пустая
                         </div>
                     </div>
                 )
