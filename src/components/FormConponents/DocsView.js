@@ -13,6 +13,7 @@ const DocsView = ({document,tarif='',invoice=false}) => {
     const {id} = useParams();
     const location = useLocation();
     const [link,setLink] = useState(null);
+    const [editLink,setEditLink] = useState(null);
     const token = search.get('token');
     const [tarifNum,setTarifNum] = useState('');
     const [pending,setPending] = useState(false);
@@ -31,11 +32,14 @@ const DocsView = ({document,tarif='',invoice=false}) => {
         }
         setTarifNum(a);
         if (userData && userData.roles[0].name !=="client" && !location.pathname.includes('/admin/settings') && !invoice) {
-            // axios.get(`/docs/google-document-file-open/${id}?link=${document.key}/${document.file}`).then(res=>{
-            //     console.log(res);
-            //     setLink(res.data.link)
-            // });
             setPending(true);
+            axios.get(`/docs/google-document-file-open/${id}?link=${document.key}/${document.file}`).then(res=>{
+                console.log(res);
+                setEditLink(res.data.link)
+                setPending(false)
+            }).catch(() => {
+                setPending(false)
+            });
             axios.get(`/docs/onedrive-link/${id}?link=${document.key}/${document.file}`).then(res => {
                 setLink(res.data.link)
                 setPending(false)
@@ -80,8 +84,8 @@ const DocsView = ({document,tarif='',invoice=false}) => {
             {/*)}*/}
             {(userData && (userData && userData.roles[0].name !=='client' && !location.pathname.includes('/admin/settings'))) && !invoice && (
                 <div onClick={()=>{
-                    if (link){
-                        window.open(link,'__blank')
+                    if (editLink && userData.roles[0].name !== 'client'){
+                        window.open(editLink,'__blank')
                     }else{
                         alert('Подождите несколько секунд и нажмите еще раз!')
                     }
