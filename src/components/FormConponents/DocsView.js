@@ -30,18 +30,27 @@ const DocsView = ({document,tarif='',invoice=false}) => {
             a = 3
         }
         setTarifNum(a);
-        if (userData && userData.roles[0].name !=="client" && !location.pathname.includes('/admin/settings') && !invoice)
-        // axios.get(`/docs/google-document-file-open/${id}?link=${document.key}/${document.file}`).then(res=>{
-        //     console.log(res);
-        //     setLink(res.data.link)
-        // });
-        setPending(true);
-        axios.get(`/docs/onedrive-link/${id}?link=${document.key}/${document.file}`).then(res=>{
-            setLink(res.data.link)
-            setPending(false)
-        }).catch(()=>{
-            setPending(false)
-        })
+        if (userData && userData.roles[0].name !=="client" && !location.pathname.includes('/admin/settings') && !invoice) {
+            // axios.get(`/docs/google-document-file-open/${id}?link=${document.key}/${document.file}`).then(res=>{
+            //     console.log(res);
+            //     setLink(res.data.link)
+            // });
+            setPending(true);
+            axios.get(`/docs/onedrive-link/${id}?link=${document.key}/${document.file}`).then(res => {
+                setLink(res.data.link)
+                setPending(false)
+            }).catch(() => {
+                setPending(false)
+            })
+        }else if (userData.roles[0].name ==="client"){
+            setPending(true);
+            axios.get(`/docs/onedrive-link/${userData.id}?link=${document.key}/${document.file}`).then(res => {
+                setLink(res.data.link)
+                setPending(false)
+            }).catch(() => {
+                setPending(false)
+            })
+        }
         // if (location.pathname.includes('/shared')){
         //     const token = search.get('token');
         //     axios.get(`/public-document/file?token=${token}&link=${document.key}/${document.file}`,{
