@@ -15,6 +15,7 @@ const DocsView = ({document,tarif='',invoice=false}) => {
     const [link,setLink] = useState(null);
     const token = search.get('token');
     const [tarifNum,setTarifNum] = useState('');
+    const [pending,setPending] = useState(false);
 
     console.log(location);
     console.log(tarif);
@@ -30,10 +31,17 @@ const DocsView = ({document,tarif='',invoice=false}) => {
         }
         setTarifNum(a);
         if (userData && userData.roles[0].name !=="client" && !location.pathname.includes('/admin/settings') && !invoice)
-        axios.get(`/docs/google-document-file-open/${id}?link=${document.key}/${document.file}`).then(res=>{
-            console.log(res);
+        // axios.get(`/docs/google-document-file-open/${id}?link=${document.key}/${document.file}`).then(res=>{
+        //     console.log(res);
+        //     setLink(res.data.link)
+        // });
+        setPending(true);
+        axios.get(`/docs/onedrive-link/${id}?link=${document.key}/${document.file}`).then(res=>{
             setLink(res.data.link)
-        });
+            setPending(false)
+        }).catch(()=>{
+            setPending(false)
+        })
         // if (location.pathname.includes('/shared')){
         //     const token = search.get('token');
         //     axios.get(`/public-document/file?token=${token}&link=${document.key}/${document.file}`,{
@@ -74,13 +82,21 @@ const DocsView = ({document,tarif='',invoice=false}) => {
             )}
             {userData && (
                 <>
-                    {(document && userData.roles[0].name !== "client" && !location.pathname.includes('/admin/settings')) && !invoice && (
+                    {(!pending && document && userData.roles[0].name !== "client" && !location.pathname.includes('/admin/settings')) && !invoice && (
+                        <>
+                        {/*<iframe*/}
+                        {/*    src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file/${id}?link=${document.key}/${document.file}&embedded=true`}*/}
+                        {/*    title="file"*/}
+                        {/*    width="100%"*/}
+                        {/*    height="600"*/}
+                        {/*></iframe>*/}
                         <iframe
-                            src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file/${id}?link=${document.key}/${document.file}&embedded=true`}
-                            title="file"
-                            width="100%"
-                            height="600"
+                        src={`${link}`}
+                        title="file"
+                        width="100%"
+                        height="600"
                         ></iframe>
+                        </>
                     )}
                     {location.pathname.includes('/admin/settings/templates') && (
                         <iframe
@@ -98,12 +114,18 @@ const DocsView = ({document,tarif='',invoice=false}) => {
                     {/*        height="600"*/}
                     {/*    ></iframe>*/}
                     {/*)}*/}
-                    {(document && userData.roles[0].name === "client") && (
+                    {(!pending && document && userData.roles[0].name === "client") && (
+                        // <iframe
+                        //     src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file/${userData.id}?link=${document.key}/${document.file}&embedded=true`}
+                        //     title="file"
+                        //     width="100%"
+                        //     height="600"
+                        // ></iframe>
                         <iframe
-                            src={`https://docs.google.com/viewer?url=https://platformapi.scaleup.plus/api/docs/google-document-file/${userData.id}?link=${document.key}/${document.file}&embedded=true`}
-                            title="file"
-                            width="100%"
-                            height="600"
+                        src={`${link}`}
+                        title="file"
+                        width="100%"
+                        height="600"
                         ></iframe>
                     )}
                     {invoice && (
