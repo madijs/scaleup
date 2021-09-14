@@ -33,6 +33,15 @@ const PaymentChoicePay = ({choice,setChoice,checkBoxHover,setCheckBoxHover,setDo
 
     };
 
+    const payByBankCard = () => {
+        axios.post('/payments/bank').then(res=>{
+            console.log(res.data)
+            if (res.data.status === 'success'){
+                window.open(res.data.link)
+            }
+        })
+    }
+
     return(
         <>
             <Modal
@@ -93,7 +102,7 @@ const PaymentChoicePay = ({choice,setChoice,checkBoxHover,setCheckBoxHover,setDo
                     Скачать счет на оплату
                 </div>
             ):(
-                <div className={styles.payment_button}>
+                <div onClick={payByBankCard} className={styles.payment_button}>
                     Оплатить сейчас
                 </div>
             )}
